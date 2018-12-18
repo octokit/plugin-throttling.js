@@ -1,7 +1,3 @@
-# 🚧 THIS IS WORK IN PROGRESS
-
-Join the discussion [#2](https://github.com/octokit/plugin-throttling.js/pull/2)
-
 # plugin-throttling.js
 
 > Octokit plugin for GitHub’s recommended request throttling
