@@ -1,5 +1,5 @@
 const FakeOctokit = require('./fixtures/octokit')
-const retryPlugin = require('plugin-retry')
+const retryPlugin = require('@octokit/plugin-retry.js')
 
 exports.beforeEach = function () {
   const tracker = { events: [], timings: [], t0: Date.now() }

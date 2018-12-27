@@ -34,7 +34,7 @@
     "bottleneck": "^2.14.1"
   },
   "devDependencies": {
-    "@octokit/plugin-retry": "git://github.com/octokit/plugin-retry.git#initial-version",
+    "@octokit/plugin-retry.js": "git://github.com/octokit/plugin-retry.js.git#initial-version",
     "@octokit/request": "2.2.0",
     "@octokit/routes": "16.1.1",
     "chai": "^4.2.0",
