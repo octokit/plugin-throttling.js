@@ -1,6 +1,10 @@
 {
   "name": "@octokit/plugin-throttling",
   "version": "0.0.0-development",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "description": "Automatic rate limiting plugin for octokit",
   "main": "lib/index.js",
   "scripts": {
