@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "coverage": "nyc report --reporter=html && open coverage/index.html",
+    "coverage:upload": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "standard",
     "test": "nyc mocha test/"
   },
@@ -36,6 +37,7 @@
     "@octokit/request": "2.2.0",
     "@octokit/routes": "16.1.1",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
     "semantic-release": "^15.13.1",
