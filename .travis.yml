@@ -1,7 +1,5 @@
 language: node_js
-cache:
-  directories:
-    - ~/.npm
+cache: npm
 
 # Trigger a push build on master and greenkeeper branches + PRs build on every branches
 # Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
@@ -13,13 +11,11 @@ branches:
 jobs:
   include:
     - stage: test
-      node_js: 6
-    - node_js: 8
-      script: npm ci
+      node_js: 8
     - node_js: 10
-      script: npm ci
     - node_js: lts/*
-      script: npm run coverage:upload
+      after_script:
+        - npm run coverage:upload
     - stage: release
       env: semantic-release
       node_js: lts/*
