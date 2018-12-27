@@ -5,7 +5,7 @@ describe('Events', function () {
   describe('\'abuse-limit\'', function () {
     it('Should detect abuse limit and broadcast event', async function () {
       const octokit = new Octokit()
-      octokit.throttle.options({ maxRetries: 0 })
+      octokit.throttle._options({ maxRetries: 0 })
 
       let eventCount = 0
       octokit.throttle.on('abuse-limit', function (retryAfter) {
@@ -34,7 +34,7 @@ describe('Events', function () {
 
     it('Should ensure retryAfter is a minimum of 5s', async function () {
       const octokit = new Octokit()
-      octokit.throttle.options({ maxRetries: 0 })
+      octokit.throttle._options({ maxRetries: 0 })
 
       let eventCount = 0
       octokit.throttle.on('abuse-limit', function (retryAfter) {
@@ -63,7 +63,7 @@ describe('Events', function () {
 
     it('Should broadcast retryAfter of 5s even when the header is missing', async function () {
       const octokit = new Octokit()
-      octokit.throttle.options({ maxRetries: 0 })
+      octokit.throttle._options({ maxRetries: 0 })
 
       let eventCount = 0
       octokit.throttle.on('abuse-limit', function (retryAfter) {
@@ -95,7 +95,7 @@ describe('Events', function () {
     it('Should detect rate limit exceeded and broadcast event', async function () {
       const octokit = new Octokit()
       const t0 = Date.now()
-      octokit.throttle.options({ maxRetries: 0 })
+      octokit.throttle._options({ maxRetries: 0 })
 
       let eventCount = 0
       octokit.throttle.on('rate-limit', function (retryAfter) {
