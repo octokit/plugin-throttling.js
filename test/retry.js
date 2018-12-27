@@ -1,15 +1,9 @@
 const expect = require('chai').expect
-const helpers = require('./helpers')
+const Octokit = require('./octokit')
 
 describe('Retry', function () {
-  let octokit
-
-  beforeEach(function () {
-    const testObjects = helpers.beforeEach()
-    octokit = testObjects.octokit
-  })
-
   it('Should retry \'abuse-limit\' and succeed', async function () {
+    const octokit = new Octokit()
     octokit.throttle.options({ minimumAbuseRetryAfter: 0 })
 
     let eventCount = 0
@@ -18,13 +12,14 @@ describe('Retry', function () {
       eventCount++
     })
 
-    const res = await octokit.request(
-      { method: 'GET', url: 'route', headers: {} },
-      [
-        { status: 403, headers: { 'retry-after': '0' }, data: { message: 'You have been rate limited to prevent abuse' } },
-        { status: 200, headers: {}, data: { message: 'Success!' } }
-      ]
-    )
+    const res = await octokit.request('GET /route', {
+      request: {
+        responses: [
+          { status: 403, headers: { 'retry-after': '0' }, data: { message: 'You have been rate limited to prevent abuse' } },
+          { status: 200, headers: {}, data: { message: 'Success!' } }
+        ]
+      }
+    })
 
     expect(res.status).to.equal(200)
     expect(res.data).to.include({ message: 'Success!' })
@@ -32,6 +27,7 @@ describe('Retry', function () {
   })
 
   it('Should retry \'abuse-limit\' twice and fail', async function () {
+    const octokit = new Octokit()
     octokit.throttle.options({ minimumAbuseRetryAfter: 0, retries: 2 })
 
     let eventCount = 0
@@ -42,14 +38,15 @@ describe('Retry', function () {
 
     const message = 'You have been rate limited to prevent abuse'
     try {
-      await octokit.request(
-        { method: 'GET', url: 'route', headers: {} },
-        [
-          { status: 403, headers: { 'retry-after': '0' }, data: { message } },
-          { status: 403, headers: { 'retry-after': '0' }, data: { message } },
-          { status: 404, headers: { 'retry-after': '0' }, data: { message: 'Nope!' } }
-        ]
-      )
+      await octokit.request('GET /route', {
+        request: {
+          responses: [
+            { status: 403, headers: { 'retry-after': '0' }, data: { message } },
+            { status: 403, headers: { 'retry-after': '0' }, data: { message } },
+            { status: 404, headers: { 'retry-after': '0' }, data: { message: 'Nope!' } }
+          ]
+        }
+      })
       throw new Error('Should not reach this point')
     } catch (error) {
       expect(error.status).to.equal(404)
@@ -60,19 +57,21 @@ describe('Retry', function () {
   })
 
   it('Should retry \'rate-limit\' and succeed', async function () {
+    const octokit = new Octokit()
     let eventCount = 0
     octokit.throttle.on('rate-limit', function (retryAfter) {
       expect(retryAfter).to.equal(0)
       eventCount++
     })
 
-    const res = await octokit.request(
-      { method: 'GET', url: 'route', headers: {} },
-      [
-        { status: 403, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `123` }, data: {} },
-        { status: 202, headers: {}, data: { message: 'Yay!' } }
-      ]
-    )
+    const res = await octokit.request('GET /route', {
+      request: {
+        responses: [
+          { status: 403, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `123` }, data: {} },
+          { status: 202, headers: {}, data: { message: 'Yay!' } }
+        ]
+      }
+    })
 
     expect(res.status).to.equal(202)
     expect(res.data).to.include({ message: 'Yay!' })

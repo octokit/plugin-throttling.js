@@ -1,17 +1,10 @@
 const expect = require('chai').expect
-const helpers = require('./helpers')
+const Octokit = require('./octokit')
 
 describe('Events', function () {
-  let octokit, tracker
-
-  beforeEach(function () {
-    const testObjects = helpers.beforeEach()
-    octokit = testObjects.octokit
-    tracker = testObjects.tracker
-  })
-
   describe('\'abuse-limit\'', function () {
     it('Should detect abuse limit and broadcast event', async function () {
+      const octokit = new Octokit()
       octokit.throttle.options({ retries: 0 })
 
       let eventCount = 0
@@ -20,14 +13,17 @@ describe('Events', function () {
         eventCount++
       })
 
-      await octokit.request(
-        { method: 'GET', url: 'route1', headers: {} }, { status: 201, headers: {}, data: {} }
-      )
+      await octokit.request('GET /route1', {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }]
+        }
+      })
       try {
-        await octokit.request(
-          { method: 'GET', url: 'route2', headers: {} },
-          { status: 403, headers: { 'retry-after': '60' }, data: { message: 'You have been rate limited to prevent abuse' } }
-        )
+        await octokit.request('GET /route2', {
+          request: {
+            responses: [{ status: 403, headers: { 'retry-after': '60' }, data: { message: 'You have been rate limited to prevent abuse' } }]
+          }
+        })
         throw new Error('Should not reach this point')
       } catch (error) {
         expect(error.status).to.equal(403)
@@ -37,6 +33,7 @@ describe('Events', function () {
     })
 
     it('Should ensure retryAfter is a minimum of 5s', async function () {
+      const octokit = new Octokit()
       octokit.throttle.options({ retries: 0 })
 
       let eventCount = 0
@@ -45,14 +42,17 @@ describe('Events', function () {
         eventCount++
       })
 
-      await octokit.request(
-        { method: 'GET', url: 'route1', headers: {} }, { status: 201, headers: {}, data: {} }
-      )
+      await octokit.request('GET /route1', {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }]
+        }
+      })
       try {
-        await octokit.request(
-          { method: 'GET', url: 'route2', headers: {} },
-          { status: 403, headers: { 'retry-after': '2' }, data: { message: 'You have been rate limited to prevent abuse' } }
-        )
+        await octokit.request('GET /route2', {
+          request: {
+            responses: [{ status: 403, headers: { 'retry-after': '2' }, data: { message: 'You have been rate limited to prevent abuse' } }]
+          }
+        })
         throw new Error('Should not reach this point')
       } catch (error) {
         expect(error.status).to.equal(403)
@@ -62,6 +62,7 @@ describe('Events', function () {
     })
 
     it('Should broadcast retryAfter of 5s even when the header is missing', async function () {
+      const octokit = new Octokit()
       octokit.throttle.options({ retries: 0 })
 
       let eventCount = 0
@@ -70,14 +71,17 @@ describe('Events', function () {
         eventCount++
       })
 
-      await octokit.request(
-        { method: 'GET', url: 'route1', headers: {} }, { status: 201, headers: {}, data: {} }
-      )
+      await octokit.request('GET /route1', {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }]
+        }
+      })
       try {
-        await octokit.request(
-          { method: 'GET', url: 'route2', headers: {} },
-          { status: 403, headers: {}, data: { message: 'You have been rate limited to prevent abuse' } }
-        )
+        await octokit.request('GET /route2', {
+          request: {
+            responses: [{ status: 403, headers: {}, data: { message: 'You have been rate limited to prevent abuse' } }]
+          }
+        })
         throw new Error('Should not reach this point')
       } catch (error) {
         expect(error.status).to.equal(403)
@@ -89,6 +93,8 @@ describe('Events', function () {
 
   describe('\'rate-limit\'', function () {
     it('Should detect rate limit exceeded and broadcast event', async function () {
+      const octokit = new Octokit()
+      const t0 = Date.now()
       octokit.throttle.options({ retries: 0 })
 
       let eventCount = 0
@@ -97,14 +103,17 @@ describe('Events', function () {
         eventCount++
       })
 
-      await octokit.request(
-        { method: 'GET', url: 'route1', headers: {} }, { status: 201, headers: {}, data: {} }
-      )
+      await octokit.request('GET /route1', {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }]
+        }
+      })
       try {
-        await octokit.request(
-          { method: 'GET', url: 'route2', headers: {} },
-          { status: 403, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `${Math.round(tracker.t0 / 1000) + 30}` }, data: {} }
-        )
+        await octokit.request('GET /route2', {
+          request: {
+            responses: [{ status: 403, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `${Math.round(t0 / 1000) + 30}` }, data: {} }]
+          }
+        })
         throw new Error('Should not reach this point')
       } catch (error) {
         expect(error.status).to.equal(403)
