@@ -1,5 +1,5 @@
 {
-  "name": "@octokit/plugin-throttling.js",
+  "name": "@octokit/plugin-throttling",
   "version": "0.0.0-development",
   "description": "Automatic rate limiting plugin for octokit",
   "main": "lib/index.js",
