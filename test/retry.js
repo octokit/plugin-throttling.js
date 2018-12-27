@@ -4,7 +4,7 @@ const Octokit = require('./octokit')
 describe('Retry', function () {
   it('Should retry \'abuse-limit\' and succeed', async function () {
     const octokit = new Octokit()
-    octokit.throttle.options({ minimumAbuseRetryAfter: 0 })
+    octokit.throttle._options({ minimumAbuseRetryAfter: 0 })
 
     let eventCount = 0
     octokit.throttle.on('abuse-limit', function (retryAfter) {
@@ -28,7 +28,7 @@ describe('Retry', function () {
 
   it('Should retry \'abuse-limit\' twice and fail', async function () {
     const octokit = new Octokit()
-    octokit.throttle.options({ minimumAbuseRetryAfter: 0, maxRetries: 2 })
+    octokit.throttle._options({ minimumAbuseRetryAfter: 0, maxRetries: 2 })
 
     let eventCount = 0
     octokit.throttle.on('abuse-limit', function (retryAfter) {
