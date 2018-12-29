@@ -3,17 +3,19 @@ const Octokit = require('./octokit')
 
 describe('Retry', function () {
   it('Should retry \'abuse-limit\' and succeed', async function () {
-    const octokit = new Octokit()
-    octokit.throttle._options({ minimumAbuseRetryAfter: 0, retryAfterBaseValue: 50 })
-
     let eventCount = 0
-    octokit.throttle.on('abuse-limit', function (retryAfter, options) {
-      expect(options).to.include({ method: 'GET', url: '/route' })
-      expect(options.request.retryCount).to.equal(eventCount)
-      expect(retryAfter).to.equal(eventCount + 1)
-      eventCount++
-      return true
+    const octokit = new Octokit({
+      throttle: {
+        onAbuseLimit: (retryAfter, options) => {
+          expect(options).to.include({ method: 'GET', url: '/route' })
+          expect(options.request.retryCount).to.equal(eventCount)
+          expect(retryAfter).to.equal(eventCount + 1)
+          eventCount++
+          return true
+        }
+      }
     })
+    octokit.throttle._options({ minimumAbuseRetryAfter: 0, retryAfterBaseValue: 50 })
 
     const res = await octokit.request('GET /route', {
       request: {
@@ -36,17 +38,19 @@ describe('Retry', function () {
   })
 
   it('Should retry \'abuse-limit\' twice and fail', async function () {
-    const octokit = new Octokit()
-    octokit.throttle._options({ minimumAbuseRetryAfter: 0, retryAfterBaseValue: 50 })
-
     let eventCount = 0
-    octokit.throttle.on('abuse-limit', function (retryAfter, options) {
-      expect(options).to.include({ method: 'GET', url: '/route' })
-      expect(options.request.retryCount).to.equal(eventCount)
-      expect(retryAfter).to.equal(eventCount + 1)
-      eventCount++
-      return true
+    const octokit = new Octokit({
+      throttle: {
+        onAbuseLimit: (retryAfter, options) => {
+          expect(options).to.include({ method: 'GET', url: '/route' })
+          expect(options.request.retryCount).to.equal(eventCount)
+          expect(retryAfter).to.equal(eventCount + 1)
+          eventCount++
+          return true
+        }
+      }
     })
+    octokit.throttle._options({ minimumAbuseRetryAfter: 0, retryAfterBaseValue: 50 })
 
     const message = 'You have been rate limited to prevent abuse'
     try {
@@ -76,14 +80,17 @@ describe('Retry', function () {
   })
 
   it('Should retry \'rate-limit\' and succeed', async function () {
-    const octokit = new Octokit({ retryAfterBaseValue: 50 })
     let eventCount = 0
-    octokit.throttle.on('rate-limit', function (retryAfter, options) {
-      expect(options).to.include({ method: 'GET', url: '/route' })
-      expect(options.request.retryCount).to.equal(eventCount)
-      expect(retryAfter).to.equal(0)
-      eventCount++
-      return true
+    const octokit = new Octokit({
+      throttle: {
+        onRateLimit: (retryAfter, options) => {
+          expect(options).to.include({ method: 'GET', url: '/route' })
+          expect(options.request.retryCount).to.equal(eventCount)
+          expect(retryAfter).to.equal(0)
+          eventCount++
+          return true
+        }
+      }
     })
 
     const res = await octokit.request('GET /route', {

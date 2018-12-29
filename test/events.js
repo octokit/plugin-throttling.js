@@ -4,12 +4,16 @@ const Octokit = require('./octokit')
 describe('Events', function () {
   describe('\'abuse-limit\'', function () {
     it('Should detect abuse limit and broadcast event', async function () {
-      const octokit = new Octokit()
-
       let eventCount = 0
-      octokit.throttle.on('abuse-limit', function (retryAfter) {
-        expect(retryAfter).to.equal(60)
-        eventCount++
+      const octokit = new Octokit({
+        throttle: {
+          onAbuseLimit: (retryAfter, options) => {
+            expect(retryAfter).to.equal(60)
+            expect(options).to.include({ method: 'GET', url: '/route2' })
+            expect(options.request.retryCount).to.equal(0)
+            eventCount++
+          }
+        }
       })
 
       await octokit.request('GET /route1', {
@@ -32,12 +36,16 @@ describe('Events', function () {
     })
 
     it('Should ensure retryAfter is a minimum of 5s', async function () {
-      const octokit = new Octokit()
-
       let eventCount = 0
-      octokit.throttle.on('abuse-limit', function (retryAfter) {
-        expect(retryAfter).to.equal(5)
-        eventCount++
+      const octokit = new Octokit({
+        throttle: {
+          onAbuseLimit: (retryAfter, options) => {
+            expect(retryAfter).to.equal(5)
+            expect(options).to.include({ method: 'GET', url: '/route2' })
+            expect(options.request.retryCount).to.equal(0)
+            eventCount++
+          }
+        }
       })
 
       await octokit.request('GET /route1', {
@@ -60,12 +68,16 @@ describe('Events', function () {
     })
 
     it('Should broadcast retryAfter of 5s even when the header is missing', async function () {
-      const octokit = new Octokit()
-
       let eventCount = 0
-      octokit.throttle.on('abuse-limit', function (retryAfter) {
-        expect(retryAfter).to.equal(5)
-        eventCount++
+      const octokit = new Octokit({
+        throttle: {
+          onAbuseLimit: (retryAfter, options) => {
+            expect(retryAfter).to.equal(5)
+            expect(options).to.include({ method: 'GET', url: '/route2' })
+            expect(options.request.retryCount).to.equal(0)
+            eventCount++
+          }
+        }
       })
 
       await octokit.request('GET /route1', {
@@ -90,14 +102,18 @@ describe('Events', function () {
 
   describe('\'rate-limit\'', function () {
     it('Should detect rate limit exceeded and broadcast event', async function () {
-      const octokit = new Octokit()
-      const t0 = Date.now()
-
       let eventCount = 0
-      octokit.throttle.on('rate-limit', function (retryAfter) {
-        expect(retryAfter).to.be.closeTo(30, 1)
-        eventCount++
+      const octokit = new Octokit({
+        throttle: {
+          onRateLimit: (retryAfter, options) => {
+            expect(retryAfter).to.be.closeTo(30, 1)
+            expect(options).to.include({ method: 'GET', url: '/route2' })
+            expect(options.request.retryCount).to.equal(0)
+            eventCount++
+          }
+        }
       })
+      const t0 = Date.now()
 
       await octokit.request('GET /route1', {
         request: {
