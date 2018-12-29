@@ -6,6 +6,8 @@ describe('Retry', function () {
     let eventCount = 0
     const octokit = new Octokit({
       throttle: {
+        minimumAbuseRetryAfter: 0,
+        retryAfterBaseValue: 50,
         onAbuseLimit: (retryAfter, options) => {
           expect(options).to.include({ method: 'GET', url: '/route' })
           expect(options.request.retryCount).to.equal(eventCount)
@@ -15,7 +17,6 @@ describe('Retry', function () {
         }
       }
     })
-    octokit.throttle._options({ minimumAbuseRetryAfter: 0, retryAfterBaseValue: 50 })
 
     const res = await octokit.request('GET /route', {
       request: {
@@ -41,6 +42,8 @@ describe('Retry', function () {
     let eventCount = 0
     const octokit = new Octokit({
       throttle: {
+        minimumAbuseRetryAfter: 0,
+        retryAfterBaseValue: 50,
         onAbuseLimit: (retryAfter, options) => {
           expect(options).to.include({ method: 'GET', url: '/route' })
           expect(options.request.retryCount).to.equal(eventCount)
@@ -50,7 +53,6 @@ describe('Retry', function () {
         }
       }
     })
-    octokit.throttle._options({ minimumAbuseRetryAfter: 0, retryAfterBaseValue: 50 })
 
     const message = 'You have been rate limited to prevent abuse'
     try {

@@ -35,9 +35,10 @@ describe('Github API best practices', function () {
   })
 
   it('Should maintain 1000ms between mutating requests', async function () {
-    const octokit = new Octokit()
-    octokit.throttle._options({
-      writeLimiter: new Bottleneck({ minTime: 50 })
+    const octokit = new Octokit({
+      throttle: {
+        writeLimiter: new Bottleneck({ minTime: 50 })
+      }
     })
 
     const req1 = octokit.request('POST /route1', {
@@ -69,11 +70,13 @@ describe('Github API best practices', function () {
   })
 
   it('Should maintain 3000ms between requests that trigger notifications', async function () {
-    const octokit = new Octokit()
-    octokit.throttle._options({
-      writeLimiter: new Bottleneck({ minTime: 50 }),
-      triggersNotificationLimiter: new Bottleneck({ minTime: 100 })
+    const octokit = new Octokit({
+      throttle: {
+        writeLimiter: new Bottleneck({ minTime: 50 }),
+        triggersNotificationLimiter: new Bottleneck({ minTime: 100 })
+      }
     })
+
     const req1 = octokit.request('POST /orgs/:org/invitations', {
       request: {
         responses: [{ status: 201, headers: {}, data: {} }]
@@ -103,11 +106,13 @@ describe('Github API best practices', function () {
   })
 
   it('Should optimize throughput rather than maintain ordering', async function () {
-    const octokit = new Octokit()
-    octokit.throttle._options({
-      writeLimiter: new Bottleneck({ minTime: 50 }),
-      triggersNotificationLimiter: new Bottleneck({ minTime: 100 })
+    const octokit = new Octokit({
+      throttle: {
+        writeLimiter: new Bottleneck({ minTime: 50 }),
+        triggersNotificationLimiter: new Bottleneck({ minTime: 100 })
+      }
     })
+
     const req1 = octokit.request('POST /orgs/:org/invitations', {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }]
