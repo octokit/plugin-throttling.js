@@ -37,9 +37,25 @@ async function createIssueOnAllRepos (org) {
 
 Handle events
 
+Return `true` if you wish to retry the request, it will be retried after `retryAfter` seconds.
+
 ```js
-octokit.throttle.on('rate-limit', (retryAfter) => console.warn(`Rate-limit hit, retrying after ${retryAfter}s`))
-octokit.throttle.on('abuse-limit', (retryAfter) => console.warn(`Abuse-limit hit, retrying after ${retryAfter}s`))
+octokit.throttle.on('rate-limit', (retryAfter, retryCount, options) => {
+  console.warn(`Rate-limit hit for request ${options.method} ${options.url}`)
+
+  // In this example we only retry twice
+  if (retryCount < 2) {
+    return true
+  }
+})
+octokit.throttle.on('abuse-limit', (retryAfter, retryCount, options) => {
+  console.warn(`Abuse-limit hit for request ${options.method} ${options.url}`)
+
+  // In this example we only retry GET requests
+  if (options.method === 'GET') {
+    return true
+  }
+})
 ```
 
 ## LICENSE

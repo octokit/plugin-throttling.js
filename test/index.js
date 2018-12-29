@@ -65,7 +65,7 @@ describe('Github API best practices', function () {
       'START POST /route3',
       'END POST /route3'
     ])
-    expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(50, 12)
+    expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(50, 15)
   })
 
   it('Should maintain 3000ms between requests that trigger notifications', async function () {
@@ -99,7 +99,7 @@ describe('Github API best practices', function () {
       'START POST /repos/:owner/:repo/commits/:sha/comments',
       'END POST /repos/:owner/:repo/commits/:sha/comments'
     ])
-    expect(octokit.__requestTimings[5] - octokit.__requestTimings[0]).to.be.closeTo(100, 12)
+    expect(octokit.__requestTimings[5] - octokit.__requestTimings[0]).to.be.closeTo(100, 15)
   })
 
   it('Should optimize throughput rather than maintain ordering', async function () {
@@ -162,11 +162,11 @@ describe('Github API best practices', function () {
       'END GET /route6'
     ])
 
-    expect(octokit.__requestTimings[2] - octokit.__requestTimings[0]).to.be.closeTo(0, 12)
-    expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(0, 12)
-    expect(octokit.__requestTimings[6] - octokit.__requestTimings[4]).to.be.closeTo(50, 12)
-    expect(octokit.__requestTimings[8] - octokit.__requestTimings[6]).to.be.closeTo(50, 12)
-    expect(octokit.__requestTimings[10] - octokit.__requestTimings[8]).to.be.closeTo(100, 12)
-    expect(octokit.__requestTimings[12] - octokit.__requestTimings[10]).to.be.closeTo(0, 12)
+    expect(octokit.__requestTimings[2] - octokit.__requestTimings[0]).to.be.closeTo(0, 15)
+    expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(0, 15)
+    expect(octokit.__requestTimings[6] - octokit.__requestTimings[4]).to.be.closeTo(50, 15)
+    expect(octokit.__requestTimings[8] - octokit.__requestTimings[6]).to.be.closeTo(50, 15)
+    expect(octokit.__requestTimings[10] - octokit.__requestTimings[8]).to.be.closeTo(100, 15)
+    expect(octokit.__requestTimings[12] - octokit.__requestTimings[10]).to.be.closeTo(0, 15)
   })
 })
