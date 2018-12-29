@@ -11,9 +11,9 @@ Implements all [recommended best practises](https://developer.github.com/v3/guid
 
 ## Usage
 
-The code below creates a "Hello, world!" issue on every repository in a given organization. Without the throttling plugin it would send many requests in parallel and would hit rate limits very quickly. But the `@octokit/plugin-throttling` makes sure that no requests using the same authentication token are throttled correctly.
+The code below creates a "Hello, world!" issue on every repository in a given organization. Without the throttling plugin it would send many requests in parallel and would hit rate limits very quickly. But the `@octokit/plugin-throttling` slows down your requests according to the official guidelines, so you don't get blocked before your quota is exhausted.
 
-The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Return `true` to retry the request.
+The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Return `true` to automatically retry the request after `retryAfter` seconds.
 
 ```js
 const Octokit = require('@octokit/rest')
@@ -22,7 +22,7 @@ const Octokit = require('@octokit/rest')
 const octokit = new Octokit({
   throttle: {
     onRateLimit: (retryAfter, options) => {
-      console.warn(`Rate-limit hit for request ${options.method} ${options.url}`)
+      console.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
 
       if (options.request.retryCount === 0) { // only retries once
         console.log(`Retrying after ${retryAfter} seconds!`)
@@ -30,7 +30,7 @@ const octokit = new Octokit({
       }
     },
     onAbuseLimit: (retryAfter, options) => {
-      console.warn(`Abuse-limit hit for request ${options.method} ${options.url}`)
+      console.warn(`Abuse detected for request ${options.method} ${options.url}`)
     }
   }
 })

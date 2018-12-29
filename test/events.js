@@ -3,7 +3,7 @@ const Octokit = require('./octokit')
 
 describe('Events', function () {
   it('Should support non-limit 403s', async function () {
-    const octokit = new Octokit()
+    const octokit = new Octokit({ throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 } })
     let caught = false
 
     await octokit.request('GET /route1', {
@@ -41,7 +41,8 @@ describe('Events', function () {
             expect(options).to.include({ method: 'GET', url: '/route2' })
             expect(options.request.retryCount).to.equal(0)
             eventCount++
-          }
+          },
+          onRateLimit: () => 1
         }
       })
 
@@ -73,7 +74,8 @@ describe('Events', function () {
             expect(options).to.include({ method: 'GET', url: '/route2' })
             expect(options.request.retryCount).to.equal(0)
             eventCount++
-          }
+          },
+          onRateLimit: () => 1
         }
       })
 
@@ -105,7 +107,8 @@ describe('Events', function () {
             expect(options).to.include({ method: 'GET', url: '/route2' })
             expect(options.request.retryCount).to.equal(0)
             eventCount++
-          }
+          },
+          onRateLimit: () => 1
         }
       })
 
@@ -139,7 +142,8 @@ describe('Events', function () {
             expect(options).to.include({ method: 'GET', url: '/route2' })
             expect(options.request.retryCount).to.equal(0)
             eventCount++
-          }
+          },
+          onAbuseLimit: () => 1
         }
       })
       const t0 = Date.now()

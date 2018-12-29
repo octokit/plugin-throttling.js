@@ -14,7 +14,8 @@ describe('Retry', function () {
           expect(retryAfter).to.equal(eventCount + 1)
           eventCount++
           return true
-        }
+        },
+        onRateLimit: () => 1
       }
     })
 
@@ -50,7 +51,8 @@ describe('Retry', function () {
           expect(retryAfter).to.equal(eventCount + 1)
           eventCount++
           return true
-        }
+        },
+        onRateLimit: () => 1
       }
     })
 
@@ -91,7 +93,8 @@ describe('Retry', function () {
           expect(retryAfter).to.equal(0)
           eventCount++
           return true
-        }
+        },
+        onAbuseLimit: () => 1
       }
     })
 

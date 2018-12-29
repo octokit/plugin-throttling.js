@@ -16,7 +16,7 @@ describe('Github API best practices', function () {
   })
 
   it('Should not allow more than 1 request concurrently', async function () {
-    const octokit = new Octokit()
+    const octokit = new Octokit({ throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 } })
     const req1 = octokit.request('GET /route1', {
       request: {
         responses: [{ status: 201, headers: {}, data: {} }]
@@ -49,7 +49,9 @@ describe('Github API best practices', function () {
   it('Should maintain 1000ms between mutating requests', async function () {
     const octokit = new Octokit({
       throttle: {
-        writeLimiter: new Bottleneck({ minTime: 50 })
+        writeLimiter: new Bottleneck({ minTime: 50 }),
+        onAbuseLimit: () => 1,
+        onRateLimit: () => 1
       }
     })
 
@@ -85,7 +87,9 @@ describe('Github API best practices', function () {
     const octokit = new Octokit({
       throttle: {
         writeLimiter: new Bottleneck({ minTime: 50 }),
-        triggersNotificationLimiter: new Bottleneck({ minTime: 100 })
+        triggersNotificationLimiter: new Bottleneck({ minTime: 100 }),
+        onAbuseLimit: () => 1,
+        onRateLimit: () => 1
       }
     })
 
@@ -121,7 +125,9 @@ describe('Github API best practices', function () {
     const octokit = new Octokit({
       throttle: {
         writeLimiter: new Bottleneck({ minTime: 50 }),
-        triggersNotificationLimiter: new Bottleneck({ minTime: 100 })
+        triggersNotificationLimiter: new Bottleneck({ minTime: 100 }),
+        onAbuseLimit: () => 1,
+        onRateLimit: () => 1
       }
     })
 
