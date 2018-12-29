@@ -3,7 +3,7 @@
 > Octokit plugin for GitHub’s recommended request throttling
 
 [![npm](https://img.shields.io/npm/v/@octokit/plugin-throttling.svg)](https://www.npmjs.com/package/@octokit/plugin-throttling)
-[![Build Status](https://travis-ci.com/octokit/plugin-throttling.js.svg)](https://travis-com.org/octokit/plugin-throttling.js)
+[![Build Status](https://travis-ci.com/octokit/plugin-throttling.js.svg)](https://travis-ci.com/octokit/plugin-throttling.js)
 [![Coverage Status](https://img.shields.io/coveralls/github/octokit/plugin-throttling.js.svg)](https://coveralls.io/github/octokit/plugin-throttling.js)
 [![Greenkeeper](https://badges.greenkeeper.io/octokit/plugin-throttling.js.svg)](https://greenkeeper.io/)
 
