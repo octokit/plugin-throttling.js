@@ -2,6 +2,35 @@ const expect = require('chai').expect
 const Octokit = require('./octokit')
 
 describe('Events', function () {
+  it('Should support non-limit 403s', async function () {
+    const octokit = new Octokit()
+    let caught = false
+
+    await octokit.request('GET /route1', {
+      request: {
+        responses: [{ status: 201, headers: {}, data: {} }]
+      }
+    })
+
+    try {
+      await octokit.request('GET /route2', {
+        request: {
+          responses: [{ status: 403, headers: {}, data: {} }]
+        }
+      })
+    } catch (error) {
+      expect(error.message).to.equal('Test failed request (403)')
+      caught = true
+    }
+
+    expect(caught).to.equal(true)
+    expect(octokit.__requestLog).to.deep.equal([
+      'START GET /route1',
+      'END GET /route1',
+      'START GET /route2'
+    ])
+  })
+
   describe('\'abuse-limit\'', function () {
     it('Should detect abuse limit and broadcast event', async function () {
       let eventCount = 0

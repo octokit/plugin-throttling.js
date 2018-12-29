@@ -3,6 +3,18 @@ const expect = require('chai').expect
 const Octokit = require('./octokit')
 
 describe('Github API best practices', function () {
+  it('Should require the user to pass both limit handlers', function () {
+    const message = 'You must pass the onAbuseLimit and onRateLimit error handlers'
+
+    expect(() => new Octokit()).to.throw(message)
+    expect(() => new Octokit({ throttle: {} })).to.throw(message)
+    expect(() => new Octokit({ throttle: { onAbuseLimit: 5, onRateLimit: 5 } })).to.throw(message)
+    expect(() => new Octokit({ throttle: { onAbuseLimit: 5, onRateLimit: () => 1 } })).to.throw(message)
+    expect(() => new Octokit({ throttle: { onAbuseLimit: () => 1 } })).to.throw(message)
+    expect(() => new Octokit({ throttle: { onRateLimit: () => 1 } })).to.throw(message)
+    expect(() => new Octokit({ throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 } })).to.not.throw()
+  })
+
   it('Should not allow more than 1 request concurrently', async function () {
     const octokit = new Octokit()
     const req1 = octokit.request('GET /route1', {
