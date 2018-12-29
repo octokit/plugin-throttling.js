@@ -40,18 +40,18 @@ Handle events
 Return `true` if you wish to retry the request, it will be retried after `retryAfter` seconds.
 
 ```js
-octokit.throttle.on('rate-limit', (retryAfter, retryCount, options) => {
+octokit.throttle.on('rate-limit', (retryAfter, options) => {
   console.warn(`Rate-limit hit for request ${options.method} ${options.url}`)
 
-  // In this example we only retry twice
-  if (retryCount < 2) {
+  // Ex.: only retry twice
+  if (options.request.retryCount < 2) {
     return true
   }
 })
-octokit.throttle.on('abuse-limit', (retryAfter, retryCount, options) => {
+octokit.throttle.on('abuse-limit', (retryAfter, options) => {
   console.warn(`Abuse-limit hit for request ${options.method} ${options.url}`)
 
-  // In this example we only retry GET requests
+  // Ex.: only retry GET requests
   if (options.method === 'GET') {
     return true
   }
