@@ -38,7 +38,7 @@
     "bottleneck": "^2.15.0"
   },
   "devDependencies": {
-    "@octokit/request": "2.2.0",
+    "@octokit/request": "2.2.1",
     "@octokit/rest": "^16.3.0",
     "@octokit/routes": "16.1.1",
     "chai": "^4.2.0",
