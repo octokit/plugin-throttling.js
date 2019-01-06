@@ -190,6 +190,6 @@ describe('Github API best practices', function () {
     expect(octokit.__requestTimings[6] - octokit.__requestTimings[4]).to.be.closeTo(50, 20)
     expect(octokit.__requestTimings[8] - octokit.__requestTimings[6]).to.be.closeTo(50, 20)
     expect(octokit.__requestTimings[10] - octokit.__requestTimings[8]).to.be.closeTo(100, 20)
-    expect(octokit.__requestTimings[12] - octokit.__requestTimings[10]).to.be.closeTo(0, 20)
+    expect(octokit.__requestTimings[12] - octokit.__requestTimings[10]).to.be.closeTo(0, 30)
   })
 })
