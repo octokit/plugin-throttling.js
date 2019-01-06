@@ -121,6 +121,23 @@ describe('Github API best practices', function () {
     expect(octokit.__requestTimings[5] - octokit.__requestTimings[0]).to.be.closeTo(100, 20)
   })
 
+  it('Should match custom routes when checking notification triggers', function () {
+    const plugin = require('../lib')
+
+    expect(plugin.triggersNotification('/abc/def')).to.equal(false)
+    expect(plugin.triggersNotification('/orgs/abc/invitation')).to.equal(false)
+    expect(plugin.triggersNotification('/repos/abc/releases')).to.equal(false)
+    expect(plugin.triggersNotification('/repos/abc/def/pulls/5')).to.equal(false)
+
+    expect(plugin.triggersNotification('/repos/abc/def/pulls')).to.equal(true)
+    expect(plugin.triggersNotification('/repos/abc/def/pulls/5/comments')).to.equal(true)
+    expect(plugin.triggersNotification('/repos/foo/bar/issues')).to.equal(true)
+
+    expect(plugin.triggersNotification('/repos/:owner/:repo/pulls')).to.equal(true)
+    expect(plugin.triggersNotification('/repos/:owner/:repo/pulls/5/comments')).to.equal(true)
+    expect(plugin.triggersNotification('/repos/:foo/:bar/issues')).to.equal(true)
+  })
+
   it('Should optimize throughput rather than maintain ordering', async function () {
     const octokit = new Octokit({
       throttle: {
@@ -131,7 +148,7 @@ describe('Github API best practices', function () {
       }
     })
 
-    const req1 = octokit.request('POST /orgs/:org/invitations', {
+    const req1 = octokit.request('POST /orgs/abc/invitations', {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
@@ -151,12 +168,12 @@ describe('Github API best practices', function () {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
     })
-    const req5 = octokit.request('POST /repos/:owner/:repo/commits/:sha/comments', {
+    const req5 = octokit.request('POST /repos/abc/def/commits/12345/comments', {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
     })
-    const req6 = octokit.request('PATCH /orgs/:org/invitations', {
+    const req6 = octokit.request('PATCH /orgs/abc/invitations', {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
@@ -173,14 +190,14 @@ describe('Github API best practices', function () {
       'END GET /route2',
       'START GET /route4',
       'END GET /route4',
-      'START POST /orgs/:org/invitations',
-      'END POST /orgs/:org/invitations',
+      'START POST /orgs/abc/invitations',
+      'END POST /orgs/abc/invitations',
       'START POST /route3',
       'END POST /route3',
-      'START POST /repos/:owner/:repo/commits/:sha/comments',
-      'END POST /repos/:owner/:repo/commits/:sha/comments',
-      'START PATCH /orgs/:org/invitations',
-      'END PATCH /orgs/:org/invitations',
+      'START POST /repos/abc/def/commits/12345/comments',
+      'END POST /repos/abc/def/commits/12345/comments',
+      'START PATCH /orgs/abc/invitations',
+      'END PATCH /orgs/abc/invitations',
       'START GET /route6',
       'END GET /route6'
     ])
