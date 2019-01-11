@@ -40,7 +40,7 @@
   "devDependencies": {
     "@octokit/request": "2.2.1",
     "@octokit/rest": "^16.3.0",
-    "@octokit/routes": "17.0.0",
+    "@octokit/routes": "18.0.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
