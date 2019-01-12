@@ -53,6 +53,8 @@ async function createIssueOnAllRepos (org) {
 }
 ```
 
+Pass `{ throttle: { enabled: false } }` to disable this plugin.
+
 ## LICENSE
 
 [MIT](LICENSE)
