@@ -2,7 +2,39 @@ const Bottleneck = require('bottleneck')
 const expect = require('chai').expect
 const Octokit = require('./octokit')
 
-describe('Github API best practices', function () {
+describe('General', function () {
+  it('Should be possible to disable the plugin', async function () {
+    const octokit = new Octokit({ throttle: { enabled: false } })
+
+    const req1 = octokit.request('GET /route1', {
+      request: {
+        responses: [{ status: 201, headers: {}, data: {} }]
+      }
+    })
+
+    const req2 = octokit.request('GET /route2', {
+      request: {
+        responses: [{ status: 202, headers: {}, data: {} }]
+      }
+    })
+
+    const req3 = octokit.request('GET /route3', {
+      request: {
+        responses: [{ status: 203, headers: {}, data: {} }]
+      }
+    })
+
+    await Promise.all([req1, req2, req3])
+    expect(octokit.__requestLog).to.deep.equal([
+      'START GET /route1',
+      'START GET /route2',
+      'START GET /route3',
+      'END GET /route1',
+      'END GET /route2',
+      'END GET /route3'
+    ])
+  })
+
   it('Should require the user to pass both limit handlers', function () {
     const message = 'You must pass the onAbuseLimit and onRateLimit error handlers'
 
@@ -14,7 +46,9 @@ describe('Github API best practices', function () {
     expect(() => new Octokit({ throttle: { onRateLimit: () => 1 } })).to.throw(message)
     expect(() => new Octokit({ throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 } })).to.not.throw()
   })
+})
 
+describe('Github API best practices', function () {
   it('Should not allow more than 1 request concurrently', async function () {
     const octokit = new Octokit({ throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 } })
     const req1 = octokit.request('GET /route1', {
