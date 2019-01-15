@@ -1,6 +1,6 @@
 const Octokit = require('@octokit/rest')
 const HttpError = require('@octokit/request/lib/http-error')
-const throttlingPlugin = require('..')
+const throttlingPlugin = require('../..')
 
 module.exports = Octokit
   .plugin((octokit) => {

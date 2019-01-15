@@ -13,9 +13,12 @@ jobs:
     - stage: test
       node_js: 8
     - node_js: 10
-    - node_js: lts/*
+      env: Node 10 & coverage upload
       after_script:
         - npm run coverage:upload
+    - node_js: lts/*
+      env: memory-test
+      script: npm run test:memory
     - stage: release
       env: semantic-release
       node_js: lts/*
@@ -30,8 +33,6 @@ jobs:
         - node scripts/generate-routes
         # commit changes and push back to branch on GitHub. If there are no changes then exit without error
         - 'git commit -a -m "build: routes" --author="Octokit Bot <octokitbot@martynus.net>" && git push "https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG" ${TRAVIS_BRANCH} || true'
-  allow_failures:
-
 
 stages:
   - test

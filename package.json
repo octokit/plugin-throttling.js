@@ -11,7 +11,8 @@
     "coverage": "nyc report --reporter=html && open coverage/index.html",
     "coverage:upload": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "standard",
-    "test": "nyc mocha test/"
+    "test": "nyc mocha test/integration/",
+    "test:memory": "node test/memory-leakage-test"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,7 @@
     ]
   },
   "dependencies": {
-    "bottleneck": "^2.15.0"
+    "bottleneck": "^2.15.3"
   },
   "devDependencies": {
     "@octokit/request": "2.2.1",
@@ -43,6 +44,7 @@
     "@octokit/routes": "18.1.2",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
+    "leakage": "^0.4.0",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
     "semantic-release": "^15.13.1",
