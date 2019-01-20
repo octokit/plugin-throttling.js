@@ -55,6 +55,57 @@ async function createIssueOnAllRepos (org) {
 
 Pass `{ throttle: { enabled: false } }` to disable this plugin.
 
+### Clustering
+
+Enabling Clustering support ensures that your application will not go over rate limits **across Octokit instances and across Nodejs processes**.
+
+First install either `redis` or `ioredis`:
+```
+# NodeRedis (https://github.com/NodeRedis/node_redis)
+npm install --save redis
+
+# or ioredis (https://github.com/luin/ioredis)
+npm install --save ioredis
+```
+
+Then in your application:
+```js
+const Bottleneck = require('bottleneck')
+const Redis = require('redis')
+
+const client = Redis.createClient({ /* options */ })
+const connection = new Bottleneck.RedisConnection({ client })
+connection.on('error', err => console.error(err))
+
+const octokit = new Octokit({
+  throttle: {
+    onAbuseLimit: (retryAfter, options) => { /* ... */ },
+    onRateLimit: (retryAfter, options) => { /* ... */ },
+
+    // The Bottleneck connection object
+    connection,
+
+    // A "throttling ID". All octokit instances with the same ID
+    // using the same Redis server will share the throttling.
+    id: 'my-super-app',
+
+    // Otherwise the plugin uses a lighter version of Bottleneck without Redis support
+    Bottleneck
+  }
+})
+
+// To close the connection and allow your application to exit cleanly:
+await connection.disconnect()
+```
+
+To use the `ioredis` library instead:
+```js
+const Redis = require('ioredis')
+const client = new Redis({ /* options */ })
+const connection = new Bottleneck.IORedisConnection({ client })
+connection.on('error', err => console.error(err))
+```
+
 ## LICENSE
 
 [MIT](LICENSE)
