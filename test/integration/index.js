@@ -83,7 +83,7 @@ describe('Github API best practices', function () {
   it('Should maintain 1000ms between mutating requests', async function () {
     const octokit = new Octokit({
       throttle: {
-        writeLimiter: new Bottleneck({ minTime: 50 }),
+        write: new Bottleneck.Group({ minTime: 50 }),
         onAbuseLimit: () => 1,
         onRateLimit: () => 1
       }
@@ -120,8 +120,8 @@ describe('Github API best practices', function () {
   it('Should maintain 3000ms between requests that trigger notifications', async function () {
     const octokit = new Octokit({
       throttle: {
-        writeLimiter: new Bottleneck({ minTime: 50 }),
-        triggersNotificationLimiter: new Bottleneck({ minTime: 100 }),
+        write: new Bottleneck.Group({ minTime: 50 }),
+        notifications: new Bottleneck.Group({ minTime: 100 }),
         onAbuseLimit: () => 1,
         onRateLimit: () => 1
       }
@@ -175,8 +175,8 @@ describe('Github API best practices', function () {
   it('Should optimize throughput rather than maintain ordering', async function () {
     const octokit = new Octokit({
       throttle: {
-        writeLimiter: new Bottleneck({ minTime: 50 }),
-        triggersNotificationLimiter: new Bottleneck({ minTime: 100 }),
+        write: new Bottleneck.Group({ minTime: 50 }),
+        notifications: new Bottleneck.Group({ minTime: 100 }),
         onAbuseLimit: () => 1,
         onRateLimit: () => 1
       }
