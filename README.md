@@ -20,6 +20,7 @@ const Octokit = require('@octokit/rest')
   .plugin(require('@octokit/plugin-throttling'))
 
 const octokit = new Octokit({
+  auth: `token ${process.env.TOKEN}`,
   throttle: {
     onRateLimit: (retryAfter, options) => {
       console.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
@@ -34,11 +35,6 @@ const octokit = new Octokit({
       console.warn(`Abuse detected for request ${options.method} ${options.url}`)
     }
   }
-})
-
-octokit.authenticate({
-  type: 'token',
-  token: process.env.TOKEN
 })
 
 async function createIssueOnAllRepos (org) {
