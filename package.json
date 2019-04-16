@@ -46,7 +46,7 @@
     "coveralls": "^3.0.2",
     "leakage": "^0.4.0",
     "mocha": "^6.0.2",
-    "nyc": "^13.3.0",
+    "nyc": "^14.0.0",
     "semantic-release": "^15.13.8",
     "standard": "^12.0.1"
   }
