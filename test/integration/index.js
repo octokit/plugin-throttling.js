@@ -49,7 +49,7 @@ describe('General', function () {
 })
 
 describe('Github API best practices', function () {
-  it('Should not allow more than 1 request concurrently', async function () {
+  it('Should linearize requests', async function () {
     const octokit = new Octokit({ throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 } })
     const req1 = octokit.request('GET /route1', {
       request: {
@@ -170,6 +170,43 @@ describe('Github API best practices', function () {
     expect(plugin.triggersNotification('/repos/:owner/:repo/pulls')).to.equal(true)
     expect(plugin.triggersNotification('/repos/:owner/:repo/pulls/5/comments')).to.equal(true)
     expect(plugin.triggersNotification('/repos/:foo/:bar/issues')).to.equal(true)
+  })
+
+  it('Should maintain 2000ms between search requests', async function () {
+    const octokit = new Octokit({
+      throttle: {
+        search: new Bottleneck.Group({ minTime: 50 }),
+        onAbuseLimit: () => 1,
+        onRateLimit: () => 1
+      }
+    })
+
+    const req1 = octokit.request('GET /search/route1', {
+      request: {
+        responses: [{ status: 201, headers: {}, data: {} }]
+      }
+    })
+    const req2 = octokit.request('GET /route2', {
+      request: {
+        responses: [{ status: 202, headers: {}, data: {} }]
+      }
+    })
+    const req3 = octokit.request('GET /search/route3', {
+      request: {
+        responses: [{ status: 203, headers: {}, data: {} }]
+      }
+    })
+
+    await Promise.all([req1, req2, req3])
+    expect(octokit.__requestLog).to.deep.equal([
+      'START GET /route2',
+      'END GET /route2',
+      'START GET /search/route1',
+      'END GET /search/route1',
+      'START GET /search/route3',
+      'END GET /search/route3'
+    ])
+    expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(50, 20)
   })
 
   it('Should optimize throughput rather than maintain ordering', async function () {
