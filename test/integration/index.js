@@ -176,7 +176,7 @@ describe('Github API best practices', function () {
     const octokit = new Octokit({
       throttle: {
         write: new Bottleneck.Group({ minTime: 50 }),
-        notifications: new Bottleneck.Group({ minTime: 100 }),
+        notifications: new Bottleneck.Group({ minTime: 150 }),
         onAbuseLimit: () => 1,
         onRateLimit: () => 1
       }
@@ -192,12 +192,12 @@ describe('Github API best practices', function () {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
     })
-    const req3 = octokit.request('POST /route3', {
+    const req3 = octokit.request('GET /route3', {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
     })
-    const req4 = octokit.request('GET /route4', {
+    const req4 = octokit.request('POST /route4', {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }]
       }
@@ -222,12 +222,12 @@ describe('Github API best practices', function () {
     expect(octokit.__requestLog).to.deep.equal([
       'START GET /route2',
       'END GET /route2',
-      'START GET /route4',
-      'END GET /route4',
+      'START GET /route3',
+      'END GET /route3',
       'START POST /orgs/abc/invitations',
       'END POST /orgs/abc/invitations',
-      'START POST /route3',
-      'END POST /route3',
+      'START POST /route4',
+      'END POST /route4',
       'START POST /repos/abc/def/commits/12345/comments',
       'END POST /repos/abc/def/commits/12345/comments',
       'START PATCH /orgs/abc/invitations',
@@ -239,8 +239,8 @@ describe('Github API best practices', function () {
     expect(octokit.__requestTimings[2] - octokit.__requestTimings[0]).to.be.closeTo(0, 20)
     expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(0, 20)
     expect(octokit.__requestTimings[6] - octokit.__requestTimings[4]).to.be.closeTo(50, 20)
-    expect(octokit.__requestTimings[8] - octokit.__requestTimings[6]).to.be.closeTo(50, 20)
-    expect(octokit.__requestTimings[10] - octokit.__requestTimings[8]).to.be.closeTo(100, 20)
+    expect(octokit.__requestTimings[8] - octokit.__requestTimings[6]).to.be.closeTo(100, 20)
+    expect(octokit.__requestTimings[10] - octokit.__requestTimings[8]).to.be.closeTo(150, 20)
     expect(octokit.__requestTimings[12] - octokit.__requestTimings[10]).to.be.closeTo(0, 30)
   })
 })
