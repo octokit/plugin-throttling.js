@@ -80,7 +80,7 @@ describe('Github API best practices', function () {
     ])
   })
 
-  it('Should maintain 1000ms between mutating requests', async function () {
+  it('Should maintain 1000ms between mutating or GraphQL requests', async function () {
     const octokit = new Octokit({
       throttle: {
         write: new Bottleneck.Group({ minTime: 50 }),
@@ -104,17 +104,25 @@ describe('Github API best practices', function () {
         responses: [{ status: 203, headers: {}, data: {} }]
       }
     })
+    const req4 = octokit.request('POST /graphql', {
+      request: {
+        responses: [{ status: 200, headers: {}, data: {} }]
+      }
+    })
 
-    await Promise.all([req1, req2, req3])
+    await Promise.all([req1, req2, req3, req4])
     expect(octokit.__requestLog).to.deep.equal([
       'START GET /route2',
       'END GET /route2',
       'START POST /route1',
       'END POST /route1',
       'START POST /route3',
-      'END POST /route3'
+      'END POST /route3',
+      'START POST /graphql',
+      'END POST /graphql'
     ])
-    expect(octokit.__requestTimings[4] - octokit.__requestTimings[2]).to.be.closeTo(50, 20)
+    expect(octokit.__requestTimings[4] - octokit.__requestTimings[0]).to.be.closeTo(50, 20)
+    expect(octokit.__requestTimings[6] - octokit.__requestTimings[4]).to.be.closeTo(50, 20)
   })
 
   it('Should maintain 3000ms between requests that trigger notifications', async function () {
