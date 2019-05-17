@@ -1,5 +1,5 @@
 const Octokit = require('@octokit/rest')
-const HttpError = require('@octokit/request/lib/http-error')
+const { RequestError } = require('@octokit/request-error')
 const throttlingPlugin = require('../..')
 
 module.exports = Octokit
@@ -16,7 +16,10 @@ module.exports = Octokit
       const res = options.request.responses.shift()
       if (res.status >= 400) {
         const message = res.data.message != null ? res.data.message : `Test failed request (${res.status})`
-        const error = new HttpError(message, res.status, res.headers, options)
+        const error = new RequestError(message, res.status, {
+          headers: res.headers,
+          request: options
+        })
         throw error
       } else {
         octokit.__requestLog.push(`END ${options.method} ${options.url}`)
