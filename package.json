@@ -41,7 +41,7 @@
   "devDependencies": {
     "@octokit/request-error": "^1.0.2",
     "@octokit/rest": "^16.3.0",
-    "@octokit/routes": "20.4.3",
+    "@octokit/routes": "20.4.4",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "leakage": "^0.4.0",
