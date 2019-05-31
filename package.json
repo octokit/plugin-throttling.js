@@ -6,7 +6,7 @@
     "tag": "latest"
   },
   "description": "Automatic rate limiting plugin for octokit",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "scripts": {
     "coverage": "nyc report --reporter=html && open coverage/index.html",
     "coverage:upload": "nyc report --reporter=text-lcov | coveralls",
