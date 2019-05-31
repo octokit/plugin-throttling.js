@@ -19,4 +19,4 @@ Object.keys(routes).forEach(scope => {
 })
 
 const uniquePaths = [...new Set(paths.sort())]
-writeFileSync('./lib/triggers-notification-paths.json', JSON.stringify(uniquePaths, null, 2) + '\n')
+writeFileSync('./src/triggers-notification-paths.json', JSON.stringify(uniquePaths, null, 2) + '\n')

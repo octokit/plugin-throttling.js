@@ -164,7 +164,7 @@ describe('Github API best practices', function () {
   })
 
   it('Should match custom routes when checking notification triggers', function () {
-    const plugin = require('../../lib')
+    const plugin = require('../../src')
 
     expect(plugin.triggersNotification('/abc/def')).to.equal(false)
     expect(plugin.triggersNotification('/orgs/abc/invitation')).to.equal(false)
