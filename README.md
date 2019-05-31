@@ -11,6 +11,35 @@ Implements all [recommended best practises](https://developer.github.com/v3/guid
 
 ## Usage
 
+<table>
+<tbody valign=top align=left>
+<tr><th>
+Browsers
+</th><td width=100%>
+Load <code>@octokit/plugin-throttling</code> directly from <a href="https://unpkg.com">unpkg.com</a>
+        
+```html
+<script type="module">
+import pluginThrottling from "https://unpkg.com/@octokit/plugin-throttling";
+</script>
+```
+
+</td></tr>
+<tr><th>
+Node
+</th><td>
+
+Install with <code>npm install @octokit/plugin-throttling</code>
+
+```js
+const pluginThrottling = require("@octokit/plugin-throttling");
+// or: import pluginThrottling from "@octokit/plugin-throttling";
+```
+
+</td></tr>
+</tbody>
+</table>
+
 The code below creates a "Hello, world!" issue on every repository in a given organization. Without the throttling plugin it would send many requests in parallel and would hit rate limits very quickly. But the `@octokit/plugin-throttling` slows down your requests according to the official guidelines, so you don't get blocked before your quota is exhausted.
 
 The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Return `true` to automatically retry the request after `retryAfter` seconds.
@@ -18,6 +47,11 @@ The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Ret
 ```js
 const Octokit = require('@octokit/rest')
   .plugin(require('@octokit/plugin-throttling'))
+
+// // In browser:
+// import OctokitRaw from "@octokit/rest";
+// import pluginThrottling from "@octokit/plugin-throttling";
+// const Octokit = OctokitRaw.plugin(pluginThrottling)
 
 const octokit = new Octokit({
   auth: `token ${process.env.TOKEN}`,
