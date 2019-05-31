@@ -1,5 +1,0 @@
-{
-    "plugins": [
-      ["inline-json-import", {}]
-    ]
-}
