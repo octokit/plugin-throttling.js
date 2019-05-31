@@ -8,6 +8,7 @@
   "description": "Automatic rate limiting plugin for octokit",
   "main": "src/index.js",
   "scripts": {
+    "build": "pack build",
     "coverage": "nyc report --reporter=html && open coverage/index.html",
     "coverage:upload": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "standard",

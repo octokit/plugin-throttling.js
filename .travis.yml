@@ -12,6 +12,7 @@ jobs:
   include:
     - stage: test
       node_js: 8
+      script: npm run test
     - node_js: 10
       env: Node 10 & coverage upload
       after_script:
@@ -19,10 +20,16 @@ jobs:
     - node_js: lts/*
       env: memory-test
       script: npm run test:memory
+    - node_js: lts/*
+      env: build test
+      script: npm run build
+    # release stage: run semantic release & update the docs
     - stage: release
       env: semantic-release
       node_js: lts/*
-      script: npx semantic-release
+      script:
+        - npm run build
+        - cd pkg && npx semantic-release
 
     # when Greenkeeper updates @octokit/routes, run "generate-routes" script
     # and push new routes.json file to the pull request
