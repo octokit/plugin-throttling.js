@@ -2,7 +2,7 @@ module.exports = throttlingPlugin
 
 const BottleneckLight = require('bottleneck/light')
 const wrapRequest = require('./wrap-request')
-const triggersNotificationPaths = require('./triggers-notification-paths')
+const triggersNotificationPaths = require('./triggers-notification-paths.json')
 const routeMatcher = require('./route-matcher')(triggersNotificationPaths)
 
 // Workaround to allow tests to directly access the triggersNotification function.
