@@ -30,7 +30,10 @@ jobs:
       node_js: lts/*
       script:
         - git checkout $TRAVIS_BRANCH
+        # generate triggers-notification-paths.js file (without proper formatting)
         - node scripts/generate-routes
+        # run standard fix on that file to fix formatting
+        - npx standard src/triggers-notification-paths.js --fix
         # commit changes and push back to branch on GitHub. If there are no changes then exit without error
         - 'git commit -a -m "build: routes" --author="Octokit Bot <octokitbot@martynus.net>" && git push "https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG" ${TRAVIS_BRANCH} || true'
 
