@@ -1,7 +1,7 @@
 [
   "/orgs/:org/invitations",
   "/repos/:owner/:repo/collaborators/:username",
-  "/repos/:owner/:repo/commits/:sha/comments",
+  "/repos/:owner/:repo/commits/:commit_sha/comments",
   "/repos/:owner/:repo/issues",
   "/repos/:owner/:repo/issues/:issue_number/comments",
   "/repos/:owner/:repo/pulls",
