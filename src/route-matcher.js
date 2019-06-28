@@ -1,6 +1,4 @@
-module.exports = routeMatcher
-
-function routeMatcher (paths) {
+export default function routeMatcher (paths) {
   // EXAMPLE. For the following paths:
   /* [
       "/orgs/:org/invitations",

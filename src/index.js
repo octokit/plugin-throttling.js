@@ -1,9 +1,9 @@
-module.exports = throttlingPlugin
+import BottleneckLight from 'bottleneck/light'
+import wrapRequest from './wrap-request'
+import triggersNotificationPaths from './triggers-notification-paths'
+import routeMatcherFn from './route-matcher'
 
-const BottleneckLight = require('bottleneck/light')
-const wrapRequest = require('./wrap-request')
-const triggersNotificationPaths = require('./triggers-notification-paths')
-const routeMatcher = require('./route-matcher')(triggersNotificationPaths)
+const routeMatcher = routeMatcherFn(triggersNotificationPaths)
 
 // Workaround to allow tests to directly access the triggersNotification function.
 const triggersNotification = throttlingPlugin.triggersNotification =
@@ -37,7 +37,7 @@ const createGroups = function (Bottleneck, common) {
   })
 }
 
-function throttlingPlugin (octokit, octokitOptions = {}) {
+export default function throttlingPlugin (octokit, octokitOptions = {}) {
   const {
     enabled = true,
     Bottleneck = BottleneckLight,

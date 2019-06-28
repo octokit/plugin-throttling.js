@@ -1,8 +1,6 @@
-module.exports = wrapRequest
-
 const noop = () => Promise.resolve()
 
-function wrapRequest (state, request, options) {
+export default function wrapRequest (state, request, options) {
   return state.retryLimiter.schedule(doRequest, state, request, options)
 }
 
