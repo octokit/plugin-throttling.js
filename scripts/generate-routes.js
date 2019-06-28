@@ -21,6 +21,6 @@ Object.keys(routes).forEach(scope => {
 const uniquePaths = [...new Set(paths.sort())]
 
 const uniquePathsString = JSON.stringify(uniquePaths)
-const fileContent = `module.exports=${uniquePathsString}`
+const fileContent = `export default ${uniquePathsString}`
 
 writeFileSync('./src/triggers-notification-paths.js', fileContent)
