@@ -37,7 +37,7 @@ const createGroups = function (Bottleneck, common) {
   })
 }
 
-export default function throttlingPlugin (octokit, octokitOptions = {}) {
+export function throttlingPlugin (octokit, octokitOptions = {}) {
   const {
     enabled = true,
     Bottleneck = BottleneckLight,

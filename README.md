@@ -20,7 +20,7 @@ Load <code>@octokit/plugin-throttling</code> directly from <a href="https://unpk
         
 ```html
 <script type="module">
-import pluginThrottling from "https://unpkg.com/@octokit/plugin-throttling";
+import {pluginThrottling} from "https://unpkg.com/@octokit/plugin-throttling";
 </script>
 ```
 
@@ -32,7 +32,7 @@ Node
 Install with <code>npm install @octokit/plugin-throttling</code>
 
 ```js
-const pluginThrottling = require("@octokit/plugin-throttling");
+const {pluginThrottling} = require("@octokit/plugin-throttling");
 // or: import pluginThrottling from "@octokit/plugin-throttling";
 ```
 
@@ -46,11 +46,11 @@ The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Ret
 
 ```js
 const Octokit = require('@octokit/rest')
-  .plugin(require('@octokit/plugin-throttling'))
+  .plugin(require('@octokit/plugin-throttling').pluginThrottling)
 
 // // In browser:
 // import OctokitRaw from "@octokit/rest";
-// import pluginThrottling from "@octokit/plugin-throttling";
+// import {pluginThrottling} from "@octokit/plugin-throttling";
 // const Octokit = OctokitRaw.plugin(pluginThrottling)
 
 const octokit = new Octokit({
