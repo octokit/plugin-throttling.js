@@ -11,9 +11,9 @@
     "build": "pack build",
     "coverage": "nyc report --reporter=html && open coverage/index.html",
     "coverage:upload": "nyc report --reporter=text-lcov | coveralls",
-    "pretest": "standard",
+    "pretest": "standard; npm run -s build;",
     "test": "nyc mocha test/integration/",
-    "test:memory": "node test/memory-leakage-test"
+    "test:memory": "npm run -s build; node test/memory-leakage-test"
   },
   "repository": {
     "type": "git",
