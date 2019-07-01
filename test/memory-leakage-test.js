@@ -1,6 +1,6 @@
 const { iterate } = require('leakage')
 const Octokit = require('@octokit/rest')
-  .plugin(require('..'))
+  .plugin(require('../pkg').throttlingPlugin)
 
 const result = iterate(() => {
   Octokit({
