@@ -15,7 +15,11 @@
     "pretest": "run-s lint build",
     "test": "nyc mocha test/integration/",
     "test:memory:raw": "node test/memory-leakage-test",
-    "test:memory": "run-s build test:memory:raw"
+    "test:memory": "run-s build test:memory:raw",
+    "minify:web-bundled": "terser pkg/dist-web/index.bundled.js --output pkg/dist-web/index.bundled.min.js --compress --mangle",
+    "minify:web": "terser pkg/dist-web/index.js --output pkg/dist-web/index.min.js --compress --mangle",
+    "bundlesize": "bundlesize",
+    "test:bundlesize": "run-s minify:* bundlesize"
   },
   "repository": {
     "type": "git",
@@ -60,6 +64,16 @@
       ]
     ]
   },
+  "bundlesize": [
+    {
+      "path": "./pkg/dist-web/index.bundled.min.js",
+      "maxSize": "9 kB"
+    },
+    {
+      "path": "./pkg/dist-web/index.min.js",
+      "maxSize": "2 kB"
+    }
+  ],
   "dependencies": {
     "bottleneck": "^2.15.3"
   },
@@ -72,6 +86,7 @@
     "@pika/plugin-build-web": "^0.4.0",
     "@pika/plugin-bundle-web": "^0.4.0",
     "@pika/plugin-standard-pkg": "^0.4.0",
+    "bundlesize": "^0.18.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "leakage": "^0.4.0",
@@ -80,6 +95,7 @@
     "nyc": "^14.0.0",
     "pika-plugin-unpkg-field": "^1.1.0",
     "semantic-release": "^15.13.8",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "terser": "^4.0.2"
   }
 }
