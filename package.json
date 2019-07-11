@@ -48,6 +48,6 @@
     "mocha": "^6.0.2",
     "nyc": "^14.0.0",
     "semantic-release": "^15.13.8",
-    "standard": "^12.0.1"
+    "standard": "^13.0.1"
   }
 }
