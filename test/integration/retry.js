@@ -182,7 +182,7 @@ describe('Retry', function () {
       })
 
       expect(res.status).to.equal(200)
-      expect(res.data).to.deep.equal({ errors: [ { type: 'HELLO_WORLD' } ] })
+      expect(res.data).to.deep.equal({ errors: [{ type: 'HELLO_WORLD' }] })
       expect(eventCount).to.equal(0)
       expect(octokit.__requestLog).to.deep.equal([
         'START POST /graphql',
