@@ -103,7 +103,7 @@ describe('Retry', function () {
       const res = await octokit.request('GET /route', {
         request: {
           responses: [
-            { status: 403, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `123` }, data: {} },
+            { status: 403, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': '123' }, data: {} },
             { status: 202, headers: {}, data: { message: 'Yay!' } }
           ]
         }
@@ -141,7 +141,7 @@ describe('Retry', function () {
       const res = await octokit.request('POST /graphql', {
         request: {
           responses: [
-            { status: 200, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `123` }, data: { errors: [{ type: 'RATE_LIMITED' }] } },
+            { status: 200, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': '123' }, data: { errors: [{ type: 'RATE_LIMITED' }] } },
             { status: 200, headers: {}, data: { message: 'Yay!' } }
           ]
         }
@@ -175,7 +175,7 @@ describe('Retry', function () {
       const res = await octokit.request('POST /graphql', {
         request: {
           responses: [
-            { status: 200, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': `123` }, data: { errors: [{ type: 'HELLO_WORLD' }] } },
+            { status: 200, headers: { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': '123' }, data: { errors: [{ type: 'HELLO_WORLD' }] } },
             { status: 200, headers: {}, data: { message: 'Yay!' } }
           ]
         }
