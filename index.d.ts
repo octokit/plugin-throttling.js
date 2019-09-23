@@ -49,33 +49,18 @@ declare module '@octokit/plugin-throttling' {
         params: LimitCallbackParams,
     ) => boolean;
 
-    /**
-     * When you have been limited, you need to slow down your requests.
-     *
-     * Use the "Retry-After" response header to know how many seconds
-     * to wait before your next request.
-     *
-     * The value of the "Retry-After" header will always be an integer,
-     * representing the number of seconds you should wait before making
-     * requests again.
-     *
-     * For example, "Retry-After: 30" means you should wait
-     * 30 seconds before sending more requests.
-     *
-     * @param {number} retryAfter - number of seconds to wait
-     * @param {LimitCallbackParams} params - context about retry attempts
-     *
-     * @returns `true` to retry the request after waiting, `false` to not retry
-     */
-    type AbuseLimitCallback = (
-        retryAfter: number,
-        params: LimitCallbackParams,
-    ) => boolean;
-
     interface ThrottleOptions extends Octokit.Options {
         throttle: {
+            /*
+             * Called when your app exceeds the normal rate limit
+             * for an API endpoint. Slow down.
+             */
             onRateLimit: RateLimitCallback;
-            onAbuseLimit: AbuseLimitCallback;
+            /*
+             * GitHub has detected potential abuse of an API endpoint.
+             * Slow down or risk having access denied from your app.
+             */
+            onAbuseLimit: RateLimitCallback;
         };
     }
 
