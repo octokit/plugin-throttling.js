@@ -16,7 +16,7 @@ declare module '@octokit/plugin-throttling' {
      */
     interface LimitCallbackParams {
         request: {
-            /*
+            /**
              * If this request has been retried,
              * which retry attempt is being limited.
              * Use this to determine how many retries
@@ -52,22 +52,22 @@ declare module '@octokit/plugin-throttling' {
 
     interface ThrottleOptions extends Octokit.Options {
         throttle: {
-            /*
+            /**
              * Enables the throttler.
              * Default is `true`.
              */
             enabled?: boolean;
-            /*
+            /**
              * Called when your app exceeds the normal rate limit
              * for an API endpoint. Slow down.
              */
             onRateLimit: RateLimitCallback;
-            /*
+            /**
              * GitHub has detected potential abuse of an API endpoint.
              * Slow down or risk having access denied from your app.
              */
             onAbuseLimit: RateLimitCallback;
-            /*
+            /**
              * Only if enabling cluster support.
              * Specify one of `connection` or `Bottleneck`.
              *
@@ -78,7 +78,7 @@ declare module '@octokit/plugin-throttling' {
             connection?:
                 | Bottleneck.RedisConnection
                 | Bottleneck.IORedisConnection;
-            /*
+            /**
              * Only if enabling cluster support.
              *
              * Per the Bottleneck documentation,
@@ -89,14 +89,14 @@ declare module '@octokit/plugin-throttling' {
              * Default is 1000 * 60 * 2 milliseconds (two minutes).
              */
             timeout?: number;
-            /*
+            /**
              * Only if enabling cluster support.
              * Specify one of `connection` or `Bottleneck`.
              *
              * Alternative Bottleneck implementation if not using Redis.
              */
             Bottleneck?: Bottleneck;
-            /*
+            /**
              * Only if enabling Cluster Support.
              *
              * A "throttling ID". All Octokit instances with the same ID
