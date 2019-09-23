@@ -9,6 +9,7 @@
 
 declare module '@octokit/plugin-throttling' {
     import Octokit from '@octokit/rest';
+    import Bottleneck from 'bottleneck';
 
     /**
      * More context provided to your limit callback function.
@@ -46,11 +47,16 @@ declare module '@octokit/plugin-throttling' {
      */
     type RateLimitCallback = (
         retryAfter: number,
-        params: LimitCallbackParams,
+        params: LimitCallbackParams
     ) => boolean;
 
     interface ThrottleOptions extends Octokit.Options {
         throttle: {
+            /*
+             * Enables the throttler.
+             * Default is `true`.
+             */
+            enabled?: boolean;
             /*
              * Called when your app exceeds the normal rate limit
              * for an API endpoint. Slow down.
@@ -61,6 +67,44 @@ declare module '@octokit/plugin-throttling' {
              * Slow down or risk having access denied from your app.
              */
             onAbuseLimit: RateLimitCallback;
+            /*
+             * Only if enabling cluster support.
+             * Specify one of `connection` or `Bottleneck`.
+             *
+             * The Bottleneck connection object for clustering support.
+             * Ensures that your application will not go over rate limits
+             * across Octokit instances and across Nodejs processes.
+             */
+            connection?:
+                | Bottleneck.RedisConnection
+                | Bottleneck.IORedisConnection;
+            /*
+             * Only if enabling cluster support.
+             *
+             * Per the Bottleneck documentation,
+             * "Limiters that have been idle for longer than 5 minutes are
+             * deleted to avoid memory leaks, this value can be changed by
+             * passing a different timeout option, in milliseconds."
+             *
+             * Default is 1000 * 60 * 2 milliseconds (two minutes).
+             */
+            timeout?: number;
+            /*
+             * Only if enabling cluster support.
+             * Specify one of `connection` or `Bottleneck`.
+             *
+             * Alternative Bottleneck implementation if not using Redis.
+             */
+            Bottleneck?: Bottleneck;
+            /*
+             * Only if enabling Cluster Support.
+             *
+             * A "throttling ID". All Octokit instances with the same ID
+             * using the same Redis server will share the throttling.
+             *
+             * Default is 'no-id'.
+             */
+            id?: string;
         };
     }
 
@@ -70,6 +114,6 @@ declare module '@octokit/plugin-throttling' {
      */
     export default function plugin(
         octokit: Octokit,
-        options: Octokit.Options,
+        options: Octokit.Options
     ): void;
 }
