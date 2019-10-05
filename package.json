@@ -46,7 +46,7 @@
     "leakage": "^0.4.0",
     "mocha": "^6.0.2",
     "nyc": "^14.0.0",
-    "semantic-release": "^15.13.8",
+    "semantic-release": "^15.13.25",
     "standard": "^14.0.2"
   }
 }
