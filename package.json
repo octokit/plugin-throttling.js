@@ -12,7 +12,10 @@
     "coverage:upload": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "standard",
     "test": "nyc mocha test/integration/",
-    "test:memory": "node test/memory-leakage-test"
+    "test:memory": "node test/memory-leakage-test",
+    "update-endpoints": "npm-run-all update-endpoints:*",
+    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
+    "update-endpoints:code": "node scripts/update-endpoints/code"
   },
   "repository": {
     "type": "git",
