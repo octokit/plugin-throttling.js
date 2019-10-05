@@ -6,17 +6,17 @@
  */
 const { writeFileSync } = require('fs')
 
-const routes = require('@octokit/routes')
+const ENDPOINTS = require('./generated/endpoints.json')
 const paths = []
 
-Object.keys(routes).forEach(scope => {
-  const scopeEndpoints = routes[scope]
-  scopeEndpoints.forEach(endpoint => {
-    if (endpoint.triggersNotification) {
-      paths.push(endpoint.path)
-    }
-  })
-})
+for (const endpoint of ENDPOINTS) {
+  if (endpoint.triggersNotification) {
+    paths.push(endpoint.url.replace(/\{([^}]+)}/g, ':$1'))
+  }
+}
 
 const uniquePaths = [...new Set(paths.sort())]
-writeFileSync('./lib/triggers-notification-paths.json', JSON.stringify(uniquePaths, null, 2) + '\n')
+writeFileSync(
+  './lib/triggers-notification-paths.json',
+  JSON.stringify(uniquePaths, null, 2) + '\n'
+)
