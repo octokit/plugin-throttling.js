@@ -6,6 +6,7 @@
   "/repos/:owner/:repo/issues/:issue_number/comments",
   "/repos/:owner/:repo/pulls",
   "/repos/:owner/:repo/pulls/:pull_number/comments",
+  "/repos/:owner/:repo/pulls/:pull_number/comments/:comment_id/replies",
   "/repos/:owner/:repo/pulls/:pull_number/merge",
   "/repos/:owner/:repo/pulls/:pull_number/requested_reviewers",
   "/repos/:owner/:repo/pulls/:pull_number/reviews",
