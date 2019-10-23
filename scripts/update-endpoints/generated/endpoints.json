@@ -372,6 +372,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/installations",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/interaction-limits",
     "triggersNotification": null
   },
