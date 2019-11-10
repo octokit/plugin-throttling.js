@@ -3,9 +3,13 @@ const path = require('path')
 
 const { graphql } = require('@octokit/graphql')
 
+if (!process.env.VERSION) {
+  throw new Error(`VERSION environment variable must be set`)
+}
+
 const QUERY = `
-  {
-    endpoints {
+  query ($version: String) {{
+    endpoints(version: $version) {
       url
       triggersNotification
     }
@@ -15,7 +19,8 @@ main()
 
 async function main () {
   const { endpoints } = await graphql(QUERY, {
-    url: 'https://octokit-routes-graphql-server.now.sh/'
+    url: 'https://octokit-routes-graphql-server.now.sh/',
+    version: process.env.VERSION
   })
 
   writeFileSync(
