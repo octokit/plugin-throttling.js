@@ -4,7 +4,7 @@ const path = require('path')
 const { graphql } = require('@octokit/graphql')
 
 if (!process.env.VERSION) {
-  throw new Error(`VERSION environment variable must be set`)
+  throw new Error('VERSION environment variable must be set')
 }
 
 const QUERY = `
