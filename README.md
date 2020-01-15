@@ -2,24 +2,55 @@
 
 > Octokit plugin for GitHub’s recommended request throttling
 
-[![npm](https://img.shields.io/npm/v/@octokit/plugin-throttling.svg)](https://www.npmjs.com/package/@octokit/plugin-throttling)
-![Build Status](https://github.com/octokit/plugin-throttling.js/workflows/Test/badge.svg)
+[![@latest](https://img.shields.io/npm/v/@octokit/plugin-throttling.svg)](https://www.npmjs.com/package/@octokit/plugin-throttling)
+[![Build Status](https://github.com/octokit/plugin-throttling.js/workflows/Test/badge.svg)](https://github.com/octokit/plugin-throttling.js/actions?workflow=Test)
 [![Greenkeeper](https://badges.greenkeeper.io/octokit/plugin-throttling.js.svg)](https://greenkeeper.io/)
 
 Implements all [recommended best practises](https://developer.github.com/v3/guides/best-practices-for-integrators/) to prevent hitting abuse rate limits.
 
 ## Usage
 
+<table>
+<tbody valign=top align=left>
+<tr><th>
+Browsers
+</th><td width=100%>
+
+Load `@octokit/plugin-throttling` and [`@octokit/core`](https://github.com/octokit/core.js) (or core-compatible module) directly from [cdn.pika.dev](https://cdn.pika.dev)
+
+```html
+<script type="module">
+  import { Octokit } from "https://cdn.pika.dev/@octokit/core";
+  import { throttling } from "https://cdn.pika.dev/@octokit/plugin-throttling";
+</script>
+```
+
+</td></tr>
+<tr><th>
+Node
+</th><td>
+
+Install with `npm install @octokit/core @octokit/plugin-throttling`. Optionally replace `@octokit/core` with a core-compatible module
+
+```js
+const { Octokit } = require("@octokit/core");
+const { throttling } = require("@octokit/plugin-throttling");
+```
+
+</td></tr>
+</tbody>
+</table>
+
 The code below creates a "Hello, world!" issue on every repository in a given organization. Without the throttling plugin it would send many requests in parallel and would hit rate limits very quickly. But the `@octokit/plugin-throttling` slows down your requests according to the official guidelines, so you don't get blocked before your quota is exhausted.
 
 The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Return `true` to automatically retry the request after `retryAfter` seconds.
 
 ```js
-const Octokit = require('@octokit/rest')
-  .plugin(require('@octokit/plugin-throttling'))
+const MyOctokit = Octokit.plugin(throttling);
+const octokit = new MyOctokit({ auth: "secret123" });
 
-const octokit = new Octokit({
-  auth: `token ${process.env.TOKEN}`,
+const octokit = new MyOctokit({
+  auth: `secret123`,
   throttle: {
     onRateLimit: (retryAfter, options) => {
       console.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
@@ -76,7 +107,8 @@ const client = Redis.createClient({
 const connection = new Bottleneck.RedisConnection({ client });
 connection.on("error", err => console.error(err));
 
-const octokit = new Octokit({
+const octokit = new MyOctokit({
+  auth: 'secret123'
   throttle: {
     onAbuseLimit: (retryAfter, options) => {
       /* ... */
