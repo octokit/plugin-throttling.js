@@ -1,24 +1,27 @@
-module.exports = routeMatcher
-
-function routeMatcher (paths) {
+// @ts-ignore
+export function routeMatcher(paths) {
   // EXAMPLE. For the following paths:
   /* [
       "/orgs/:org/invitations",
       "/repos/:owner/:repo/collaborators/:username"
   ] */
 
-  const regexes = paths.map(p =>
-    p.split('/')
-      .map(c => c.startsWith(':') ? '(?:.+?)' : c)
-      .join('/')
-  )
+  // @ts-ignore
+  const regexes = paths.map(path =>
+    path
+      .split("/")
+      // @ts-ignore
+      .map(c => (c.startsWith(":") ? "(?:.+?)" : c))
+      .join("/")
+  );
   // 'regexes' would contain:
   /* [
       '/orgs/(?:.+?)/invitations',
       '/repos/(?:.+?)/(?:.+?)/collaborators/(?:.+?)'
   ] */
 
-  const regex = `^(?:${regexes.map(r => `(?:${r})`).join('|')})[^/]*$`
+  // @ts-ignore
+  const regex = `^(?:${regexes.map(r => `(?:${r})`).join("|")})[^/]*$`;
   // 'regex' would contain:
   /*
     ^(?:(?:\/orgs\/(?:.+?)\/invitations)|(?:\/repos\/(?:.+?)\/(?:.+?)\/collaborators\/(?:.+?)))[^\/]*$
@@ -27,5 +30,5 @@ function routeMatcher (paths) {
     and it will make a lot more sense!
   */
 
-  return new RegExp(regex, 'i')
+  return new RegExp(regex, "i");
 }
