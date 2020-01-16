@@ -1,4 +1,4 @@
-[
+const PATHS = [
   "/orgs/:org/invitations",
   "/repos/:owner/:repo/collaborators/:username",
   "/repos/:owner/:repo/commits/:commit_sha/comments",
@@ -13,4 +13,5 @@
   "/repos/:owner/:repo/releases",
   "/teams/:team_id/discussions",
   "/teams/:team_id/discussions/:discussion_number/comments"
-]
+];
+export default PATHS;
