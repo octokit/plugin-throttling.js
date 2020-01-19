@@ -6,6 +6,8 @@
  */
 const { writeFileSync } = require("fs");
 
+const prettier = require("prettier");
+
 const ENDPOINTS = require("./generated/endpoints.json");
 const paths = [];
 
@@ -17,6 +19,8 @@ for (const endpoint of ENDPOINTS) {
 
 const uniquePaths = [...new Set(paths.sort())];
 writeFileSync(
-  "./lib/triggers-notification-paths.json",
-  JSON.stringify(uniquePaths, null, 2) + "\n"
+  "./src/generated/triggers-notification-paths.ts",
+  prettier.format(`export default ` + JSON.stringify(uniquePaths), {
+    parser: "typescript"
+  })
 );
