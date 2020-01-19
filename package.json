@@ -10,7 +10,10 @@
     "lint": "prettier --check '{src,scripts,test}/**/*' '!*/generated/**' README.md package.json",
     "lint:fix": "prettier --write '{src,scripts,test}/**/*' '!*/generated/**' README.md package.json",
     "pretest": "npm run -s lint",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "update-endpoints": "npm-run-all update-endpoints:*",
+    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
+    "update-endpoints:code": "node scripts/update-endpoints/code"
   },
   "repository": {
     "type": "git",
@@ -38,6 +41,7 @@
     "@types/node": "^13.1.0",
     "fetch-mock": "^8.0.0",
     "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "semantic-release": "^16.0.0",
     "semantic-release-plugin-update-version-in-files": "^1.0.0",
