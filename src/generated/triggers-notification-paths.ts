@@ -1,5 +1,7 @@
-const PATHS = [
+export default [
   "/orgs/:org/invitations",
+  "/orgs/:org/teams/:team_slug/discussions",
+  "/orgs/:org/teams/:team_slug/discussions/:discussion_number/comments",
   "/repos/:owner/:repo/collaborators/:username",
   "/repos/:owner/:repo/commits/:commit_sha/comments",
   "/repos/:owner/:repo/issues",
@@ -14,4 +16,3 @@ const PATHS = [
   "/teams/:team_id/discussions",
   "/teams/:team_id/discussions/:discussion_number/comments"
 ];
-export default PATHS;
