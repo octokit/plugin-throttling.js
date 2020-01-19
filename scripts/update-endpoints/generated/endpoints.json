@@ -36,7 +36,39 @@
     "triggersNotification": null
   },
   {
+    "url": "/applications/{client_id}/grant",
+    "triggersNotification": null
+  },
+  {
     "url": "/applications/{client_id}/grants/{access_token}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/grants/{access_token}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/tokens/{access_token}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/tokens/{access_token}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/tokens/{access_token}",
     "triggersNotification": null
   },
   {
@@ -197,6 +229,10 @@
   },
   {
     "url": "/installation/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/installation/token",
     "triggersNotification": null
   },
   {
@@ -452,6 +488,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/migrations/{migration_id}/repositories",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/outside_collaborators",
     "triggersNotification": null
   },
@@ -509,6 +549,134 @@
   },
   {
     "url": "/orgs/{org}/teams/{team_slug}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions",
+    "triggersNotification": true
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
+    "triggersNotification": true
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/invitations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/members",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/projects",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/repos",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/teams",
     "triggersNotification": null
   },
   {
@@ -1712,12 +1880,44 @@
     "triggersNotification": null
   },
   {
+    "url": "/teams/{team_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/discussions",
     "triggersNotification": null
   },
   {
     "url": "/teams/{team_id}/discussions",
     "triggersNotification": true
+  },
+  {
+    "url": "/teams/{team_id}/discussions",
+    "triggersNotification": true
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}",
+    "triggersNotification": null
   },
   {
     "url": "/teams/{team_id}/discussions/{discussion_number}",
@@ -1737,6 +1937,14 @@
   },
   {
     "url": "/teams/{team_id}/discussions/{discussion_number}/comments",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments",
+    "triggersNotification": true
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments",
     "triggersNotification": true
   },
   {
@@ -1752,11 +1960,39 @@
     "triggersNotification": null
   },
   {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
     "triggersNotification": null
   },
   {
     "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/discussions/{discussion_number}/reactions",
     "triggersNotification": null
   },
   {
@@ -1769,6 +2005,14 @@
   },
   {
     "url": "/teams/{team_id}/invitations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/invitations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/members",
     "triggersNotification": null
   },
   {
@@ -1788,6 +2032,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/teams/{team_id}/members/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/members/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/memberships/{username}",
     "triggersNotification": null
   },
@@ -1797,6 +2053,14 @@
   },
   {
     "url": "/teams/{team_id}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/projects",
     "triggersNotification": null
   },
   {
@@ -1816,6 +2080,22 @@
     "triggersNotification": null
   },
   {
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/repos",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/repos",
     "triggersNotification": null
   },
@@ -1832,11 +2112,35 @@
     "triggersNotification": null
   },
   {
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/team-sync/group-mappings",
     "triggersNotification": null
   },
   {
     "url": "/teams/{team_id}/team-sync/group-mappings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/team-sync/group-mappings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/team-sync/group-mappings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/teams",
     "triggersNotification": null
   },
   {
@@ -2065,6 +2369,10 @@
   },
   {
     "url": "/user/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/{migration_id}/repositories",
     "triggersNotification": null
   },
   {
