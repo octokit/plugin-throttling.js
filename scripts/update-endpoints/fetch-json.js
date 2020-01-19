@@ -8,12 +8,13 @@ if (!process.env.VERSION) {
 }
 
 const QUERY = `
-  query ($version: String) {{
+  query($version: String) {
     endpoints(version: $version) {
       url
       triggersNotification
     }
-  }`;
+  }
+`;
 
 main();
 
