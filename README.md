@@ -30,7 +30,9 @@ Load `@octokit/plugin-throttling` and [`@octokit/core`](https://github.com/octok
 Node
 </th><td>
 
-Install with `npm install @octokit/core @octokit/plugin-throttling`. Optionally replace `@octokit/core` with a core-compatible module
+Install with `npm install @octokit/core @octokit/plugin-throttling`. Optionally replace `@octokit/core` with a core-compatible module.
+
+Note: If you use it with `@octokit/rest` v16, install `@octokit/core` as a devDependency. This is only temporary and will no longer be necessary with `@octokit/rest` v17.
 
 ```js
 const { Octokit } = require("@octokit/core");
