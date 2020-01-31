@@ -1804,6 +1804,10 @@
     "triggersNotification": null
   },
   {
+    "url": "{origin}/repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/stargazers",
     "triggersNotification": null
   },
