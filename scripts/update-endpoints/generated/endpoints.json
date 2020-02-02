@@ -804,6 +804,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runners/downloads",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runners/registration-token",
     "triggersNotification": null
   },
