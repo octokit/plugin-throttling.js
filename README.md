@@ -32,7 +32,7 @@ Node
 
 Install with `npm install @octokit/core @octokit/plugin-throttling`. Optionally replace `@octokit/core` with a core-compatible module.
 
-Note: If you use it with `@octokit/rest` v16, install `@octokit/core` as a devDependency. This is only temporary and will no longer be necessary with `@octokit/rest` v17.
+**Note**: If you use it with `@octokit/rest` v16, install `@octokit/core` as a devDependency. This is only temporary and will no longer be necessary with `@octokit/rest` v17.
 
 ```js
 const { Octokit } = require("@octokit/core");
@@ -42,8 +42,6 @@ const { throttling } = require("@octokit/plugin-throttling");
 </td></tr>
 </tbody>
 </table>
-
-**Note**: If you use it with `@octokit/rest` v16, install `@octokit/core` as a devDependency. This is only temporary and will no longer be necessary with `@octokit/rest` v17.
 
 The code below creates a "Hello, world!" issue on every repository in a given organization. Without the throttling plugin it would send many requests in parallel and would hit rate limits very quickly. But the `@octokit/plugin-throttling` slows down your requests according to the official guidelines, so you don't get blocked before your quota is exhausted.
 
