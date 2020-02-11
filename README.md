@@ -51,7 +51,6 @@ The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Ret
 
 ```js
 const MyOctokit = Octokit.plugin(throttling);
-const octokit = new MyOctokit({ auth: "secret123" });
 
 const octokit = new MyOctokit({
   auth: `secret123`,
