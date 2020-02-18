@@ -1228,6 +1228,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/deployments/{deployment_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
     "triggersNotification": null
   },
