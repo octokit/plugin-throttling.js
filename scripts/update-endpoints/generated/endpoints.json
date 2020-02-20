@@ -780,6 +780,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/artifacts",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
     "triggersNotification": null
   },
