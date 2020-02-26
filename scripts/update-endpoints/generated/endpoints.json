@@ -612,11 +612,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions/{reaction_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions/{reaction_id}",
     "triggersNotification": null
   },
   {
@@ -761,6 +769,10 @@
   },
   {
     "url": "/rate_limit",
+    "triggersNotification": null
+  },
+  {
+    "url": "/reactions/{reaction_id}",
     "triggersNotification": null
   },
   {
@@ -1144,6 +1156,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/comments/{comment_id}/reactions/{reaction_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/commits",
     "triggersNotification": null
   },
@@ -1452,6 +1468,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions/{reaction_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/issues/events",
     "triggersNotification": null
   },
@@ -1521,6 +1541,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/reactions/{reaction_id}",
     "triggersNotification": null
   },
   {
@@ -1677,6 +1701,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions/{reaction_id}",
     "triggersNotification": null
   },
   {
