@@ -768,6 +768,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/reactions/{reaction_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}",
     "triggersNotification": null
   },
