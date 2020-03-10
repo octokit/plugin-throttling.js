@@ -288,6 +288,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/marketplace_listing/accounts/{account_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/marketplace_listing/plans",
     "triggersNotification": null
   },
@@ -297,6 +301,10 @@
   },
   {
     "url": "/marketplace_listing/plans/{plan_id}/accounts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/marketplace_listing/stubbed/accounts/{account_id}",
     "triggersNotification": null
   },
   {
