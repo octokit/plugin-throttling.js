@@ -124,6 +124,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/codes_of_conduct",
+    "triggersNotification": null
+  },
+  {
     "url": "/codes_of_conduct/{key}",
     "triggersNotification": null
   },
@@ -280,7 +284,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/marketplace_listing/accounts/{account_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/marketplace_listing/plans",
+    "triggersNotification": null
+  },
+  {
+    "url": "/marketplace_listing/plans/{plan_id}/accounts",
     "triggersNotification": null
   },
   {
@@ -293,6 +305,10 @@
   },
   {
     "url": "/marketplace_listing/stubbed/plans",
+    "triggersNotification": null
+  },
+  {
+    "url": "/marketplace_listing/stubbed/plans/{plan_id}/accounts",
     "triggersNotification": null
   },
   {
@@ -1524,6 +1540,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels/{name}",
     "triggersNotification": null
   },
@@ -1897,6 +1921,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/topics",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/topics",
     "triggersNotification": null
   },
   {
@@ -2352,6 +2384,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/following",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/following/{username}",
     "triggersNotification": null
   },
@@ -2480,6 +2516,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/repos",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/repository_invitations",
     "triggersNotification": null
   },
@@ -2561,6 +2601,10 @@
   },
   {
     "url": "/users/{username}/following/{target_user}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/gists",
     "triggersNotification": null
   },
   {
