@@ -7,11 +7,11 @@ export function routeMatcher(paths) {
   ] */
 
   // @ts-ignore
-  const regexes = paths.map(path =>
+  const regexes = paths.map((path) =>
     path
       .split("/")
       // @ts-ignore
-      .map(c => (c.startsWith(":") ? "(?:.+?)" : c))
+      .map((c) => (c.startsWith(":") ? "(?:.+?)" : c))
       .join("/")
   );
   // 'regexes' would contain:
@@ -21,7 +21,7 @@ export function routeMatcher(paths) {
   ] */
 
   // @ts-ignore
-  const regex = `^(?:${regexes.map(r => `(?:${r})`).join("|")})[^/]*$`;
+  const regex = `^(?:${regexes.map((r) => `(?:${r})`).join("|")})[^/]*$`;
   // 'regex' would contain:
   /*
     ^(?:(?:\/orgs\/(?:.+?)\/invitations)|(?:\/repos\/(?:.+?)\/(?:.+?)\/collaborators\/(?:.+?)))[^\/]*$

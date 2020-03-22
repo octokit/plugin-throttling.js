@@ -21,7 +21,7 @@ main();
 async function main() {
   const { endpoints } = await graphql(QUERY, {
     url: "https://octokit-routes-graphql-server.now.sh/",
-    version: process.env.VERSION
+    version: process.env.VERSION,
   });
 
   writeFileSync(

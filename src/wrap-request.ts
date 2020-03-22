@@ -43,11 +43,11 @@ async function doRequest(state, request, options) {
     if (
       res.data.errors != null &&
       // @ts-ignore
-      res.data.errors.some(error => error.type === "RATE_LIMITED")
+      res.data.errors.some((error) => error.type === "RATE_LIMITED")
     ) {
       const error = Object.assign(new Error("GraphQL Rate Limit Exceeded"), {
         headers: res.headers,
-        data: res.data
+        data: res.data,
       });
 
       throw error;

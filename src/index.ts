@@ -15,33 +15,33 @@ const triggersNotification = regex.test.bind(regex);
 const groups = {};
 
 // @ts-ignore
-const createGroups = function(Bottleneck, common) {
+const createGroups = function (Bottleneck, common) {
   // @ts-ignore
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
     maxConcurrent: 10,
-    ...common
+    ...common,
   });
   // @ts-ignore
   groups.search = new Bottleneck.Group({
     id: "octokit-search",
     maxConcurrent: 1,
     minTime: 2000,
-    ...common
+    ...common,
   });
   // @ts-ignore
   groups.write = new Bottleneck.Group({
     id: "octokit-write",
     maxConcurrent: 1,
     minTime: 1000,
-    ...common
+    ...common,
   });
   // @ts-ignore
   groups.notifications = new Bottleneck.Group({
     id: "octokit-notifications",
     maxConcurrent: 1,
     minTime: 3000,
-    ...common
+    ...common,
   });
 };
 
@@ -51,7 +51,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     Bottleneck = BottleneckLight,
     id = "no-id",
     timeout = 1000 * 60 * 2, // Redis TTL: 2 minutes
-    connection
+    connection,
     // @ts-ignore
   } = octokitOptions.throttle || {};
   if (!enabled) {
@@ -72,7 +72,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
       retryAfterBaseValue: 1000,
       retryLimiter: new Bottleneck(),
       id,
-      ...groups
+      ...groups,
     },
     // @ts-ignore
     octokitOptions.throttle
@@ -102,12 +102,12 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   // @ts-ignore
   events.on("rate-limit", state.onRateLimit);
   // @ts-ignore
-  events.on("error", e =>
+  events.on("error", (e) =>
     console.warn("Error in throttling-plugin limit handler", e)
   );
 
   // @ts-ignore
-  state.retryLimiter.on("failed", async function(error, info) {
+  state.retryLimiter.on("failed", async function (error, info) {
     const options = info.args[info.args.length - 1];
     const isGraphQL = options.url.startsWith("/graphql");
 
@@ -118,7 +118,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     const retryCount = ~~options.request.retryCount;
     options.request.retryCount = retryCount;
 
-    const { wantRetry, retryAfter } = await (async function() {
+    const { wantRetry, retryAfter } = await (async function () {
       if (/\babuse\b/i.test(error.message)) {
         // The user has hit the abuse rate limit. (REST only)
         // https://developer.github.com/v3/#abuse-rate-limits

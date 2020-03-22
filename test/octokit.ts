@@ -10,7 +10,7 @@ function testPlugin(octokit: Octokit) {
   octokit.hook.wrap("request", async (request, options) => {
     octokit.__requestLog.push(`START ${options.method} ${options.url}`);
     octokit.__requestTimings.push(Date.now() - t0);
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const res = options.request.responses.shift();
     if (res.status >= 400) {
@@ -20,7 +20,7 @@ function testPlugin(octokit: Octokit) {
           : `Test failed request (${res.status})`;
       const error = new RequestError(message, res.status, {
         headers: res.headers,
-        request: options
+        request: options,
       });
       throw error;
     } else {

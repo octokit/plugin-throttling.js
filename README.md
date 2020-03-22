@@ -142,7 +142,7 @@ const client = new Redis({
   /* options */
 });
 const connection = new Bottleneck.IORedisConnection({ client });
-connection.on("error", err => console.error(err));
+connection.on("error", (err) => console.error(err));
 ```
 
 ## LICENSE
