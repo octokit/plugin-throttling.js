@@ -14,5 +14,5 @@ export default [
   "/repos/:owner/:repo/pulls/:pull_number/reviews",
   "/repos/:owner/:repo/releases",
   "/teams/:team_id/discussions",
-  "/teams/:team_id/discussions/:discussion_number/comments"
+  "/teams/:team_id/discussions/:discussion_number/comments",
 ];
