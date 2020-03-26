@@ -148,6 +148,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/feeds",
+    "triggersNotification": null
+  },
+  {
     "url": "/gists",
     "triggersNotification": null
   },
@@ -336,6 +340,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/notifications",
+    "triggersNotification": null
+  },
+  {
+    "url": "/notifications",
+    "triggersNotification": null
+  },
+  {
+    "url": "/notifications",
+    "triggersNotification": null
+  },
+  {
     "url": "/notifications/threads/{thread_id}",
     "triggersNotification": null
   },
@@ -389,6 +405,10 @@
   },
   {
     "url": "/orgs/{org}/credential-authorizations/{credential_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/events",
     "triggersNotification": null
   },
   {
@@ -1660,6 +1680,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/notifications",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/notifications",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/pages",
     "triggersNotification": null
   },
@@ -2560,6 +2588,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/starred/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/starred/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/starred/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/subscriptions",
     "triggersNotification": null
   },
@@ -2593,6 +2633,14 @@
   },
   {
     "url": "/users/{username}/events",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/events",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/events/orgs/{org}",
     "triggersNotification": null
   },
   {
