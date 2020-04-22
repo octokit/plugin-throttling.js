@@ -384,6 +384,30 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/runners",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runners/downloads",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runners/registration-token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runners/remove-token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runners/{runner_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runners/{runner_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/blocks",
     "triggersNotification": null
   },
@@ -864,11 +888,31 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runners/downloads",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runners/registration-token",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runners/registration-token",
     "triggersNotification": null
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runners/remove-token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runners/remove-token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runners/{runner_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runners/{runner_id}",
     "triggersNotification": null
   },
   {
