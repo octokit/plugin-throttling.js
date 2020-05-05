@@ -24,6 +24,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/app/installations/{installation_id}/suspended",
+    "triggersNotification": null
+  },
+  {
+    "url": "/app/installations/{installation_id}/suspended",
+    "triggersNotification": null
+  },
+  {
     "url": "/applications/grants",
     "triggersNotification": null
   },
@@ -880,6 +888,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/jobs/{job_id}/logs",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runners",
     "triggersNotification": null
   },
@@ -941,6 +953,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/jobs",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/logs",
     "triggersNotification": null
   },
   {
