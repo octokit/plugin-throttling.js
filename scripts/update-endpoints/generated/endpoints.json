@@ -1216,6 +1216,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/collaborators",
     "triggersNotification": null
   },
