@@ -256,22 +256,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/legacy/issues/search/{owner}/{repository}/{state}/{keyword}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/legacy/repos/search/{keyword}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/legacy/user/email/{email}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/legacy/user/search/{keyword}",
-    "triggersNotification": null
-  },
-  {
     "url": "/licenses",
     "triggersNotification": null
   },
@@ -2673,18 +2657,6 @@
   },
   {
     "url": "/user/subscriptions",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/subscriptions/{owner}/{repo}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/subscriptions/{owner}/{repo}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/subscriptions/{owner}/{repo}",
     "triggersNotification": null
   },
   {
