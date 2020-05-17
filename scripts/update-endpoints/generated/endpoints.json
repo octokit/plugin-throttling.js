@@ -400,6 +400,42 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/secrets",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/public-key",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/blocks",
     "triggersNotification": null
   },
@@ -956,6 +992,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/timing",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/secrets",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/secrets",
     "triggersNotification": null
   },
@@ -964,15 +1008,31 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/actions/secrets/{name}",
+    "url": "/repos/{owner}/{repo}/actions/secrets/public-key",
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/actions/secrets/{name}",
+    "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/actions/secrets/{name}",
+    "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -985,6 +1045,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/timing",
     "triggersNotification": null
   },
   {
