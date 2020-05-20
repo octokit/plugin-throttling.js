@@ -157,6 +157,7 @@ describe("Github API best practices", function () {
     });
 
     const req1 = octokit.request("POST /orgs/:org/invitations", {
+      org: "org",
       request: {
         responses: [{ status: 201, headers: {}, data: {} }],
       },
