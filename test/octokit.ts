@@ -31,4 +31,4 @@ function testPlugin(octokit: Octokit) {
   });
 }
 
-export const TestOctokit = Octokit.plugin([testPlugin, throttling]);
+export const TestOctokit = Octokit.plugin(testPlugin, throttling);
