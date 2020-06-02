@@ -1580,6 +1580,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/import",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/import/authors",
     "triggersNotification": null
   },
@@ -1797,6 +1801,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/merges",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/milestones",
     "triggersNotification": null
   },
   {
