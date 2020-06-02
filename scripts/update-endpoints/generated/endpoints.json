@@ -740,6 +740,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/teams/{team_slug}/projects",
     "triggersNotification": null
   },
@@ -756,7 +768,23 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/teams/{team_slug}/repos",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
     "triggersNotification": null
   },
   {
@@ -1053,6 +1081,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/assignees",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/assignees/{assignee}",
     "triggersNotification": null
   },
   {
