@@ -1728,6 +1728,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels/{name}",
     "triggersNotification": null
   },
@@ -2452,11 +2456,31 @@
     "triggersNotification": null
   },
   {
+    "url": "/teams/{team_id}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/projects",
     "triggersNotification": null
   },
   {
     "url": "/teams/{team_id}/projects",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/projects/{project_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/projects/{project_id}",
     "triggersNotification": null
   },
   {
@@ -2497,6 +2521,14 @@
   },
   {
     "url": "/teams/{team_id}/repos",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/teams/{team_id}/repos/{owner}/{repo}",
     "triggersNotification": null
   },
   {
