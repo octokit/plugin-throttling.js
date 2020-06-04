@@ -24,6 +24,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/app/installations/{installation_id}/access_tokens",
+    "triggersNotification": null
+  },
+  {
     "url": "/app/installations/{installation_id}/suspended",
     "triggersNotification": null
   },
@@ -245,6 +249,14 @@
   },
   {
     "url": "/installation/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/installation/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/installation/token",
     "triggersNotification": null
   },
   {
@@ -501,6 +513,10 @@
   },
   {
     "url": "/orgs/{org}/installations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/interaction-limits",
     "triggersNotification": null
   },
   {
@@ -929,6 +945,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/jobs/{job_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/jobs/{job_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/jobs/{job_id}/logs",
     "triggersNotification": null
   },
   {
@@ -1605,6 +1629,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/installation",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/interaction-limits",
     "triggersNotification": null
   },
   {
