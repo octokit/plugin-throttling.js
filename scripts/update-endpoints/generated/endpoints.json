@@ -476,6 +476,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/credential-authorizations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/credential-authorizations/{credential_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/credential-authorizations/{credential_id}",
     "triggersNotification": null
   },
@@ -496,6 +504,26 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/hooks/{hook_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/hooks/{hook_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/hooks/{hook_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/hooks/{hook_id}",
     "triggersNotification": null
   },
@@ -512,11 +540,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/hooks/{hook_id}/pings",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/installation",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/installation",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/installations",
     "triggersNotification": null
   },
   {
@@ -565,6 +601,22 @@
   },
   {
     "url": "/orgs/{org}/members/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/members/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/memberships/{username}",
     "triggersNotification": null
   },
   {
@@ -633,6 +685,18 @@
   },
   {
     "url": "/orgs/{org}/public_members",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/public_members/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/public_members/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/public_members/{username}",
     "triggersNotification": null
   },
   {
@@ -904,6 +968,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/projects/{project_id}/collaborators/{username}/permission",
+    "triggersNotification": null
+  },
+  {
     "url": "/projects/{project_id}/columns",
     "triggersNotification": null
   },
@@ -1156,6 +1224,22 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
     "triggersNotification": null
   },
@@ -1180,6 +1264,22 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
     "triggersNotification": null
   },
@@ -1189,6 +1289,26 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
     "triggersNotification": null
   },
   {
@@ -1217,6 +1337,30 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions",
     "triggersNotification": null
   },
   {
@@ -1248,7 +1392,15 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
     "triggersNotification": null
   },
   {
@@ -1269,6 +1421,34 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users",
     "triggersNotification": null
   },
   {
@@ -1428,7 +1608,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/commits/{ref}/statuses",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/community/code_of_conduct",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/community/profile",
     "triggersNotification": null
   },
   {
@@ -1580,6 +1768,26 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}",
     "triggersNotification": null
   },
@@ -1593,6 +1801,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/tests",
     "triggersNotification": null
   },
   {
@@ -1808,6 +2024,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/keys/{key_id}",
     "triggersNotification": null
   },
@@ -1908,6 +2132,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/pages",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pages",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pages/builds",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/pages/builds",
     "triggersNotification": null
   },
@@ -1941,6 +2177,22 @@
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/comments",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/comments",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
     "triggersNotification": null
   },
   {
@@ -1981,10 +2233,22 @@
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
     "triggersNotification": true
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
+    "triggersNotification": true
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
+    "triggersNotification": true
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/comments/{comment_id}/replies",
     "triggersNotification": true
   },
   {
@@ -2013,7 +2277,19 @@
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
     "triggersNotification": true
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
+    "triggersNotification": true
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
+    "triggersNotification": null
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
@@ -2037,6 +2313,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/comments",
     "triggersNotification": null
   },
   {
@@ -2104,6 +2384,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/releases/{release_id}/assets",
+    "triggersNotification": null
+  },
+  {
     "url": "{origin}/repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}",
     "triggersNotification": null
   },
@@ -2129,6 +2413,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/stats/punch_card",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/statuses/{sha}",
     "triggersNotification": null
   },
   {
@@ -2212,6 +2500,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/{archive_format}/{ref}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{template_owner}/{template_repo}/generate",
     "triggersNotification": null
   },
@@ -2229,6 +2521,26 @@
   },
   {
     "url": "/scim/v2/organizations/{org}/Users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/organizations/{org}/Users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -2640,6 +2952,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/blocks",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/blocks/{username}",
     "triggersNotification": null
   },
@@ -2653,6 +2969,22 @@
   },
   {
     "url": "/user/email/visibility",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/email/visibility",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/emails",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/emails",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/emails",
     "triggersNotification": null
   },
   {
@@ -2692,11 +3024,31 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/following/{username}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/gpg_keys",
     "triggersNotification": null
   },
   {
     "url": "/user/gpg_keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/gpg_keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/gpg_keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/gpg_keys/{gpg_key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/gpg_keys/{gpg_key_id}",
     "triggersNotification": null
   },
   {
@@ -2736,6 +3088,22 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/keys/{key_id}",
     "triggersNotification": null
   },
@@ -2761,6 +3129,14 @@
   },
   {
     "url": "/user/memberships/orgs",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/memberships/orgs",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/memberships/orgs/{org}",
     "triggersNotification": null
   },
   {
@@ -2801,6 +3177,10 @@
   },
   {
     "url": "/user/projects",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/public_emails",
     "triggersNotification": null
   },
   {
