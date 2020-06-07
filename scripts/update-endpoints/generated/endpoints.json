@@ -1544,6 +1544,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/comments",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/comments/{comment_id}",
     "triggersNotification": null
   },
