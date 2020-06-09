@@ -1688,18 +1688,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/downloads",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/downloads/{download_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/downloads/{download_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/events",
     "triggersNotification": null
   },
