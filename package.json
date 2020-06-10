@@ -27,7 +27,7 @@
   "homepage": "https://github.com/octokit/plugin-throttling.js#readme",
   "dependencies": {
     "bottleneck": "^2.15.3",
-    "@octokit/types": "^4.0.1"
+    "@octokit/types": "^5.0.0"
   },
   "devDependencies": {
     "@octokit/core": "^2.0.0",
