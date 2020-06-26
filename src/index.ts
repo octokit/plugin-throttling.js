@@ -101,6 +101,12 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   events.on("abuse-limit", state.onAbuseLimit);
   // @ts-ignore
   events.on("rate-limit", state.onRateLimit);
+
+  if (typeof state.onTimeout === "function") {
+    // @ts-ignore
+    events.on("timeout", state.onTimeout);
+  }
+
   // @ts-ignore
   events.on("error", (e) =>
     console.warn("Error in throttling-plugin limit handler", e)
@@ -137,20 +143,34 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
         );
         return { wantRetry, retryAfter };
       }
-      if (
-        error.headers != null &&
-        error.headers["x-ratelimit-remaining"] === "0"
-      ) {
+
+      if (typeof state.onTimeout === "function") {
+        if (/\ETIMEDOUT\b/i.test(error.message)) {
+          const retryAfter = 60;
+
+          const wantRetry = await emitter.trigger(
+            "timeout",
+            retryAfter,
+            options,
+            octokit
+          );
+          return { wantRetry, retryAfter };
+        }
+      }
+      if (error.headers != null && "x-ratelimit-remaining" in error.headers) {
         // The user has used all their allowed calls for the current time period (REST and GraphQL)
         // https://developer.github.com/v3/#rate-limiting
 
         const rateLimitReset = new Date(
           ~~error.headers["x-ratelimit-reset"] * 1000
         ).getTime();
-        const retryAfter = Math.max(
+        let retryAfter = Math.max(
           Math.ceil((rateLimitReset - Date.now()) / 1000),
           0
         );
+        if (error.headers["x-ratelimit-remaining"] !== 0) {
+          retryAfter = 60; // The ratelimit has been reset but still getting a 403, try a short wait and let the handler decide what to do
+        }
         const wantRetry = await emitter.trigger(
           "rate-limit",
           retryAfter,
