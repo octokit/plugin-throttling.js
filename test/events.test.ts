@@ -1,6 +1,4 @@
-import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit";
-import { throttling } from "../src";
 
 describe("Events", function () {
   it("Should support non-limit 403s", async function () {
@@ -39,7 +37,12 @@ describe("Events", function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          onAbuseLimit: (retryAfter: number, options: object) => {
+          onAbuseLimit: (
+            retryAfter: number,
+            options: object,
+            octokitFromOptions: InstanceType<typeof TestOctokit>
+          ) => {
+            expect(octokit).toBe(octokitFromOptions);
             expect(retryAfter).toEqual(60);
             expect(options).toMatchObject({
               method: "GET",
@@ -173,7 +176,12 @@ describe("Events", function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          onRateLimit: (retryAfter: number, options: object) => {
+          onRateLimit: (
+            retryAfter: number,
+            options: object,
+            octokitFromOptions: InstanceType<typeof TestOctokit>
+          ) => {
+            expect(octokit).toBe(octokitFromOptions);
             expect(retryAfter).toBeLessThan(32);
             expect(retryAfter).toBeGreaterThan(28);
             expect(options).toMatchObject({
