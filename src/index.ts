@@ -132,7 +132,8 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
         const wantRetry = await emitter.trigger(
           "abuse-limit",
           retryAfter,
-          options
+          options,
+          octokit
         );
         return { wantRetry, retryAfter };
       }
@@ -153,7 +154,8 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
         const wantRetry = await emitter.trigger(
           "rate-limit",
           retryAfter,
-          options
+          options,
+          octokit
         );
         return { wantRetry, retryAfter };
       }
