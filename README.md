@@ -52,17 +52,17 @@ const MyOctokit = Octokit.plugin(throttling);
 const octokit = new MyOctokit({
   auth: `secret123`,
   throttle: {
-    onRateLimit: (retryAfter, options) => {
-      console.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
+    onRateLimit: (retryAfter, options, octokit) => {
+      octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
 
       if (options.request.retryCount === 0) { // only retries once
-        console.log(`Retrying after ${retryAfter} seconds!`)
+        octokit.log.info(`Retrying after ${retryAfter} seconds!`)
         return true
       }
     },
-    onAbuseLimit: (retryAfter, options) => {
+    onAbuseLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
-      console.warn(`Abuse detected for request ${options.method} ${options.url}`)
+      octokit.log.warn(`Abuse detected for request ${options.method} ${options.url}`)
     }
   }
 })
@@ -110,10 +110,10 @@ connection.on("error", err => console.error(err));
 const octokit = new MyOctokit({
   auth: 'secret123'
   throttle: {
-    onAbuseLimit: (retryAfter, options) => {
+    onAbuseLimit: (retryAfter, options, octokit) => {
       /* ... */
     },
-    onRateLimit: (retryAfter, options) => {
+    onRateLimit: (retryAfter, options, octokit) => {
       /* ... */
     },
 
