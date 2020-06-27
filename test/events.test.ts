@@ -223,5 +223,103 @@ describe("Events", function () {
 
       expect(eventCount).toEqual(1);
     });
+
+    it("Should handle rate limit errors even when the remaining limit is greater than 0", async function () {
+      let eventCount = 0;
+      const octokit = new TestOctokit({
+        throttle: {
+          onRateLimit: (
+            retryAfter: number,
+            options: object,
+            octokitFromOptions: InstanceType<typeof TestOctokit>
+          ) => {
+            expect(octokit).toBe(octokitFromOptions);
+            expect(retryAfter).toBe(60);
+            expect(options).toMatchObject({
+              method: "GET",
+              url: "/route2",
+              request: { retryCount: 0 },
+            });
+            eventCount++;
+          },
+          onAbuseLimit: () => 1,
+        },
+      });
+      const t0 = Date.now();
+
+      await octokit.request("GET /route1", {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }],
+        },
+      });
+      try {
+        await octokit.request("GET /route2", {
+          request: {
+            responses: [
+              {
+                status: 403,
+                headers: {
+                  "x-ratelimit-remaining": "5000",
+                  "x-ratelimit-reset": `${Math.round(t0 / 1000) + 60 * 60}`,
+                },
+                data: {},
+              },
+            ],
+          },
+        });
+        throw new Error("Should not reach this point");
+      } catch (error) {
+        expect(error.status).toEqual(403);
+      }
+
+      expect(eventCount).toEqual(1);
+    });
+  });
+  describe("Timeout", () => {
+    it("Should see a timeout and do a short wait", async function () {
+      let eventCount = 0;
+      const octokit = new TestOctokit({
+        throttle: {
+          onRateLimit: () => 1,
+          onAbuseLimit: () => 1,
+          onTimeout: (retryAfter: number, options: object) => {
+            expect(retryAfter).toBe(60);
+            expect(options).toMatchObject({
+              method: "GET",
+              url: "/route2",
+              request: { retryCount: 0 },
+            });
+            eventCount++;
+          },
+        },
+      });
+      const t0 = Date.now();
+
+      await octokit.request("GET /route1", {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }],
+        },
+      });
+      try {
+        await octokit.request("GET /route2", {
+          request: {
+            responses: [
+              {
+                status: 500,
+                headers: {},
+                data: {
+                  message: "ETIMEDOUT",
+                },
+              },
+            ],
+          },
+        });
+        throw new Error("Should not reach this point");
+      } catch (error) {
+        expect(error.status).toEqual(500);
+      }
+
+      expect(eventCount).toEqual(1);
+    });
   });
 });
