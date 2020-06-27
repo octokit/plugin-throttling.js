@@ -117,7 +117,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     const options = info.args[info.args.length - 1];
     const isGraphQL = options.url.startsWith("/graphql");
 
-    if (!(isGraphQL || error.status === 403)) {
+    if (!(isGraphQL || error.status === 403 || (typeof state.onTimeout === "function" && error.status === 500))) {
       return;
     }
 
@@ -168,7 +168,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
           Math.ceil((rateLimitReset - Date.now()) / 1000),
           0
         );
-        if (error.headers["x-ratelimit-remaining"] !== 0) {
+        if (error.headers["x-ratelimit-remaining"] !== "0") {
           retryAfter = 60; // The ratelimit has been reset but still getting a 403, try a short wait and let the handler decide what to do
         }
         const wantRetry = await emitter.trigger(
@@ -181,6 +181,8 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
       }
       return {};
     })();
+
+ 
 
     if (wantRetry) {
       options.request.retryCount++;
