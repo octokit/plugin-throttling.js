@@ -117,7 +117,13 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     const options = info.args[info.args.length - 1];
     const isGraphQL = options.url.startsWith("/graphql");
 
-    if (!(isGraphQL || error.status === 403 || (typeof state.onTimeout === "function" && error.status === 500))) {
+    if (
+      !(
+        isGraphQL ||
+        error.status === 403 ||
+        (typeof state.onTimeout === "function" && error.status === 500)
+      )
+    ) {
       return;
     }
 
@@ -181,8 +187,6 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
       }
       return {};
     })();
-
- 
 
     if (wantRetry) {
       options.request.retryCount++;
