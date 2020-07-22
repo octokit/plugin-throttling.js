@@ -1164,7 +1164,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/{migration_id}/repositories",
+    "url": "/user/migrations/{migration_id}/repositories",
     "triggersNotification": null
   },
   {
