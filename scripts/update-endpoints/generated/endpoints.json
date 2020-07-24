@@ -716,6 +716,54 @@
     "triggersNotification": null
   },
   {
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/gists/{gist_id}/star",
     "triggersNotification": null
   },
