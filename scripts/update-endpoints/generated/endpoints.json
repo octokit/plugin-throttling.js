@@ -728,11 +728,23 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_id}",
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
     "triggersNotification": null
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/alerts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/analyses",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/sarifs",
     "triggersNotification": null
   },
   {
