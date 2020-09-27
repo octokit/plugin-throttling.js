@@ -109,9 +109,10 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   // @ts-ignore
   state.retryLimiter.on("failed", async function (error, info) {
     const options = info.args[info.args.length - 1];
-    const isGraphQL = options.url.startsWith("/graphql");
+    const shouldRetryGraphQL =
+      options.url.startsWith("/graphql") && error.status !== 401;
 
-    if (!(isGraphQL || error.status === 403)) {
+    if (!(shouldRetryGraphQL || error.status === 403)) {
       return;
     }
 
@@ -120,8 +121,8 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
 
     const { wantRetry, retryAfter } = await (async function () {
       if (/\babuse\b/i.test(error.message)) {
-        // The user has hit the abuse rate limit. (REST only)
-        // https://developer.github.com/v3/#abuse-rate-limits
+        // The user has hit the abuse rate limit. (REST and GraphQL)
+        // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#abuse-rate-limits
 
         // The Retry-After header can sometimes be blank when hitting an abuse limit,
         // but is always present after 2-3s, so make sure to set `retryAfter` to at least 5s by default.
@@ -142,7 +143,8 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
         error.headers["x-ratelimit-remaining"] === "0"
       ) {
         // The user has used all their allowed calls for the current time period (REST and GraphQL)
-        // https://developer.github.com/v3/#rate-limiting
+        // https://docs.github.com/en/rest/reference/rate-limit (REST)
+        // https://docs.github.com/en/graphql/overview/resource-limitations#rate-limit (GraphQL)
 
         const rateLimitReset = new Date(
           ~~error.headers["x-ratelimit-reset"] * 1000

@@ -251,5 +251,94 @@ describe("Retry", function () {
         "END POST /graphql",
       ]);
     });
+
+    it("Should ignore 401 Unauthorized errors", async function () {
+      let eventCount = 0;
+      const octokit = new TestOctokit({
+        throttle: {
+          write: new Bottleneck.Group({ minTime: 50 }),
+          onRateLimit: (retryAfter: number, options: object) => {
+            eventCount++;
+            return true;
+          },
+          onAbuseLimit: () => 1,
+        },
+      });
+
+      try {
+        await octokit.request("POST /graphql", {
+          request: {
+            responses: [
+              {
+                status: 401,
+                headers: {
+                  "x-ratelimit-remaining": "0",
+                  "x-ratelimit-reset": "123",
+                },
+                data: {
+                  message: "Bad credentials",
+                  documentation_url: "https://docs.github.com/graphql",
+                },
+              },
+            ],
+          },
+        });
+        throw new Error("Should not reach this point");
+      } catch (error) {
+        expect(error.status).toEqual(401);
+        expect(error.message).toEqual("Bad credentials");
+      }
+
+      expect(eventCount).toEqual(0);
+      expect(octokit.__requestLog).toStrictEqual(["START POST /graphql"]);
+    });
+
+    it("Should retry 403 Forbidden errors on abuse limit", async function () {
+      let eventCount = 0;
+      const octokit = new TestOctokit({
+        throttle: {
+          write: new Bottleneck.Group({ minTime: 50 }),
+          onAbuseLimit: (retryAfter: number, options: object) => {
+            eventCount++;
+            return true;
+          },
+          onRateLimit: () => 1,
+          minimumAbuseRetryAfter: 0,
+          retryAfterBaseValue: 50,
+        },
+      });
+      const res = await octokit.request("POST /graphql", {
+        request: {
+          responses: [
+            {
+              status: 403,
+              headers: {
+                "retry-after": 1,
+              },
+              data: {
+                message:
+                  "You have triggered an abuse detection mechanism. Please wait a few minutes before you try again.",
+                documentation_url:
+                  "https://developer.github.com/v3/#abuse-rate-limits",
+              },
+            },
+            { status: 200, headers: {}, data: { message: "Success!" } },
+          ],
+        },
+      });
+
+      expect(res.status).toEqual(200);
+      expect(res.data).toMatchObject({ message: "Success!" });
+      expect(eventCount).toEqual(1);
+      expect(octokit.__requestLog).toStrictEqual([
+        "START POST /graphql",
+        "START POST /graphql",
+        "END POST /graphql",
+      ]);
+
+      const ms = octokit.__requestTimings[1] - octokit.__requestTimings[0];
+      expect(ms).toBeLessThan(80);
+      expect(ms).toBeGreaterThan(20);
+    });
   });
 });
