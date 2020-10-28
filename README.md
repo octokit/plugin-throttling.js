@@ -5,7 +5,7 @@
 [![@latest](https://img.shields.io/npm/v/@octokit/plugin-throttling.svg)](https://www.npmjs.com/package/@octokit/plugin-throttling)
 [![Build Status](https://github.com/octokit/plugin-throttling.js/workflows/Test/badge.svg)](https://github.com/octokit/plugin-throttling.js/actions?workflow=Test)
 
-Implements all [recommended best practises](https://docs.github.com/en/rest/guides/best-practices-for-integrators) to prevent hitting abuse rate limits.
+Implements all [recommended best practices](https://docs.github.com/en/rest/guides/best-practices-for-integrators) to prevent hitting abuse rate limits.
 
 ## Usage
 
