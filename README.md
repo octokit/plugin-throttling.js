@@ -69,13 +69,15 @@ const octokit = new MyOctokit({
 
 async function createIssueOnAllRepos (org) {
   const repos = await octokit.paginate(octokit.repos.listForOrg.endpoint({ org }))
-  return Promise.all(repos.forEach(({ name } => {
-    octokit.issues.create({
-      owner,
-      repo: name,
-      title: 'Hello, world!'
-    })
-  })))
+  return Promise.all(
+    repos.map(({ name }) =>
+      octokit.issues.create({
+        owner,
+        repo: name,
+        title: "Hello, world!",
+      })
+    )
+  );
 }
 ```
 
