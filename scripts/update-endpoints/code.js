@@ -13,7 +13,7 @@ const paths = [];
 
 for (const endpoint of ENDPOINTS) {
   if (endpoint.triggersNotification) {
-    paths.push(endpoint.url.replace(/\{([^}]+)}/g, ":$1"));
+    paths.push(endpoint.url);
   }
 }
 
