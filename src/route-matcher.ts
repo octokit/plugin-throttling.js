@@ -11,7 +11,7 @@ export function routeMatcher(paths) {
     path
       .split("/")
       // @ts-ignore
-      .map((c) => (c.startsWith(":") ? "(?:.+?)" : c))
+      .map((c) => (c.startsWith("{") ? "(?:.+?)" : c))
       .join("/")
   );
   // 'regexes' would contain:
