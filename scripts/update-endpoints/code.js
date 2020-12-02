@@ -1,8 +1,8 @@
 /**
- * We do not want to have `@octokit/routes` as a production dependency due to
+ * We do not want to have `@octokit/openapi` as a production dependency due to
  * its huge size. We are only interested in the REST API endpoint paths that
  * trigger notifications. So instead we automatically generate a file that
- * only contains these paths when @octokit/routes has a new release.
+ * only contains these paths when @octokit/openapi has a new release.
  */
 const { writeFileSync } = require("fs");
 
