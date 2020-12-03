@@ -156,7 +156,7 @@ describe("Github API best practices", function () {
       },
     });
 
-    const req1 = octokit.request("POST /orgs/:org/invitations", {
+    const req1 = octokit.request("POST /orgs/{org}/invitations", {
       org: "org",
       request: {
         responses: [{ status: 201, headers: {}, data: {} }],
@@ -168,7 +168,7 @@ describe("Github API best practices", function () {
       },
     });
     const req3 = octokit.request(
-      "POST /repos/:owner/:repo/commits/:sha/comments",
+      "POST /repos/{owner}/{repo}/commits/{sha}/comments",
       {
         request: {
           responses: [{ status: 302, headers: {}, data: {} }],
@@ -178,12 +178,12 @@ describe("Github API best practices", function () {
 
     await Promise.all([req1, req2, req3]);
     expect(octokit.__requestLog).toStrictEqual([
-      "START POST /orgs/:org/invitations",
-      "END POST /orgs/:org/invitations",
+      "START POST /orgs/{org}/invitations",
+      "END POST /orgs/{org}/invitations",
       "START POST /route2",
       "END POST /route2",
-      "START POST /repos/:owner/:repo/commits/:sha/comments",
-      "END POST /repos/:owner/:repo/commits/:sha/comments",
+      "START POST /repos/{owner}/{repo}/commits/{sha}/comments",
+      "END POST /repos/{owner}/{repo}/commits/{sha}/comments",
     ]);
     expect(
       octokit.__requestTimings[5] - octokit.__requestTimings[0]
@@ -213,14 +213,14 @@ describe("Github API best practices", function () {
     );
 
     expect(
-      throttling.triggersNotification("/repos/:owner/:repo/pulls")
+      throttling.triggersNotification("/repos/{owner}/{repo}/pulls")
     ).toEqual(true);
     expect(
-      throttling.triggersNotification("/repos/:owner/:repo/pulls/5/comments")
+      throttling.triggersNotification("/repos/{owner}/{repo}/pulls/5/comments")
     ).toEqual(true);
-    expect(throttling.triggersNotification("/repos/:foo/:bar/issues")).toEqual(
-      true
-    );
+    expect(
+      throttling.triggersNotification("/repos/{foo}/{bar}/issues")
+    ).toEqual(true);
   });
 
   it("Should maintain 2000ms between search requests", async function () {

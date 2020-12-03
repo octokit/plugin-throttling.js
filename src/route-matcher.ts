@@ -2,8 +2,8 @@
 export function routeMatcher(paths) {
   // EXAMPLE. For the following paths:
   /* [
-      "/orgs/:org/invitations",
-      "/repos/:owner/:repo/collaborators/:username"
+      "/orgs/{org}/invitations",
+      "/repos/{owner}/{repo}/collaborators/{username}"
   ] */
 
   // @ts-ignore
