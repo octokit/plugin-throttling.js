@@ -2432,6 +2432,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/secret-scanning/alerts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
     "url": "/teams/{team_id}/members/{username}",
     "triggersNotification": null
   },
