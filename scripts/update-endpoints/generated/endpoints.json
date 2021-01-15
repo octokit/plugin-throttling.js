@@ -560,6 +560,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/applications/{client_id}/token/scoped",
+    "triggersNotification": null
+  },
+  {
     "url": "/app/installations/{installation_id}/suspended",
     "triggersNotification": null
   },
