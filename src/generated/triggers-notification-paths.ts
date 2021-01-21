@@ -1,5 +1,6 @@
 export default [
   "/orgs/{org}/invitations",
+  "/orgs/{org}/invitations/{invitation_id}",
   "/orgs/{org}/teams/{team_slug}/discussions",
   "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
   "/repos/{owner}/{repo}/collaborators/{username}",
