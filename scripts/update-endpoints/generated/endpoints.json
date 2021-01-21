@@ -1352,6 +1352,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/invitations/{invitation_id}",
+    "triggersNotification": true
+  },
+  {
     "url": "/orgs/{org}/blocks/{username}",
     "triggersNotification": null
   },
@@ -1413,6 +1417,10 @@
   },
   {
     "url": "/orgs/{org}/blocks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/failed_invitations",
     "triggersNotification": null
   },
   {
