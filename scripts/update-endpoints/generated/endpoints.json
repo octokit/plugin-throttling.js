@@ -2312,6 +2312,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/branches/{branch}/rename",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/topics",
     "triggersNotification": null
   },
