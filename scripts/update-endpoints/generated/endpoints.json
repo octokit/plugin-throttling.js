@@ -992,6 +992,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/interaction-limits",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/interaction-limits",
     "triggersNotification": null
   },
@@ -1004,11 +1008,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/interaction-limits",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/interaction-limits",
     "triggersNotification": null
   },
   {
     "url": "/repos/{owner}/{repo}/interaction-limits",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/interaction-limits",
     "triggersNotification": null
   },
   {
