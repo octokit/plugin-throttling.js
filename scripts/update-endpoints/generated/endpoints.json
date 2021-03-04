@@ -1984,10 +1984,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/environments/{environment_name}",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/commits/{commit_sha}/comments",
     "triggersNotification": true
   },
@@ -2025,6 +2021,10 @@
   },
   {
     "url": "/orgs/{org}/repos",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}",
     "triggersNotification": null
   },
   {
@@ -2473,10 +2473,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/environments/{environment_name}",
     "triggersNotification": null
   },
   {
