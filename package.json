@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Octokit plugin for GitHub’s recommended request throttling",
+  "description": "Octokit plugin for GitHubâs recommended request throttling",
   "scripts": {
     "build": "pika build",
     "lint": "prettier --check '{src,scripts,test}/**/*' '!*/generated/**' README.md package.json",
@@ -15,16 +15,9 @@
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
     "update-endpoints:code": "node scripts/update-endpoints/code"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/octokit/plugin-throttling.js.git"
-  },
+  "repository": "github:octokit/plugin-throttling.js",
   "author": "Simon Grondin (http://github.com/SGrondin)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/octokit/plugin-throttling.js/issues"
-  },
-  "homepage": "https://github.com/octokit/plugin-throttling.js#readme",
   "dependencies": {
     "@octokit/types": "^6.0.1",
     "bottleneck": "^2.15.3"
