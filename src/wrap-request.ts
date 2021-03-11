@@ -11,6 +11,7 @@ async function doRequest(state, request, options) {
   const isSearch =
     options.method === "GET" && options.url.startsWith("/search/");
   const isGraphQL = options.url.startsWith("/graphql");
+  const isREST = !isGraphQL;
 
   const retryCount = ~~options.request.retryCount;
   const jobOptions = retryCount > 0 ? { priority: 0, weight: 0 } : {};
@@ -21,9 +22,10 @@ async function doRequest(state, request, options) {
     jobOptions.expiration = 1000 * 60;
   }
 
-  // Guarantee at least 1000ms between writes
-  // GraphQL can also trigger writes
-  if (isWrite || isGraphQL) {
+  // Guarantee at least 1000ms between:
+  // 1) Write requests to the REST API
+  // 2) GraphQL requests && throttleGraphQL option == true
+  if ((isWrite && isREST) || (isGraphQL && state.throttleGraphQL)) {
     await state.write.key(state.id).schedule(jobOptions, noop);
   }
 

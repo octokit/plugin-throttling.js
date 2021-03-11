@@ -52,6 +52,7 @@ const MyOctokit = Octokit.plugin(throttling);
 const octokit = new MyOctokit({
   auth: `secret123`,
   throttle: {
+    throttleGraphQL: false, // (defaults to true) whether or not to throttle GraphQL requests
     onRateLimit: (retryAfter, options, octokit) => {
       octokit.log.warn(
         `Request quota exhausted for request ${options.method} ${options.url}`

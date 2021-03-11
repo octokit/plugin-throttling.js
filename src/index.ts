@@ -72,6 +72,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
       retryAfterBaseValue: 1000,
       retryLimiter: new Bottleneck(),
       id,
+      throttleGraphQL: true,
       ...groups,
     },
     // @ts-ignore
