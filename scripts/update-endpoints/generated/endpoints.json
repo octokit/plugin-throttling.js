@@ -1600,6 +1600,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/packages/{package_type}/{package_name}/versions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/packages/{package_type}/{package_name}/versions",
+    "triggersNotification": null
+  },
+  {
     "url": "/users/{username}/packages/{package_type}/{package_name}/versions",
     "triggersNotification": null
   },
@@ -1628,11 +1636,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/packages/{package_type}/{package_name}/restore",
+    "url": "/user/packages/{package_type}/{package_name}/restore{?token}",
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/packages/{package_type}/{package_name}/restore",
+    "url": "/orgs/{org}/packages/{package_type}/{package_name}/restore{?token}",
     "triggersNotification": null
   },
   {
@@ -2016,7 +2024,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/forks",
+    "url": "/repos/{owner}/{repo}/forks{?org,organization}",
     "triggersNotification": null
   },
   {
@@ -2273,6 +2281,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/readme",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/readme/{dir}",
     "triggersNotification": null
   },
   {
