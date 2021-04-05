@@ -1,6 +1,5 @@
 import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit";
-import { throttling } from "../src";
 
 describe("Retry", function () {
   describe("REST", function () {
