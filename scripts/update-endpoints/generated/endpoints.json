@@ -2024,7 +2024,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/forks{?org,organization}",
+    "url": "/repos/{owner}/{repo}/forks",
     "triggersNotification": null
   },
   {
