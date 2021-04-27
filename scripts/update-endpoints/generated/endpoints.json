@@ -2268,6 +2268,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/pages/health",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/stats/participation",
     "triggersNotification": null
   },
