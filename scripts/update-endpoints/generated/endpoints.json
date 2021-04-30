@@ -608,6 +608,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/audit-log",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/settings/billing/actions",
     "triggersNotification": null
   },
