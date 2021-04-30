@@ -716,6 +716,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/instances",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/code-scanning/analyses",
     "triggersNotification": null
   },
