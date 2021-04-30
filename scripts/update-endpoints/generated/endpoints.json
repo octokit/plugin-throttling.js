@@ -608,10 +608,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/enterprises/{enterprise}/audit-log",
-    "triggersNotification": null
-  },
-  {
     "url": "/enterprises/{enterprise}/settings/billing/actions",
     "triggersNotification": null
   },
@@ -708,11 +704,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/code-scanning/alerts",
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/instances",
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/instances",
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts",
     "triggersNotification": null
   },
   {
@@ -789,6 +785,10 @@
   },
   {
     "url": "/enterprises/{enterprise}/actions/permissions/selected-actions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/audit-log",
     "triggersNotification": null
   },
   {
