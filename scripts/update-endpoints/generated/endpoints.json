@@ -12,6 +12,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/approve",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/cancel",
     "triggersNotification": null
   },
