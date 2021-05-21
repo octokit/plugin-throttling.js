@@ -476,6 +476,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/content_references/{content_reference_id}/attachments",
+    "triggersNotification": null
+  },
+  {
     "url": "/app-manifests/{code}/conversions",
     "triggersNotification": null
   },
@@ -1892,6 +1896,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/releases/{release_id}/reactions",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
     "triggersNotification": null
   },
@@ -2001,6 +2009,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/compare/{base}...{head}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/compare/{basehead}",
     "triggersNotification": null
   },
   {
