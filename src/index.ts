@@ -55,7 +55,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     // @ts-ignore
   } = octokitOptions.throttle || {};
   if (!enabled) {
-    return;
+    return {};
   }
   const common = { connection, timeout };
 
@@ -172,6 +172,8 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   });
 
   octokit.hook.wrap("request", wrapRequest.bind(null, state));
+
+  return {};
 }
 throttling.VERSION = VERSION;
 throttling.triggersNotification = triggersNotification;
