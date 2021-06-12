@@ -40,13 +40,14 @@ async function doRequest(state, request, options) {
   const req = state.global.key(state.id).schedule(jobOptions, request, options);
   if (isGraphQL) {
     const res = await req;
+
     if (
       res.data.errors != null &&
       // @ts-ignore
       res.data.errors.some((error) => error.type === "RATE_LIMITED")
     ) {
       const error = Object.assign(new Error("GraphQL Rate Limit Exceeded"), {
-        headers: res.headers,
+        response: res,
         data: res.data,
       });
 
