@@ -232,34 +232,48 @@ describe("Github API best practices", function () {
       },
     });
 
-    const req1 = octokit.request("GET /search/route1", {
+    const req1 = octokit.request("GET /search/route", {
       request: {
-        responses: [{ status: 201, headers: {}, data: {} }],
+        responses: [{ status: 200, headers: {}, data: {} }],
       },
     });
-    const req2 = octokit.request("GET /route2", {
+    const req2 = octokit.request("GET /other-route", {
       request: {
-        responses: [{ status: 202, headers: {}, data: {} }],
+        responses: [{ status: 200, headers: {}, data: {} }],
       },
     });
-    const req3 = octokit.request("GET /search/route3", {
-      request: {
-        responses: [{ status: 203, headers: {}, data: {} }],
-      },
-    });
+    const req3 = octokit.request(
+      "GET https://api.github.com/search/route?page=2",
+      {
+        request: {
+          responses: [{ status: 200, headers: {}, data: {} }],
+        },
+      }
+    );
+    const req4 = octokit.request(
+      "GET https://api.github.com/search/route?page=3",
+      {
+        request: {
+          responses: [{ status: 200, headers: {}, data: {} }],
+        },
+      }
+    );
 
-    await Promise.all([req1, req2, req3]);
+    await Promise.all([req1, req2, req3, req4]);
     expect(octokit.__requestLog).toStrictEqual([
-      "START GET /route2",
-      "END GET /route2",
-      "START GET /search/route1",
-      "END GET /search/route1",
-      "START GET /search/route3",
-      "END GET /search/route3",
+      "START GET /other-route",
+      "END GET /other-route",
+      "START GET /search/route",
+      "END GET /search/route",
+      "START GET https://api.github.com/search/route?page=2",
+      "END GET https://api.github.com/search/route?page=2",
+      "START GET https://api.github.com/search/route?page=3",
+      "END GET https://api.github.com/search/route?page=3",
     ]);
-    expect(
-      octokit.__requestTimings[4] - octokit.__requestTimings[2]
-    ).toBeLessThan(70);
+
+    const ms = octokit.__requestTimings[4] - octokit.__requestTimings[2];
+    expect(ms).toBeLessThan(70);
+    expect(ms).toBeGreaterThan(30);
   });
 
   it("Should optimize throughput rather than maintain ordering", async function () {

@@ -8,9 +8,9 @@ export function wrapRequest(state, request, options) {
 // @ts-ignore
 async function doRequest(state, request, options) {
   const isWrite = options.method !== "GET" && options.method !== "HEAD";
-  const isSearch =
-    options.method === "GET" && options.url.startsWith("/search/");
-  const isGraphQL = options.url.startsWith("/graphql");
+  const { pathname } = new URL(options.url, "http://github.test");
+  const isSearch = options.method === "GET" && pathname.startsWith("/search/");
+  const isGraphQL = pathname.startsWith("/graphql");
 
   const retryCount = ~~options.request.retryCount;
   const jobOptions = retryCount > 0 ? { priority: 0, weight: 0 } : {};
@@ -28,7 +28,7 @@ async function doRequest(state, request, options) {
   }
 
   // Guarantee at least 3000ms between requests that trigger notifications
-  if (isWrite && state.triggersNotification(options.url)) {
+  if (isWrite && state.triggersNotification(pathname)) {
     await state.notifications.key(state.id).schedule(jobOptions, noop);
   }
 
