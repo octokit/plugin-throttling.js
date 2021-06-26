@@ -213,6 +213,56 @@ describe("Retry", function () {
       expect(ms).toBeGreaterThan(30);
     });
 
+    it("Should work with full URL", async function () {
+      let eventCount = 0;
+      const octokit = new TestOctokit({
+        throttle: {
+          write: new Bottleneck.Group({ minTime: 50 }),
+          onRateLimit: (retryAfter: number, options: object) => {
+            expect(options).toMatchObject({
+              method: "POST",
+              url: "https://api.github.com/graphql",
+              request: { retryCount: eventCount },
+            });
+            expect(retryAfter).toEqual(0);
+            eventCount++;
+            return true;
+          },
+          onAbuseLimit: () => 1,
+        },
+      });
+
+      const res = await octokit.request("POST https://api.github.com/graphql", {
+        request: {
+          responses: [
+            {
+              status: 200,
+              headers: {
+                "x-ratelimit-remaining": "0",
+                "x-ratelimit-reset": "123",
+              },
+              data: { errors: [{ type: "RATE_LIMITED" }] },
+            },
+            { status: 200, headers: {}, data: { message: "Yay!" } },
+          ],
+        },
+      });
+
+      expect(res.status).toEqual(200);
+      expect(res.data).toMatchObject({ message: "Yay!" });
+      expect(eventCount).toEqual(1);
+      expect(octokit.__requestLog).toStrictEqual([
+        "START POST https://api.github.com/graphql",
+        "END POST https://api.github.com/graphql",
+        "START POST https://api.github.com/graphql",
+        "END POST https://api.github.com/graphql",
+      ]);
+
+      const ms = octokit.__requestTimings[2] - octokit.__requestTimings[0];
+      expect(ms).toBeLessThan(70);
+      expect(ms).toBeGreaterThan(30);
+    });
+
     it("Should ignore other error types", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
