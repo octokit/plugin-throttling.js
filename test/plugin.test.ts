@@ -271,9 +271,9 @@ describe("Github API best practices", function () {
       "END GET https://api.github.com/search/route?page=3",
     ]);
 
-    expect(
-      octokit.__requestTimings[4] - octokit.__requestTimings[2]
-    ).toBeGreaterThanOrEqual(50);
+    const ms = octokit.__requestTimings[4] - octokit.__requestTimings[2];
+    expect(ms).toBeLessThan(70);
+    expect(ms).toBeGreaterThan(30);
   });
 
   it("Should optimize throughput rather than maintain ordering", async function () {
