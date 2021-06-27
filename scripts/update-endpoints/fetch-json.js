@@ -1,7 +1,7 @@
 const { writeFileSync } = require("fs");
 const path = require("path");
 
-const { graphql } = require("@octokit/graphql");
+const graphql = require("github-openapi-graphql-query");
 
 if (!process.env.VERSION) {
   throw new Error("VERSION environment variable must be set");
@@ -21,8 +21,9 @@ const QUERY = `
 main();
 
 async function main() {
-  const { endpoints } = await graphql(QUERY, {
-    baseUrl: "https://github-openapi-graphql-server.vercel.app/api",
+  const {
+    data: { endpoints },
+  } = await graphql(QUERY, {
     version,
   });
 
