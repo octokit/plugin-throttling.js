@@ -536,6 +536,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/app/hook/deliveries/{delivery_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/marketplace_listing/plans/{plan_id}/accounts",
     "triggersNotification": null
   },
@@ -573,6 +577,14 @@
   },
   {
     "url": "/user/marketplace_purchases/stubbed",
+    "triggersNotification": null
+  },
+  {
+    "url": "/app/hook/deliveries",
+    "triggersNotification": null
+  },
+  {
+    "url": "/app/hook/deliveries/{delivery_id}/attempts",
     "triggersNotification": null
   },
   {
@@ -1484,6 +1496,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/organizations",
     "triggersNotification": null
   },
@@ -1536,11 +1552,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/hooks/{hook_id}/deliveries",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/hooks",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/hooks/{hook_id}/pings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
     "triggersNotification": null
   },
   {
@@ -2360,6 +2384,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/branches",
     "triggersNotification": null
   },
@@ -2460,6 +2488,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/hooks",
     "triggersNotification": null
   },
@@ -2469,6 +2501,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
     "triggersNotification": null
   },
   {
