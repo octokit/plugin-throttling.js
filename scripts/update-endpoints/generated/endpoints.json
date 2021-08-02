@@ -2040,6 +2040,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/autolinks",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/commits/{commit_sha}/comments",
     "triggersNotification": true
   },
@@ -2121,6 +2125,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/autolinks/{autolink_id}",
     "triggersNotification": null
   },
   {
@@ -2229,6 +2237,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/autolinks/{autolink_id}",
     "triggersNotification": null
   },
   {
@@ -2385,6 +2397,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/autolinks",
     "triggersNotification": null
   },
   {
