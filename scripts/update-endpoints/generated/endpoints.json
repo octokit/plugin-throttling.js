@@ -1624,11 +1624,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/users/{username}/packages/{package_type}/{package_name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/packages/{package_type}/{package_name}/versions/{package_version_id}",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
     "triggersNotification": null
   },
   {
@@ -1684,11 +1692,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/users/{username}/packages/{package_type}/{package_name}/restore{?token}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
     "triggersNotification": null
   },
   {
