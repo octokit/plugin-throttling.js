@@ -464,10 +464,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/applications/{client_id}/tokens/{access_token}",
-    "triggersNotification": null
-  },
-  {
     "url": "/applications/{client_id}/token",
     "triggersNotification": null
   },
@@ -592,19 +588,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/applications/{client_id}/tokens/{access_token}",
-    "triggersNotification": null
-  },
-  {
     "url": "/applications/{client_id}/token",
-    "triggersNotification": null
-  },
-  {
-    "url": "/applications/{client_id}/tokens/{access_token}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/applications/{client_id}/grants/{access_token}",
     "triggersNotification": null
   },
   {
