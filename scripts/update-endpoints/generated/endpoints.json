@@ -1668,6 +1668,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/packages",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/packages",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/{username}/packages",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/packages/{package_type}/{package_name}/restore{?token}",
     "triggersNotification": null
   },
