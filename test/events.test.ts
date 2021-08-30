@@ -19,7 +19,7 @@ describe("Events", function () {
           responses: [{ status: 403, headers: {}, data: {} }],
         },
       });
-    } catch (error) {
+    } catch (error: any) {
       expect(error.message).toEqual("Test failed request (403)");
       caught = true;
     }
@@ -75,7 +75,7 @@ describe("Events", function () {
           },
         });
         throw new Error("Should not reach this point");
-      } catch (error) {
+      } catch (error: any) {
         expect(error.status).toEqual(403);
       }
 
@@ -119,7 +119,7 @@ describe("Events", function () {
           },
         });
         throw new Error("Should not reach this point");
-      } catch (error) {
+      } catch (error: any) {
         expect(error.status).toEqual(403);
       }
 
@@ -163,7 +163,7 @@ describe("Events", function () {
           },
         });
         throw new Error("Should not reach this point");
-      } catch (error) {
+      } catch (error: any) {
         expect(error.status).toEqual(403);
       }
 
@@ -217,7 +217,7 @@ describe("Events", function () {
           },
         });
         throw new Error("Should not reach this point");
-      } catch (error) {
+      } catch (error: any) {
         expect(error.status).toEqual(403);
       }
 

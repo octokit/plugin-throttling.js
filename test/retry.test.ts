@@ -93,7 +93,7 @@ describe("Retry", function () {
           },
         });
         throw new Error("Should not reach this point");
-      } catch (error) {
+      } catch (error: any) {
         expect(error.status).toEqual(404);
         expect(error.message).toEqual("Nope!");
       }
@@ -333,7 +333,7 @@ describe("Retry", function () {
           },
         });
         throw new Error("Should not reach this point");
-      } catch (error) {
+      } catch (error: any) {
         expect(error.status).toEqual(401);
         expect(error.message).toEqual("Bad credentials");
       }
