@@ -2708,6 +2708,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/secret-scanning/alerts",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts",
     "triggersNotification": null
   },
