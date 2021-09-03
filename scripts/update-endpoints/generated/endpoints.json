@@ -2528,6 +2528,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/merge-upstream",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
     "triggersNotification": null
   },
