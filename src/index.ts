@@ -121,7 +121,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     options.request.retryCount = retryCount;
 
     const { wantRetry, retryAfter } = await (async function () {
-      if (/\babuse\b/i.test(error.message)) {
+      if (/\bsecondary rate\b/i.test(error.message)) {
         // The user has hit the abuse rate limit. (REST and GraphQL)
         // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#abuse-rate-limits
 
