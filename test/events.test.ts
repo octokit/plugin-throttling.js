@@ -68,7 +68,7 @@ describe("Events", function () {
                 status: 403,
                 headers: { "retry-after": "60" },
                 data: {
-                  message: "You have been rate limited to prevent abuse",
+                  message: "You have exceeded a secondary rate limit",
                 },
               },
             ],
@@ -112,7 +112,7 @@ describe("Events", function () {
                 status: 403,
                 headers: { "retry-after": "2" },
                 data: {
-                  message: "You have been rate limited to prevent abuse",
+                  message: "You have exceeded a secondary rate limit",
                 },
               },
             ],
@@ -156,7 +156,7 @@ describe("Events", function () {
                 status: 403,
                 headers: {},
                 data: {
-                  message: "You have been rate limited to prevent abuse",
+                  message: "You have exceeded a secondary rate limit",
                 },
               },
             ],

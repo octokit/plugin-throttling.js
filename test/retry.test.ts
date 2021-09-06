@@ -29,7 +29,7 @@ describe("Retry", function () {
             {
               status: 403,
               headers: { "retry-after": "1" },
-              data: { message: "You have been rate limited to prevent abuse" },
+              data: { message: "You have exceeded a secondary rate limit" },
             },
             { status: 200, headers: {}, data: { message: "Success!" } },
           ],
@@ -69,7 +69,7 @@ describe("Retry", function () {
         },
       });
 
-      const message = "You have been rate limited to prevent abuse";
+      const message = "You have exceeded a secondary rate limit";
       try {
         await octokit.request("GET /route", {
           request: {
@@ -366,7 +366,7 @@ describe("Retry", function () {
               },
               data: {
                 message:
-                  "You have triggered an abuse detection mechanism. Please wait a few minutes before you try again.",
+                  "You have exceeded a secondary rate limit. Please wait a few minutes before you try again.",
                 documentation_url:
                   "https://developer.github.com/v3/#abuse-rate-limits",
               },
