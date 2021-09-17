@@ -1,8 +1,7 @@
-on:
+"on":
   push:
     branches:
       - master
-
 name: Release
 jobs:
   build:
@@ -12,7 +11,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v2
         with:
-          node-version: "12.x"
+          node-version: 16
           cache: npm
       - run: npm ci
       - run: npm run build
