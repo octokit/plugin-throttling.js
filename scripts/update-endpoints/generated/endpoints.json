@@ -296,6 +296,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/retry",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments",
     "triggersNotification": null
   },
