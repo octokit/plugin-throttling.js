@@ -108,6 +108,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}/logs",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/logs",
     "triggersNotification": null
   },
@@ -197,6 +201,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
     "triggersNotification": null
   },
   {
@@ -293,10 +301,6 @@
   },
   {
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/retry",
     "triggersNotification": null
   },
   {
@@ -468,6 +472,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/installations/{installation_id}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/applications/{client_id}/token",
     "triggersNotification": null
   },
@@ -592,6 +600,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/installations/{installation_id}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/applications/{client_id}/token",
     "triggersNotification": null
   },
@@ -685,6 +697,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/commits/{ref}/check-suites",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/check-runs/{check_run_id}/rerequest",
     "triggersNotification": null
   },
   {
@@ -1341,6 +1357,10 @@
   },
   {
     "url": "/orgs/{org}/migrations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/migrations/{migration_id}/repositories",
     "triggersNotification": null
   },
   {
@@ -2020,6 +2040,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/repository_invitations/{invitation_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
     "triggersNotification": null
   },
@@ -2121,6 +2145,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/repository_invitations/{invitation_id}",
     "triggersNotification": null
   },
   {
@@ -2233,6 +2261,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/vulnerability-alerts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/releases/generate-notes",
     "triggersNotification": null
   },
   {
@@ -3000,6 +3032,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/emails",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/blocks/{username}",
     "triggersNotification": null
   },
@@ -3020,6 +3056,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/gpg_keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/keys",
     "triggersNotification": null
   },
@@ -3028,7 +3072,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/emails",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/gpg_keys/{gpg_key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/gpg_keys/{gpg_key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys/{key_id}",
     "triggersNotification": null
   },
   {
@@ -3056,6 +3112,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/gpg_keys/{gpg_key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/keys/{key_id}",
     "triggersNotification": null
   },
@@ -3068,7 +3132,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/blocks",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/emails",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/emails",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/following",
     "triggersNotification": null
   },
   {
@@ -3092,7 +3168,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/gpg_keys",
+    "triggersNotification": null
+  },
+  {
     "url": "/users/{username}/gpg_keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/public_emails",
     "triggersNotification": null
   },
   {
@@ -3105,6 +3189,14 @@
   },
   {
     "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/email/visibility",
     "triggersNotification": null
   },
   {
