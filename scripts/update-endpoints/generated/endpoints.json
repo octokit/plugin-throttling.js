@@ -228,6 +228,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}/jobs",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/secrets",
     "triggersNotification": null
   },
