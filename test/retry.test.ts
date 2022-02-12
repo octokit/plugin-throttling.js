@@ -3,13 +3,13 @@ import { TestOctokit } from "./octokit";
 
 describe("Retry", function () {
   describe("REST", function () {
-    it("Should retry 'abuse-limit' and succeed", async function () {
+    it("Should retry 'secondary-limit' and succeed", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          minimumAbuseRetryAfter: 0,
+          minimumSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
-          onAbuseLimit: (retryAfter: number, options: object) => {
+          onSecondaryRateLimit: (retryAfter: number, options: object) => {
             expect(options).toMatchObject({
               method: "GET",
               url: "/route",
@@ -49,13 +49,13 @@ describe("Retry", function () {
       expect(ms).toBeGreaterThan(20);
     });
 
-    it("Should retry 'abuse-limit' twice and fail", async function () {
+    it("Should retry 'secondary-limit' twice and fail", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          minimumAbuseRetryAfter: 0,
+          minimumSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
-          onAbuseLimit: (retryAfter: number, options: object) => {
+          onSecondaryRateLimit: (retryAfter: number, options: object) => {
             expect(options).toMatchObject({
               method: "GET",
               url: "/route",
@@ -128,7 +128,7 @@ describe("Retry", function () {
             eventCount++;
             return true;
           },
-          onAbuseLimit: () => 1,
+          onSecondaryRateLimit: () => 1,
         },
       });
 
@@ -178,7 +178,7 @@ describe("Retry", function () {
             eventCount++;
             return true;
           },
-          onAbuseLimit: () => 1,
+          onSecondaryRateLimit: () => 1,
         },
       });
 
@@ -228,7 +228,7 @@ describe("Retry", function () {
             eventCount++;
             return true;
           },
-          onAbuseLimit: () => 1,
+          onSecondaryRateLimit: () => 1,
         },
       });
 
@@ -272,7 +272,7 @@ describe("Retry", function () {
             eventCount++;
             return true;
           },
-          onAbuseLimit: () => 1,
+          onSecondaryRateLimit: () => 1,
         },
       });
 
@@ -310,7 +310,7 @@ describe("Retry", function () {
             eventCount++;
             return true;
           },
-          onAbuseLimit: () => 1,
+          onSecondaryRateLimit: () => 1,
         },
       });
 
@@ -342,17 +342,17 @@ describe("Retry", function () {
       expect(octokit.__requestLog).toStrictEqual(["START POST /graphql"]);
     });
 
-    it("Should retry 403 Forbidden errors on abuse limit", async function () {
+    it("Should retry 403 Forbidden errors on SecondaryRate limit", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
           write: new Bottleneck.Group({ minTime: 50 }),
-          onAbuseLimit: (retryAfter: number, options: object) => {
+          onSecondaryRateLimit: (retryAfter: number, options: object) => {
             eventCount++;
             return true;
           },
           onRateLimit: () => 1,
-          minimumAbuseRetryAfter: 0,
+          minimumSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
         },
       });
@@ -368,7 +368,7 @@ describe("Retry", function () {
                 message:
                   "You have exceeded a secondary rate limit. Please wait a few minutes before you try again.",
                 documentation_url:
-                  "https://developer.github.com/v3/#abuse-rate-limits",
+                  "https://developer.github.com/v3/#secondary-rate-limits",
               },
             },
             { status: 200, headers: {}, data: { message: "Success!" } },
