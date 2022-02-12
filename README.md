@@ -5,7 +5,7 @@
 [![@latest](https://img.shields.io/npm/v/@octokit/plugin-throttling.svg)](https://www.npmjs.com/package/@octokit/plugin-throttling)
 [![Build Status](https://github.com/octokit/plugin-throttling.js/workflows/Test/badge.svg)](https://github.com/octokit/plugin-throttling.js/actions?workflow=Test)
 
-Implements all [recommended best practices](https://docs.github.com/en/rest/guides/best-practices-for-integrators) to prevent hitting abuse rate limits.
+Implements all [recommended best practices](https://docs.github.com/en/rest/guides/best-practices-for-integrators) to prevent hitting secondary rate limits.
 
 ## Usage
 
@@ -44,7 +44,7 @@ const { throttling } = require("@octokit/plugin-throttling");
 
 The code below creates a "Hello, world!" issue on every repository in a given organization. Without the throttling plugin it would send many requests in parallel and would hit rate limits very quickly. But the `@octokit/plugin-throttling` slows down your requests according to the official guidelines, so you don't get blocked before your quota is exhausted.
 
-The `throttle.onAbuseLimit` and `throttle.onRateLimit` options are required. Return `true` to automatically retry the request after `retryAfter` seconds.
+The `throttle.onSecondaryRateLimit` and `throttle.onRateLimit` options are required. Return `true` to automatically retry the request after `retryAfter` seconds.
 
 ```js
 const MyOctokit = Octokit.plugin(throttling);
@@ -63,10 +63,10 @@ const octokit = new MyOctokit({
         return true;
       }
     },
-    onAbuseLimit: (retryAfter, options, octokit) => {
+    onSecondaryRateLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
       octokit.log.warn(
-        `Abuse detected for request ${options.method} ${options.url}`
+        `SecondaryRateLimit detected for request ${options.method} ${options.url}`
       );
     },
   },
@@ -119,7 +119,7 @@ connection.on("error", err => console.error(err));
 const octokit = new MyOctokit({
   auth: 'secret123'
   throttle: {
-    onAbuseLimit: (retryAfter, options, octokit) => {
+    onSecondaryRateLimit: (retryAfter, options, octokit) => {
       /* ... */
     },
     onRateLimit: (retryAfter, options, octokit) => {
