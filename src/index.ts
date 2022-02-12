@@ -68,7 +68,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     {
       clustering: connection != null,
       triggersNotification,
-      minimumAbuseRetryAfter: 5,
+      minimumSecondaryRateRetryAfter: 5,
       retryAfterBaseValue: 1000,
       retryLimiter: new Bottleneck(),
       id,
@@ -79,16 +79,17 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   );
 
   if (
-    typeof state.onAbuseLimit !== "function" ||
+    (typeof state.onSecondaryRateLimit !== "function" &&
+      typeof state.onAbuseLimit !== "function") ||
     typeof state.onRateLimit !== "function"
   ) {
     throw new Error(`octokit/plugin-throttling error:
-        You must pass the onAbuseLimit and onRateLimit error handlers.
+        You must pass the onSecondaryRateLimit and onRateLimit error handlers.
         See https://github.com/octokit/rest.js#throttling
 
         const octokit = new Octokit({
           throttle: {
-            onAbuseLimit: (retryAfter, options) => {/* ... */},
+            onSecondaryRateLimit: (retryAfter, options) => {/* ... */},
             onRateLimit: (retryAfter, options) => {/* ... */}
           }
         })
@@ -98,7 +99,16 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   const events = {};
   const emitter = new Bottleneck.Events(events);
   // @ts-ignore
-  events.on("abuse-limit", state.onAbuseLimit);
+  events.on(
+    "secondary-limit",
+    state.onSecondaryRateLimit ||
+      function (...args: any[]) {
+        console.warn(
+          "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
+        );
+        return state.onAbuseLimit(...args);
+      }
+  );
   // @ts-ignore
   events.on("rate-limit", state.onRateLimit);
   // @ts-ignore
@@ -122,17 +132,17 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
 
     const { wantRetry, retryAfter } = await (async function () {
       if (/\bsecondary rate\b/i.test(error.message)) {
-        // The user has hit the abuse rate limit. (REST and GraphQL)
-        // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#abuse-rate-limits
+        // The user has hit the secondary rate limit. (REST and GraphQL)
+        // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#secondary-rate-limits
 
-        // The Retry-After header can sometimes be blank when hitting an abuse limit,
+        // The Retry-After header can sometimes be blank when hitting a secondary rate limit,
         // but is always present after 2-3s, so make sure to set `retryAfter` to at least 5s by default.
         const retryAfter = Math.max(
           ~~error.response.headers["retry-after"],
-          state.minimumAbuseRetryAfter
+          state.minimumSecondaryRateRetryAfter
         );
         const wantRetry = await emitter.trigger(
-          "abuse-limit",
+          "secondary-limit",
           retryAfter,
           options,
           octokit
