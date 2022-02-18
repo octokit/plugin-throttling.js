@@ -45,7 +45,7 @@ const createGroups = function (Bottleneck, common) {
   });
 };
 
-export function throttling(octokit: Octokit, octokitOptions = {}) {
+export function throttling(octokit: Octokit, octokitOptions: object) {
   const {
     enabled = true,
     Bottleneck = BottleneckLight,
