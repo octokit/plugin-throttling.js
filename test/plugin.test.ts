@@ -37,19 +37,24 @@ describe("General", function () {
 
   it("Should require the user to pass both limit handlers", function () {
     const message =
-      "You must pass the onAbuseLimit and onRateLimit error handlers";
+      "You must pass the onSecondaryRateLimit and onRateLimit error handlers";
 
     expect(() => new TestOctokit()).toThrow(message);
     expect(() => new TestOctokit({ throttle: {} })).toThrow(message);
     expect(
-      () => new TestOctokit({ throttle: { onAbuseLimit: 5, onRateLimit: 5 } })
+      () =>
+        new TestOctokit({
+          throttle: { onSecondaryRateLimit: 5, onRateLimit: 5 },
+        })
     ).toThrow(message);
     expect(
       () =>
-        new TestOctokit({ throttle: { onAbuseLimit: 5, onRateLimit: () => 1 } })
+        new TestOctokit({
+          throttle: { onSecondaryRateLimit: 5, onRateLimit: () => 1 },
+        })
     ).toThrow(message);
     expect(
-      () => new TestOctokit({ throttle: { onAbuseLimit: () => 1 } })
+      () => new TestOctokit({ throttle: { onSecondaryRateLimit: () => 1 } })
     ).toThrow(message);
     expect(
       () => new TestOctokit({ throttle: { onRateLimit: () => 1 } })
@@ -57,7 +62,7 @@ describe("General", function () {
     expect(
       () =>
         new TestOctokit({
-          throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 },
+          throttle: { onSecondaryRateLimit: () => 1, onRateLimit: () => 1 },
         })
     ).not.toThrow();
   });
@@ -66,7 +71,7 @@ describe("General", function () {
 describe("Github API best practices", function () {
   it("Should linearize requests", async function () {
     const octokit = new TestOctokit({
-      throttle: { onAbuseLimit: () => 1, onRateLimit: () => 1 },
+      throttle: { onSecondaryRateLimit: () => 1, onRateLimit: () => 1 },
     });
     const req1 = octokit.request("GET /route1", {
       request: {
@@ -101,7 +106,7 @@ describe("Github API best practices", function () {
     const octokit = new TestOctokit({
       throttle: {
         write: new Bottleneck.Group({ minTime: 50 }),
-        onAbuseLimit: () => 1,
+        onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
     });
@@ -151,7 +156,7 @@ describe("Github API best practices", function () {
       throttle: {
         write: new Bottleneck.Group({ minTime: 50 }),
         notifications: new Bottleneck.Group({ minTime: 100 }),
-        onAbuseLimit: () => 1,
+        onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
     });
@@ -227,7 +232,7 @@ describe("Github API best practices", function () {
     const octokit = new TestOctokit({
       throttle: {
         search: new Bottleneck.Group({ minTime: 50 }),
-        onAbuseLimit: () => 1,
+        onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
     });
@@ -281,7 +286,7 @@ describe("Github API best practices", function () {
       throttle: {
         write: new Bottleneck.Group({ minTime: 50 }),
         notifications: new Bottleneck.Group({ minTime: 150 }),
-        onAbuseLimit: () => 1,
+        onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
     });
