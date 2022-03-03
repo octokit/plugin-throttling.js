@@ -103,7 +103,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
     "secondary-limit",
     state.onSecondaryRateLimit ||
       function (...args: any[]) {
-        console.warn(
+        octokit.log.warn(
           "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
         );
         return state.onAbuseLimit(...args);
@@ -113,7 +113,7 @@ export function throttling(octokit: Octokit, octokitOptions = {}) {
   events.on("rate-limit", state.onRateLimit);
   // @ts-ignore
   events.on("error", (e) =>
-    console.warn("Error in throttling-plugin limit handler", e)
+    octokit.log.warn("Error in throttling-plugin limit handler", e)
   );
 
   // @ts-ignore
