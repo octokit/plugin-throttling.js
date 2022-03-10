@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 export function routeMatcher(paths) {
   // EXAMPLE. For the following paths:
   /* [
@@ -6,11 +6,11 @@ export function routeMatcher(paths) {
       "/repos/{owner}/{repo}/collaborators/{username}"
   ] */
 
-  // @ts-ignore
+  // @ts-expect-error
   const regexes = paths.map((path) =>
     path
       .split("/")
-      // @ts-ignore
+      // @ts-expect-error
       .map((c) => (c.startsWith("{") ? "(?:.+?)" : c))
       .join("/")
   );
@@ -20,7 +20,7 @@ export function routeMatcher(paths) {
       '/repos/(?:.+?)/(?:.+?)/collaborators/(?:.+?)'
   ] */
 
-  // @ts-ignore
+  // @ts-expect-error
   const regex = `^(?:${regexes.map((r) => `(?:${r})`).join("|")})[^/]*$`;
   // 'regex' would contain:
   /*
