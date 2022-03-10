@@ -32,19 +32,14 @@ describe("Events", function () {
     ]);
   });
 
-  describe.each(["onSecondaryRateLimit", "onAbuseLimit"])(
-    "secondary-limit",
-    function (eventHandlerName) {
+  describe("secondary-limit", function () {
+    describe("with 'onSecondaryLimit'", function () {
       it("Should detect SecondaryRate limit and broadcast event", async function () {
         let eventCount = 0;
 
         const octokit = new TestOctokit({
           throttle: {
-            [eventHandlerName]: (
-              retryAfter: number,
-              options: object,
-              octokitFromOptions: InstanceType<typeof TestOctokit>
-            ) => {
+            onSecondaryRateLimit: (retryAfter, options, octokitFromOptions) => {
               expect(octokit).toBe(octokitFromOptions);
               expect(retryAfter).toEqual(60);
               expect(options).toMatchObject({
@@ -89,7 +84,7 @@ describe("Events", function () {
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            [eventHandlerName]: (retryAfter: number, options: object) => {
+            onSecondaryRateLimit: (retryAfter, options) => {
               expect(retryAfter).toEqual(5);
               expect(options).toMatchObject({
                 method: "GET",
@@ -133,7 +128,7 @@ describe("Events", function () {
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            [eventHandlerName]: (retryAfter: number, options: object) => {
+            onSecondaryRateLimit: (retryAfter, options) => {
               expect(retryAfter).toEqual(5);
               expect(options).toMatchObject({
                 method: "GET",
@@ -172,19 +167,150 @@ describe("Events", function () {
 
         expect(eventCount).toEqual(1);
       });
-    }
-  );
+    });
+    describe("with 'onAbuseLimit'", function () {
+      it("Should detect SecondaryRate limit and broadcast event", async function () {
+        let eventCount = 0;
+
+        const octokit = new TestOctokit({
+          throttle: {
+            onAbuseLimit: (retryAfter, options, octokitFromOptions) => {
+              expect(octokit).toBe(octokitFromOptions);
+              expect(retryAfter).toEqual(60);
+              expect(options).toMatchObject({
+                method: "GET",
+                url: "/route2",
+                request: { retryCount: 0 },
+              });
+              eventCount++;
+            },
+            onRateLimit: () => 1,
+          },
+        });
+
+        await octokit.request("GET /route1", {
+          request: {
+            responses: [{ status: 201, headers: {}, data: {} }],
+          },
+        });
+        try {
+          await octokit.request("GET /route2", {
+            request: {
+              responses: [
+                {
+                  status: 403,
+                  headers: { "retry-after": "60" },
+                  data: {
+                    message: "You have exceeded a secondary rate limit",
+                  },
+                },
+              ],
+            },
+          });
+          throw new Error("Should not reach this point");
+        } catch (error: any) {
+          expect(error.status).toEqual(403);
+        }
+
+        expect(eventCount).toEqual(1);
+      });
+
+      it("Should ensure retryAfter is a minimum of 5s", async function () {
+        let eventCount = 0;
+        const octokit = new TestOctokit({
+          throttle: {
+            onAbuseLimit: (retryAfter, options) => {
+              expect(retryAfter).toEqual(5);
+              expect(options).toMatchObject({
+                method: "GET",
+                url: "/route2",
+                request: { retryCount: 0 },
+              });
+              eventCount++;
+            },
+            onRateLimit: () => 1,
+          },
+        });
+
+        await octokit.request("GET /route1", {
+          request: {
+            responses: [{ status: 201, headers: {}, data: {} }],
+          },
+        });
+        try {
+          await octokit.request("GET /route2", {
+            request: {
+              responses: [
+                {
+                  status: 403,
+                  headers: { "retry-after": "2" },
+                  data: {
+                    message: "You have exceeded a secondary rate limit",
+                  },
+                },
+              ],
+            },
+          });
+          throw new Error("Should not reach this point");
+        } catch (error: any) {
+          expect(error.status).toEqual(403);
+        }
+
+        expect(eventCount).toEqual(1);
+      });
+
+      it("Should broadcast retryAfter of 5s even when the header is missing", async function () {
+        let eventCount = 0;
+        const octokit = new TestOctokit({
+          throttle: {
+            onAbuseLimit: (retryAfter, options) => {
+              expect(retryAfter).toEqual(5);
+              expect(options).toMatchObject({
+                method: "GET",
+                url: "/route2",
+                request: { retryCount: 0 },
+              });
+              eventCount++;
+            },
+            onRateLimit: () => 1,
+          },
+        });
+
+        await octokit.request("GET /route1", {
+          request: {
+            responses: [{ status: 201, headers: {}, data: {} }],
+          },
+        });
+        try {
+          await octokit.request("GET /route2", {
+            request: {
+              responses: [
+                {
+                  status: 403,
+                  headers: {},
+                  data: {
+                    message: "You have exceeded a secondary rate limit",
+                  },
+                },
+              ],
+            },
+          });
+          throw new Error("Should not reach this point");
+        } catch (error: any) {
+          expect(error.status).toEqual(403);
+        }
+
+        expect(eventCount).toEqual(1);
+      });
+    });
+  });
 
   describe("'rate-limit'", function () {
     it("Should detect rate limit exceeded and broadcast event", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          onRateLimit: (
-            retryAfter: number,
-            options: object,
-            octokitFromOptions: InstanceType<typeof TestOctokit>
-          ) => {
+          onRateLimit: (retryAfter, options, octokitFromOptions) => {
             expect(octokit).toBe(octokitFromOptions);
             expect(retryAfter).toBeLessThan(32);
             expect(retryAfter).toBeGreaterThan(28);
