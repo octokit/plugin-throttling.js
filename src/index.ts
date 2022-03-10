@@ -2,6 +2,13 @@
 import BottleneckLight from "bottleneck/light";
 import { Octokit } from "@octokit/core";
 import { OctokitOptions } from "@octokit/core/dist-types/types.d";
+import {
+  ThrottlingOptions,
+  ThrottlingOptionsBase,
+  AbuseLimitHandler,
+  SecondaryLimitHandler,
+  Groups,
+} from "./types";
 import { VERSION } from "./version";
 
 import { wrapRequest } from "./wrap-request";
@@ -12,31 +19,27 @@ import { routeMatcher } from "./route-matcher";
 const regex = routeMatcher(triggersNotificationPaths);
 const triggersNotification = regex.test.bind(regex);
 
-const groups = {};
+const groups: Groups = {};
 
 // @ts-ignore
 const createGroups = function (Bottleneck, common) {
-  // @ts-ignore
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
     maxConcurrent: 10,
     ...common,
   });
-  // @ts-ignore
   groups.search = new Bottleneck.Group({
     id: "octokit-search",
     maxConcurrent: 1,
     minTime: 2000,
     ...common,
   });
-  // @ts-ignore
   groups.write = new Bottleneck.Group({
     id: "octokit-write",
     maxConcurrent: 1,
     minTime: 1000,
     ...common,
   });
-  // @ts-ignore
   groups.notifications = new Bottleneck.Group({
     id: "octokit-notifications",
     maxConcurrent: 1,
@@ -45,6 +48,14 @@ const createGroups = function (Bottleneck, common) {
   });
 };
 
+export function throttling(
+  octokit: Octokit,
+  options: { throttle: ThrottlingOptionsBase & SecondaryLimitHandler }
+): {};
+export function throttling(
+  octokit: Octokit,
+  options: { throttle: ThrottlingOptionsBase & AbuseLimitHandler }
+): {};
 export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   const {
     enabled = true,
@@ -52,14 +63,12 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     id = "no-id",
     timeout = 1000 * 60 * 2, // Redis TTL: 2 minutes
     connection,
-    // @ts-ignore
   } = octokitOptions.throttle || {};
   if (!enabled) {
     return {};
   }
   const common = { connection, timeout };
 
-  // @ts-ignore
   if (groups.global == null) {
     createGroups(Bottleneck, common);
   }
@@ -74,13 +83,15 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
       id,
       ...groups,
     },
-    // @ts-ignore
     octokitOptions.throttle
   );
 
+  const isUsingDeprecatedOnAbuseLimitHandler = "onAbuseLimit" in state;
+
   if (
-    (typeof state.onSecondaryRateLimit !== "function" &&
-      typeof state.onAbuseLimit !== "function") ||
+    typeof (isUsingDeprecatedOnAbuseLimitHandler
+      ? state.onAbuseLimit
+      : state.onSecondaryRateLimit) !== "function" ||
     typeof state.onRateLimit !== "function"
   ) {
     throw new Error(`octokit/plugin-throttling error:
@@ -101,13 +112,14 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   // @ts-ignore
   events.on(
     "secondary-limit",
-    state.onSecondaryRateLimit ||
-      function (...args: [number, ThrottlingOptions, Octokit]) {
-        octokit.log.warn(
-          "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
-        );
-        return state.onAbuseLimit(...args);
-      }
+    isUsingDeprecatedOnAbuseLimitHandler
+      ? function (...args: [number, ThrottlingOptions, Octokit]) {
+          octokit.log.warn(
+            "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
+          );
+          return state.onAbuseLimit(...args);
+        }
+      : state.onSecondaryRateLimit
   );
   // @ts-ignore
   events.on("rate-limit", state.onRateLimit);
