@@ -9,7 +9,7 @@ describe("Retry", function () {
         throttle: {
           minimumSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
-          onSecondaryRateLimit: (retryAfter: number, options: object) => {
+          onSecondaryRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
               method: "GET",
               url: "/route",
@@ -55,7 +55,7 @@ describe("Retry", function () {
         throttle: {
           minimumSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
-          onSecondaryRateLimit: (retryAfter: number, options: object) => {
+          onSecondaryRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
               method: "GET",
               url: "/route",
@@ -118,7 +118,7 @@ describe("Retry", function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          onRateLimit: (retryAfter: number, options: object) => {
+          onRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
               method: "GET",
               url: "/route",
@@ -168,7 +168,7 @@ describe("Retry", function () {
       const octokit = new TestOctokit({
         throttle: {
           write: new Bottleneck.Group({ minTime: 50 }),
-          onRateLimit: (retryAfter: number, options: object) => {
+          onRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
               method: "POST",
               url: "/graphql",
@@ -218,7 +218,7 @@ describe("Retry", function () {
       const octokit = new TestOctokit({
         throttle: {
           write: new Bottleneck.Group({ minTime: 50 }),
-          onRateLimit: (retryAfter: number, options: object) => {
+          onRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
               method: "POST",
               url: "https://api.github.com/graphql",
@@ -268,7 +268,7 @@ describe("Retry", function () {
       const octokit = new TestOctokit({
         throttle: {
           write: new Bottleneck.Group({ minTime: 50 }),
-          onRateLimit: (retryAfter: number, options: object) => {
+          onRateLimit: () => {
             eventCount++;
             return true;
           },
@@ -306,7 +306,7 @@ describe("Retry", function () {
       const octokit = new TestOctokit({
         throttle: {
           write: new Bottleneck.Group({ minTime: 50 }),
-          onRateLimit: (retryAfter: number, options: object) => {
+          onRateLimit: () => {
             eventCount++;
             return true;
           },
@@ -347,7 +347,7 @@ describe("Retry", function () {
       const octokit = new TestOctokit({
         throttle: {
           write: new Bottleneck.Group({ minTime: 50 }),
-          onSecondaryRateLimit: (retryAfter: number, options: object) => {
+          onSecondaryRateLimit: () => {
             eventCount++;
             return true;
           },
