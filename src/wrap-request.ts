@@ -1,11 +1,11 @@
 const noop = () => Promise.resolve();
 
-// @ts-ignore
+// @ts-expect-error
 export function wrapRequest(state, request, options) {
   return state.retryLimiter.schedule(doRequest, state, request, options);
 }
 
-// @ts-ignore
+// @ts-expect-error
 async function doRequest(state, request, options) {
   const isWrite = options.method !== "GET" && options.method !== "HEAD";
   const { pathname } = new URL(options.url, "http://github.test");
@@ -17,7 +17,7 @@ async function doRequest(state, request, options) {
   if (state.clustering) {
     // Remove a job from Redis if it has not completed or failed within 60s
     // Examples: Node process terminated, client disconnected, etc.
-    // @ts-ignore
+    // @ts-expect-error
     jobOptions.expiration = 1000 * 60;
   }
 
@@ -43,7 +43,7 @@ async function doRequest(state, request, options) {
 
     if (
       res.data.errors != null &&
-      // @ts-ignore
+      // @ts-expect-error
       res.data.errors.some((error) => error.type === "RATE_LIMITED")
     ) {
       const error = Object.assign(new Error("GraphQL Rate Limit Exceeded"), {

@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import BottleneckLight from "bottleneck/light";
 import { Octokit } from "@octokit/core";
 import { OctokitOptions } from "@octokit/core/dist-types/types.d";
@@ -21,7 +21,7 @@ const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
 
-// @ts-ignore
+// @ts-expect-error
 const createGroups = function (Bottleneck, common) {
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
@@ -109,7 +109,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 
   const events = {};
   const emitter = new Bottleneck.Events(events);
-  // @ts-ignore
+  // @ts-expect-error
   events.on(
     "secondary-limit",
     isUsingDeprecatedOnAbuseLimitHandler
@@ -121,14 +121,14 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         }
       : state.onSecondaryRateLimit
   );
-  // @ts-ignore
+  // @ts-expect-error
   events.on("rate-limit", state.onRateLimit);
-  // @ts-ignore
+  // @ts-expect-error
   events.on("error", (e) =>
     octokit.log.warn("Error in throttling-plugin limit handler", e)
   );
 
-  // @ts-ignore
+  // @ts-expect-error
   state.retryLimiter.on("failed", async function (error, info) {
     const options = info.args[info.args.length - 1];
     const { pathname } = new URL(options.url, "http://github.test");
@@ -189,7 +189,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 
     if (wantRetry) {
       options.request.retryCount++;
-      // @ts-ignore
+      // @ts-expect-error
       return retryAfter * state.retryAfterBaseValue;
     }
   });
