@@ -228,4 +228,52 @@ describe("Events", function () {
       expect(eventCount).toEqual(1);
     });
   });
+
+  describe("error", function () {
+    it("logs a warning when an 'error' event is emitted", async function () {
+      const octokit = new TestOctokit({
+        throttle: {
+          onRateLimit: () => {
+            throw new Error("Should not reach this point");
+          },
+          onSecondaryRateLimit: () => {
+            throw new Error("Should not reach this point");
+          },
+        },
+      });
+
+      jest.spyOn(octokit.log, "warn");
+
+      const t0 = Date.now();
+
+      await octokit.request("GET /route1", {
+        request: {
+          responses: [{ status: 201, headers: {}, data: {} }],
+        },
+      });
+      try {
+        await octokit.request("GET /route2", {
+          request: {
+            responses: [
+              {
+                status: 403,
+                headers: {
+                  "x-ratelimit-remaining": "0",
+                  "x-ratelimit-reset": `${Math.round(t0 / 1000) + 30}`,
+                },
+                data: {},
+              },
+            ],
+          },
+        });
+        throw new Error("Should not reach this point");
+      } catch (error: any) {
+        expect(error.status).toEqual(403);
+        expect(octokit.log.warn).toHaveBeenCalledWith(
+          "Error in throttling-plugin limit handler",
+          new Error("Should not reach this point")
+        );
+      }
+    });
+  });
 });

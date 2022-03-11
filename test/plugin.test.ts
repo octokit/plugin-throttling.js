@@ -108,6 +108,7 @@ describe("Github API best practices", function () {
         write: new Bottleneck.Group({ minTime: 50 }),
         onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
+        connection: new Bottleneck({ minTime: 50 }),
       },
     });
 
