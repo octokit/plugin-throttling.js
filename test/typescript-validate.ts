@@ -22,8 +22,8 @@ throttling(octokit, {
 });
 
 // onSecondaryLimit() and onAbuseLimit() should be a TS Error
-// @ts-expect-error
 throttling(octokit, {
+  // @ts-expect-error
   throttle: {
     enabled: true,
     onRateLimit: () => {},
@@ -33,8 +33,8 @@ throttling(octokit, {
 });
 
 // onRateLimit() missing should be a TS Error
-// @ts-expect-error
 throttling(octokit, {
+  // @ts-expect-error
   throttle: {
     enabled: true,
     onSecondaryRateLimit: () => {},
