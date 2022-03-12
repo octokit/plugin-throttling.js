@@ -2,13 +2,7 @@
 import BottleneckLight from "bottleneck/light";
 import { Octokit } from "@octokit/core";
 import { OctokitOptions } from "@octokit/core/dist-types/types.d";
-import {
-  ThrottlingOptions,
-  ThrottlingOptionsBase,
-  AbuseLimitHandler,
-  SecondaryLimitHandler,
-  Groups,
-} from "./types";
+import { Groups } from "./types";
 import { VERSION } from "./version";
 
 import { wrapRequest } from "./wrap-request";
@@ -48,14 +42,6 @@ const createGroups = function (Bottleneck, common) {
   });
 };
 
-export function throttling(
-  octokit: Octokit,
-  options: { throttle: ThrottlingOptionsBase & SecondaryLimitHandler }
-): {};
-export function throttling(
-  octokit: Octokit,
-  options: { throttle: ThrottlingOptionsBase & AbuseLimitHandler }
-): {};
 export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   const {
     enabled = true,
@@ -113,7 +99,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   events.on(
     "secondary-limit",
     isUsingDeprecatedOnAbuseLimitHandler
-      ? function (...args: [number, ThrottlingOptions, Octokit]) {
+      ? function (...args: [number, OctokitOptions, Octokit]) {
           octokit.log.warn(
             "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
           );
