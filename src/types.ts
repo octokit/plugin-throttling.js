@@ -26,10 +26,10 @@ export type SecondaryLimitHandler = {
 
 export type ThrottlingOptionsBase = {
   enabled?: boolean;
-  Bottleneck?: any;
+  Bottleneck?: typeof Bottleneck;
   id?: string;
   timeout?: number;
-  connection?: any;
+  connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
   minimumSecondaryRateRetryAfter?: number;
   retryAfterBaseValue?: number;
   write?: Bottleneck.Group;
