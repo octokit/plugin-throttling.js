@@ -175,7 +175,6 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 
     if (wantRetry) {
       options.request.retryCount++;
-      // @ts-expect-error
       return retryAfter * state.retryAfterBaseValue;
     }
   });
