@@ -128,7 +128,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     const retryCount = ~~options.request.retryCount;
     options.request.retryCount = retryCount;
 
-    const { wantRetry, retryAfter } = await (async function () {
+    const { wantRetry, retryAfter = 0 } = await (async function () {
       if (/\bsecondary rate\b/i.test(error.message)) {
         // The user has hit the secondary rate limit. (REST and GraphQL)
         // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#secondary-rate-limits
