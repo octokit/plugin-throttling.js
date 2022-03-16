@@ -72,7 +72,8 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     octokitOptions.throttle
   );
 
-  const isUsingDeprecatedOnAbuseLimitHandler = "onAbuseLimit" in state;
+  const isUsingDeprecatedOnAbuseLimitHandler =
+    typeof state.onAbuseLimit === "function" && state.onAbuseLimit;
 
   if (
     typeof (isUsingDeprecatedOnAbuseLimitHandler
