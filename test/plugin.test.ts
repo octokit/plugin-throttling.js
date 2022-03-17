@@ -4,7 +4,13 @@ import { throttling } from "../src";
 
 describe("General", function () {
   it("Should be possible to disable the plugin", async function () {
-    const octokit = new TestOctokit({ throttle: { enabled: false } });
+    const octokit = new TestOctokit({
+      throttle: {
+        enabled: false,
+        onSecondaryRateLimit: () => {},
+        onRateLimit: () => {},
+      },
+    });
 
     const req1 = octokit.request("GET /route1", {
       request: {
@@ -40,23 +46,28 @@ describe("General", function () {
       "You must pass the onSecondaryRateLimit and onRateLimit error handlers";
 
     expect(() => new TestOctokit()).toThrow(message);
+    // @ts-expect-error
     expect(() => new TestOctokit({ throttle: {} })).toThrow(message);
     expect(
       () =>
         new TestOctokit({
+          // @ts-expect-error
           throttle: { onSecondaryRateLimit: 5, onRateLimit: 5 },
         })
     ).toThrow(message);
     expect(
       () =>
         new TestOctokit({
+          // @ts-expect-error
           throttle: { onSecondaryRateLimit: 5, onRateLimit: () => 1 },
         })
     ).toThrow(message);
     expect(
+      // @ts-expect-error
       () => new TestOctokit({ throttle: { onSecondaryRateLimit: () => 1 } })
     ).toThrow(message);
     expect(
+      // @ts-expect-error
       () => new TestOctokit({ throttle: { onRateLimit: () => 1 } })
     ).toThrow(message);
     expect(

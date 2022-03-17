@@ -13,7 +13,8 @@
     "test": "jest --coverage",
     "update-endpoints": "npm-run-all update-endpoints:*",
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
-    "update-endpoints:code": "node scripts/update-endpoints/code"
+    "update-endpoints:code": "node scripts/update-endpoints/code",
+    "validate:ts": "tsc --noEmit --noImplicitAny --target es2020 --esModuleInterop --moduleResolution node test/typescript-validate.ts"
   },
   "repository": "github:octokit/plugin-throttling.js",
   "author": "Simon Grondin (http://github.com/SGrondin)",

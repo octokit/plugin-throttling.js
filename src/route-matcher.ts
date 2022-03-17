@@ -1,16 +1,13 @@
-// @ts-ignore
-export function routeMatcher(paths) {
+export function routeMatcher(paths: string[]) {
   // EXAMPLE. For the following paths:
   /* [
       "/orgs/{org}/invitations",
       "/repos/{owner}/{repo}/collaborators/{username}"
   ] */
 
-  // @ts-ignore
-  const regexes = paths.map((path) =>
+  const regexes = paths.map((path: string) =>
     path
       .split("/")
-      // @ts-ignore
       .map((c) => (c.startsWith("{") ? "(?:.+?)" : c))
       .join("/")
   );
@@ -20,7 +17,6 @@ export function routeMatcher(paths) {
       '/repos/(?:.+?)/(?:.+?)/collaborators/(?:.+?)'
   ] */
 
-  // @ts-ignore
   const regex = `^(?:${regexes.map((r) => `(?:${r})`).join("|")})[^/]*$`;
   // 'regex' would contain:
   /*
