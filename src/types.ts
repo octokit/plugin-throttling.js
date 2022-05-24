@@ -8,9 +8,10 @@ declare module "@octokit/core/dist-types/types.d" {
 }
 
 type LimitHandler = (
-  retryAfter?: number,
-  options?: object,
-  octokit?: Octokit
+  retryAfter: number,
+  options: object,
+  octokit: Octokit,
+  retryCount: number
 ) => void;
 
 export type AbuseLimitHandler = {
