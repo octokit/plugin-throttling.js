@@ -104,6 +104,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           octokit.log.warn(
             "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
           );
+          // @ts-expect-error
           return state.onAbuseLimit(...args);
         }
       : state.onSecondaryRateLimit
@@ -117,7 +118,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 
   // @ts-expect-error
   state.retryLimiter.on("failed", async function (error, info) {
-    const options = info.args[info.args.length - 1];
+    const [state, request, options] = info.args;
     const { pathname } = new URL(options.url, "http://github.test");
     const shouldRetryGraphQL =
       pathname.startsWith("/graphql") && error.status !== 401;
@@ -126,7 +127,10 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
       return;
     }
 
-    const retryCount = ~~options.request.retryCount;
+    const retryCount = ~~request.retryCount;
+    request.retryCount = retryCount;
+
+    // backward compatibility
     options.request.retryCount = retryCount;
 
     const { wantRetry, retryAfter = 0 } = await (async function () {
@@ -144,7 +148,8 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           "secondary-limit",
           retryAfter,
           options,
-          octokit
+          octokit,
+          retryCount
         );
         return { wantRetry, retryAfter };
       }
@@ -167,7 +172,8 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           "rate-limit",
           retryAfter,
           options,
-          octokit
+          octokit,
+          retryCount
         );
         return { wantRetry, retryAfter };
       }
@@ -175,7 +181,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     })();
 
     if (wantRetry) {
-      options.request.retryCount++;
+      request.retryCount++;
       return retryAfter * state.retryAfterBaseValue;
     }
   });

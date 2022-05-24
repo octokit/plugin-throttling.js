@@ -1,5 +1,9 @@
 import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit";
+import { Octokit } from "@octokit/core";
+import { throttling } from "../src";
+import express from "express";
+import { AddressInfo } from "net";
 
 describe("Retry", function () {
   describe("REST", function () {
@@ -112,6 +116,48 @@ describe("Retry", function () {
       const ms2 = octokit.__requestTimings[2] - octokit.__requestTimings[1];
       expect(ms2).toBeLessThan(120);
       expect(ms2).toBeGreaterThan(80);
+    });
+
+    it("Should not leak retryCount between requests", async function () {
+      const app = express();
+      let counter = 1;
+
+      app.get("/nope-nope-ok", (req, res) => {
+        if (counter++ % 3 === 0) {
+          res.send({ message: "Success!" });
+        } else {
+          res
+            .status(403)
+            .header("retry-after", "1")
+            .send({ message: "You have exceeded a secondary rate limit" });
+        }
+      });
+
+      const server = app.listen();
+      const { port } = server.address() as AddressInfo;
+
+      const ThrottledOctokit = Octokit.plugin(throttling);
+      const octokit = new ThrottledOctokit({
+        baseUrl: `http://localhost:${port}`,
+        throttle: {
+          minimumSecondaryRateRetryAfter: 0,
+          retryAfterBaseValue: 50,
+          onRateLimit: () => true,
+          onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
+            if (retryCount < 5) {
+              return true;
+            }
+          },
+        },
+      });
+
+      try {
+        await octokit.request("GET /nope-nope-ok");
+        await octokit.request("GET /nope-nope-ok");
+        await octokit.request("GET /nope-nope-ok");
+      } finally {
+        server.close();
+      }
     });
 
     it("Should retry 'rate-limit' and succeed", async function () {

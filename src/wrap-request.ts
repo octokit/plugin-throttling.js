@@ -12,7 +12,7 @@ async function doRequest(state, request, options) {
   const isSearch = options.method === "GET" && pathname.startsWith("/search/");
   const isGraphQL = pathname.startsWith("/graphql");
 
-  const retryCount = ~~options.request.retryCount;
+  const retryCount = ~~request.retryCount;
   const jobOptions = retryCount > 0 ? { priority: 0, weight: 0 } : {};
   if (state.clustering) {
     // Remove a job from Redis if it has not completed or failed within 60s

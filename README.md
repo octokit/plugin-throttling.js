@@ -52,12 +52,12 @@ const MyOctokit = Octokit.plugin(throttling);
 const octokit = new MyOctokit({
   auth: `secret123`,
   throttle: {
-    onRateLimit: (retryAfter, options, octokit) => {
+    onRateLimit: (retryAfter, options, octokit, retryCount) => {
       octokit.log.warn(
         `Request quota exhausted for request ${options.method} ${options.url}`
       );
 
-      if (options.request.retryCount === 0) {
+      if (retryCount < 1) {
         // only retries once
         octokit.log.info(`Retrying after ${retryAfter} seconds!`);
         return true;
