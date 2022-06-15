@@ -12,10 +12,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/approve",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/cancel",
     "triggersNotification": null
   },
@@ -105,10 +101,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/jobs/{job_id}/logs",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}/logs",
     "triggersNotification": null
   },
   {
@@ -204,10 +196,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/timing",
     "triggersNotification": null
   },
@@ -225,10 +213,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/jobs",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}/jobs",
     "triggersNotification": null
   },
   {
@@ -476,7 +460,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/installations/{installation_id}/repositories/{repository_id}",
+    "url": "/applications/{client_id}/tokens/{access_token}",
     "triggersNotification": null
   },
   {
@@ -485,10 +469,6 @@
   },
   {
     "url": "/content_references/{content_reference_id}/attachments",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/content_references/{content_reference_id}/attachments",
     "triggersNotification": null
   },
   {
@@ -548,10 +528,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/app/hook/deliveries/{delivery_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/marketplace_listing/plans/{plan_id}/accounts",
     "triggersNotification": null
   },
@@ -592,23 +568,23 @@
     "triggersNotification": null
   },
   {
-    "url": "/app/hook/deliveries",
-    "triggersNotification": null
-  },
-  {
-    "url": "/app/hook/deliveries/{delivery_id}/attempts",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/installations/{installation_id}/repositories/{repository_id}",
     "triggersNotification": null
   },
   {
-    "url": "/user/installations/{installation_id}/repositories/{repository_id}",
+    "url": "/applications/{client_id}/tokens/{access_token}",
     "triggersNotification": null
   },
   {
     "url": "/applications/{client_id}/token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/tokens/{access_token}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/applications/{client_id}/grants/{access_token}",
     "triggersNotification": null
   },
   {
@@ -704,10 +680,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/check-runs/{check_run_id}/rerequest",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/check-suites/{check_suite_id}/rerequest",
     "triggersNotification": null
   },
@@ -733,10 +705,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/sarifs/{sarif_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/instances",
     "triggersNotification": null
   },
   {
@@ -821,10 +789,6 @@
   },
   {
     "url": "/enterprises/{enterprise}/actions/permissions/selected-actions",
-    "triggersNotification": null
-  },
-  {
-    "url": "/enterprises/{enterprise}/audit-log",
     "triggersNotification": null
   },
   {
@@ -1364,10 +1328,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/migrations/{migration_id}/repositories",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/migrations/{migration_id}/repositories",
     "triggersNotification": null
   },
@@ -1508,10 +1468,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/organizations",
     "triggersNotification": null
   },
@@ -1564,19 +1520,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/hooks/{hook_id}/deliveries",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/hooks",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/hooks/{hook_id}/pings",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
     "triggersNotification": null
   },
   {
@@ -1636,10 +1584,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/users/{username}/packages/{package_type}/{package_name}",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/packages/{package_type}/{package_name}/versions/{package_version_id}",
     "triggersNotification": null
   },
@@ -1648,23 +1592,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/packages/{package_type}/{package_name}/versions",
     "triggersNotification": null
   },
   {
     "url": "/user/packages/{package_type}/{package_name}/versions",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/packages/{package_type}/{package_name}/versions",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/packages/{package_type}/{package_name}/versions",
     "triggersNotification": null
   },
   {
@@ -1696,27 +1628,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/packages",
+    "url": "/user/packages/{package_type}/{package_name}/restore",
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/packages",
-    "triggersNotification": null
-  },
-  {
-    "url": "/users/{username}/packages",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/packages/{package_type}/{package_name}/restore{?token}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/packages/{package_type}/{package_name}/restore{?token}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/users/{username}/packages/{package_type}/{package_name}/restore{?token}",
+    "url": "/orgs/{org}/packages/{package_type}/{package_name}/restore",
     "triggersNotification": null
   },
   {
@@ -1725,10 +1641,6 @@
   },
   {
     "url": "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
-    "triggersNotification": null
-  },
-  {
-    "url": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
     "triggersNotification": null
   },
   {
@@ -1960,10 +1872,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/releases/{release_id}/reactions",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
     "triggersNotification": null
   },
@@ -2044,10 +1952,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/repository_invitations/{invitation_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
     "triggersNotification": null
   },
@@ -2077,14 +1981,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/compare/{base}...{head}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/compare/{basehead}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/autolinks",
     "triggersNotification": null
   },
   {
@@ -2156,10 +2052,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/repository_invitations/{invitation_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}",
     "triggersNotification": null
   },
@@ -2173,10 +2065,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/autolinks/{autolink_id}",
     "triggersNotification": null
   },
   {
@@ -2232,10 +2120,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/lfs",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/vulnerability-alerts",
     "triggersNotification": null
   },
@@ -2260,15 +2144,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/lfs",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/vulnerability-alerts",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/releases/generate-notes",
     "triggersNotification": null
   },
   {
@@ -2297,10 +2173,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/autolinks/{autolink_id}",
     "triggersNotification": null
   },
   {
@@ -2388,10 +2260,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/pages/health",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/stats/participation",
     "triggersNotification": null
   },
@@ -2405,10 +2273,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/readme",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/readme/{dir}",
     "triggersNotification": null
   },
   {
@@ -2453,14 +2317,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}/config",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/autolinks",
     "triggersNotification": null
   },
   {
@@ -2564,10 +2420,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/hooks",
     "triggersNotification": null
   },
@@ -2576,15 +2428,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/merge-upstream",
-    "triggersNotification": null
-  },
-  {
     "url": "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
     "triggersNotification": null
   },
   {
@@ -2757,10 +2601,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/secret-scanning/alerts",
     "triggersNotification": null
   },
   {
@@ -3036,10 +2876,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/emails",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/blocks/{username}",
     "triggersNotification": null
   },
@@ -3060,14 +2896,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/gpg_keys",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/keys",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/keys",
     "triggersNotification": null
   },
@@ -3076,19 +2904,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/emails",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/gpg_keys/{gpg_key_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/gpg_keys/{gpg_key_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/keys/{key_id}",
     "triggersNotification": null
   },
   {
@@ -3116,14 +2932,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/gpg_keys/{gpg_key_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/keys/{key_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/keys/{key_id}",
     "triggersNotification": null
   },
@@ -3136,19 +2944,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/blocks",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/emails",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/emails",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/following",
     "triggersNotification": null
   },
   {
@@ -3172,15 +2968,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/user/gpg_keys",
-    "triggersNotification": null
-  },
-  {
     "url": "/users/{username}/gpg_keys",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/public_emails",
     "triggersNotification": null
   },
   {
@@ -3193,14 +2981,6 @@
   },
   {
     "url": "/user/keys",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/keys",
-    "triggersNotification": null
-  },
-  {
-    "url": "/user/email/visibility",
     "triggersNotification": null
   },
   {
