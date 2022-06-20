@@ -1044,6 +1044,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/dependency-graph/snapshots",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/dependency-graph/compare/{basehead}",
     "triggersNotification": null
   },
