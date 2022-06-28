@@ -64,6 +64,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/caches/{cache_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/caches{?key,ref}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
     "triggersNotification": null
   },
@@ -132,6 +140,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/caches",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/cache/usage",
     "triggersNotification": null
   },
@@ -157,6 +169,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "triggersNotification": null
   },
   {
@@ -384,6 +400,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/actions/oidc/customization/issuer",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/permissions/selected-actions",
     "triggersNotification": null
   },
@@ -397,6 +417,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "triggersNotification": null
   },
   {
@@ -904,6 +928,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/members/{username}/codespaces/{codespace_name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
@@ -948,6 +976,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org_id}/codespaces",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/codespaces",
     "triggersNotification": null
   },
@@ -981,6 +1013,10 @@
   },
   {
     "url": "/user/codespaces/{codespace_name}/stop",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/members/{username}/codespaces/{codespace_name}/stop",
     "triggersNotification": null
   },
   {
@@ -1749,6 +1785,14 @@
   },
   {
     "url": "/authorizations/{authorization_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/oidc/customization/sub",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/oidc/customization/sub",
     "triggersNotification": null
   },
   {
