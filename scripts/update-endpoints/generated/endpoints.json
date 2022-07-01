@@ -892,10 +892,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/community/code_of_conduct",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/codespaces/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
@@ -976,7 +972,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org_id}/codespaces",
+    "url": "/orgs/{org}/codespaces",
     "triggersNotification": null
   },
   {
