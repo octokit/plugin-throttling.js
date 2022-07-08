@@ -24,10 +24,10 @@
     "bottleneck": "^2.15.3"
   },
   "peerDependencies": {
-    "@octokit/core": "^3.5.0"
+    "@octokit/core": "^4.0.0"
   },
   "devDependencies": {
-    "@octokit/core": "^3.5.0",
+    "@octokit/core": "^4.0.0",
     "@octokit/request-error": "^2.0.0",
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.9.1",
