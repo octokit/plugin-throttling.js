@@ -992,6 +992,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/codespaces/new",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/codespaces/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
