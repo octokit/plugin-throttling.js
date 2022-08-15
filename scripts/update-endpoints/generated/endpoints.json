@@ -860,6 +860,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/code-scanning/alerts",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/code-scanning/alerts",
     "triggersNotification": null
   },
@@ -1748,51 +1752,15 @@
     "triggersNotification": null
   },
   {
-    "url": "/authorizations",
-    "triggersNotification": null
-  },
-  {
-    "url": "/authorizations/{authorization_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/applications/grants/{grant_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/authorizations/{authorization_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/applications/grants/{grant_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/authorizations/clients/{client_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/authorizations/clients/{client_id}/{fingerprint}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/authorizations",
-    "triggersNotification": null
-  },
-  {
-    "url": "/applications/grants",
-    "triggersNotification": null
-  },
-  {
-    "url": "/authorizations/{authorization_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/actions/oidc/customization/sub",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/actions/oidc/customization/sub",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/security-managers/teams/{team_slug}",
     "triggersNotification": null
   },
   {
@@ -1916,6 +1884,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/security-managers",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/hooks/{hook_id}/deliveries",
     "triggersNotification": null
   },
@@ -1949,6 +1921,10 @@
   },
   {
     "url": "/orgs/{org}/credential-authorizations/{credential_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/security-managers/teams/{team_slug}",
     "triggersNotification": null
   },
   {
@@ -2468,6 +2444,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
     "triggersNotification": null
   },
@@ -2493,6 +2473,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/contents/{path}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pages/deployment",
     "triggersNotification": null
   },
   {
@@ -2561,6 +2545,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/deployments/{deployment_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
     "triggersNotification": null
   },
   {
@@ -2732,6 +2720,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses/{status_id}",
     "triggersNotification": null
   },
@@ -2865,6 +2857,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies",
     "triggersNotification": null
   },
   {
@@ -3033,6 +3029,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/comments/{comment_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
     "triggersNotification": null
   },
   {
