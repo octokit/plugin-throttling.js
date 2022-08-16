@@ -1152,7 +1152,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/consumed-licenses",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/permissions",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/license-sync-status",
     "triggersNotification": null
   },
   {
