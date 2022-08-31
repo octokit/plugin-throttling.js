@@ -1808,6 +1808,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/{security_product}/{enablement}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}",
     "triggersNotification": null
   },
@@ -3480,6 +3484,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/ssh_signing_keys",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/emails",
     "triggersNotification": null
   },
@@ -3501,6 +3509,10 @@
   },
   {
     "url": "/user/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/ssh_signing_keys/{ssh_signing_key_id}",
     "triggersNotification": null
   },
   {
@@ -3533,6 +3545,10 @@
   },
   {
     "url": "/user/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/ssh_signing_keys/{ssh_signing_key_id}",
     "triggersNotification": null
   },
   {
@@ -3605,6 +3621,14 @@
   },
   {
     "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/ssh_signing_keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/ssh_signing_keys",
     "triggersNotification": null
   },
   {
