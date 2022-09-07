@@ -1796,11 +1796,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/custom_roles",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/invitations",
     "triggersNotification": true
   },
   {
     "url": "/orgs/{org}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/custom_roles/{role_id}",
     "triggersNotification": null
   },
   {
@@ -1857,6 +1865,10 @@
   },
   {
     "url": "/orgs/{org}/failed_invitations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/fine_grained_permissions",
     "triggersNotification": null
   },
   {
@@ -1953,6 +1965,10 @@
   },
   {
     "url": "/orgs/{org}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/custom_roles/{role_id}",
     "triggersNotification": null
   },
   {
