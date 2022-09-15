@@ -852,6 +852,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/code-scanning/codeql/databases/{language}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/code-scanning/sarifs/{sarif_id}",
     "triggersNotification": null
   },
@@ -873,6 +877,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/instances",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/codeql/databases",
     "triggersNotification": null
   },
   {
