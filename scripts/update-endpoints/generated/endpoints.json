@@ -8,10 +8,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
@@ -169,10 +165,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "triggersNotification": null
   },
   {
@@ -400,10 +392,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/enterprises/{enterprise}/actions/oidc/customization/issuer",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/actions/permissions/selected-actions",
     "triggersNotification": null
   },
@@ -417,10 +405,6 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels",
-    "triggersNotification": null
-  },
-  {
-    "url": "/repos/{owner}/{repo}/actions/oidc/customization/sub",
     "triggersNotification": null
   },
   {
@@ -744,14 +728,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/enterprises/{enterprise}/audit-log",
-    "triggersNotification": null
-  },
-  {
-    "url": "/enterprises/{enterprise}/settings/billing/actions",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/settings/billing/actions",
     "triggersNotification": null
   },
@@ -768,19 +744,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/enterprises/{enterprise}/settings/billing/packages",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/settings/billing/packages",
     "triggersNotification": null
   },
   {
     "url": "/users/{username}/settings/billing/packages",
-    "triggersNotification": null
-  },
-  {
-    "url": "/enterprises/{enterprise}/settings/billing/shared-storage",
     "triggersNotification": null
   },
   {
@@ -908,11 +876,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/codespaces/{codespace_name}/machines",
     "triggersNotification": null
   },
   {
     "url": "/user/codespaces",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -940,6 +916,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
@@ -957,6 +937,14 @@
   },
   {
     "url": "/user/codespaces/{codespace_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/codespaces/secrets/public-key",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -992,6 +980,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/codespaces/secrets",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/codespaces/secrets",
     "triggersNotification": null
   },
@@ -1004,6 +996,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/codespaces/new",
     "triggersNotification": null
   },
@@ -1012,11 +1008,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/codespaces/machines",
     "triggersNotification": null
   },
   {
     "url": "/user/codespaces/secrets/{secret_name}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories",
     "triggersNotification": null
   },
   {
@@ -1056,6 +1060,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/dependabot/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/dependabot/secrets/public-key",
     "triggersNotification": null
   },
@@ -1069,6 +1077,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/dependabot/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/dependabot/alerts",
     "triggersNotification": null
   },
   {
@@ -1089,6 +1101,10 @@
   },
   {
     "url": "/orgs/{org}/dependabot/secrets/{secret_name}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/dependabot/alerts/{alert_number}",
     "triggersNotification": null
   },
   {
@@ -1128,19 +1144,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/enterprises/{enterprise}/actions/runners/{runner_id}",
     "triggersNotification": null
   },
   {
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -1156,27 +1164,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/enterprises/{enterprise}/audit-log",
-    "triggersNotification": null
-  },
-  {
-    "url": "/enterprises/{enterprise}/consumed-licenses",
-    "triggersNotification": null
-  },
-  {
     "url": "/enterprises/{enterprise}/actions/permissions",
-    "triggersNotification": null
-  },
-  {
-    "url": "/enterprises/{enterprise}/license-sync-status",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -1200,14 +1188,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/enterprises/{enterprise}/Groups",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Users",
-    "triggersNotification": null
-  },
-  {
     "url": "/enterprises/{enterprise}/actions/runners/downloads",
     "triggersNotification": null
   },
@@ -1225,14 +1205,6 @@
   },
   {
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Groups",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Users",
     "triggersNotification": null
   },
   {
@@ -1264,14 +1236,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
     "triggersNotification": null
   },
@@ -1281,14 +1245,6 @@
   },
   {
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -1768,14 +1724,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/actions/oidc/customization/sub",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/actions/oidc/customization/sub",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/security-managers/teams/{team_slug}",
     "triggersNotification": null
   },
@@ -1829,10 +1777,6 @@
   },
   {
     "url": "/orgs/{org}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/audit-log",
     "triggersNotification": null
   },
   {
@@ -1912,10 +1856,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/credential-authorizations",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/security-managers",
     "triggersNotification": null
   },
@@ -1949,10 +1889,6 @@
   },
   {
     "url": "/orgs/{org}/public_members/{username}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/credential-authorizations/{credential_id}",
     "triggersNotification": null
   },
   {
@@ -3112,30 +3048,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/organizations/{org}/Users",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/organizations/{org}/Users",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/scim/v2/organizations/{org}/Users/{scim_user_id}",
-    "triggersNotification": null
-  },
-  {
     "url": "/search/code",
     "triggersNotification": null
   },
@@ -3252,14 +3164,6 @@
     "triggersNotification": true
   },
   {
-    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
-    "triggersNotification": null
-  },
-  {
-    "url": "/teams/{team_id}/team-sync/group-mappings",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
     "triggersNotification": null
   },
@@ -3281,10 +3185,6 @@
   },
   {
     "url": "/teams/{team_id}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/external-group/{group_id}",
     "triggersNotification": null
   },
   {
@@ -3324,10 +3224,6 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/teams/{team_slug}/external-groups",
-    "triggersNotification": null
-  },
-  {
     "url": "/orgs/{org}/teams",
     "triggersNotification": null
   },
@@ -3356,27 +3252,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/orgs/{org}/external-groups",
-    "triggersNotification": null
-  },
-  {
     "url": "/user/teams",
-    "triggersNotification": null
-  },
-  {
-    "url": "/teams/{team_id}/team-sync/group-mappings",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/team-sync/groups",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/teams/{team_slug}/team-sync/group-mappings",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/teams/{team_slug}/external-groups",
     "triggersNotification": null
   },
   {
@@ -3437,10 +3313,6 @@
   },
   {
     "url": "/teams/{team_id}/repos/{owner}/{repo}",
-    "triggersNotification": null
-  },
-  {
-    "url": "/orgs/{org}/teams/{team_slug}/external-groups",
     "triggersNotification": null
   },
   {
