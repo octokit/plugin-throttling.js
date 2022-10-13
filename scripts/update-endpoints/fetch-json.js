@@ -11,7 +11,7 @@ const version = process.env.VERSION.replace(/^v/, "");
 
 const QUERY = `
   query($version: String) {
-    endpoints(version: $version) {
+    endpoints(version: $version, ghecCompatibilityMode: true) {
       url
       triggersNotification
     }
