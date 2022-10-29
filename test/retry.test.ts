@@ -2,8 +2,8 @@ import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit";
 import { Octokit } from "@octokit/core";
 import { throttling } from "../src";
-import express from "express";
 import { AddressInfo } from "net";
+import { createServer } from "http";
 
 describe("Retry", function () {
   describe("REST", function () {
@@ -119,21 +119,24 @@ describe("Retry", function () {
     });
 
     it("Should not leak retryCount between requests", async function () {
-      const app = express();
       let counter = 1;
 
-      app.get("/nope-nope-ok", (req, res) => {
+      const server = createServer((req, res) => {
         if (counter++ % 3 === 0) {
-          res.send({ message: "Success!" });
+          res
+            .writeHead(200, {"Content-Type": "application/json"})
+            .end(JSON.stringify({ message: "Success!" }));
         } else {
           res
-            .status(403)
-            .header("retry-after", "1")
-            .send({ message: "You have exceeded a secondary rate limit" });
+            .writeHead(403, {
+              "Content-Type": "application/json",
+              "retry-after": "1"
+            })
+            .end(JSON.stringify({ message: "You have exceeded a secondary rate limit" }));
         }
-      });
+      })
 
-      const server = app.listen();
+      server.listen(0);
       const { port } = server.address() as AddressInfo;
 
       const ThrottledOctokit = Octokit.plugin(throttling);
