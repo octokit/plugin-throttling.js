@@ -124,17 +124,21 @@ describe("Retry", function () {
       const server = createServer((req, res) => {
         if (counter++ % 3 === 0) {
           res
-            .writeHead(200, {"Content-Type": "application/json"})
+            .writeHead(200, { "Content-Type": "application/json" })
             .end(JSON.stringify({ message: "Success!" }));
         } else {
           res
             .writeHead(403, {
               "Content-Type": "application/json",
-              "retry-after": "1"
+              "retry-after": "1",
             })
-            .end(JSON.stringify({ message: "You have exceeded a secondary rate limit" }));
+            .end(
+              JSON.stringify({
+                message: "You have exceeded a secondary rate limit",
+              })
+            );
         }
-      })
+      });
 
       server.listen(0);
       const { port } = server.address() as AddressInfo;
