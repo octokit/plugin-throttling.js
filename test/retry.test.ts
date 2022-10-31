@@ -1,5 +1,9 @@
 import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit";
+import { Octokit } from "@octokit/core";
+import { throttling } from "../src";
+import { AddressInfo } from "net";
+import { createServer } from "http";
 
 describe("Retry", function () {
   describe("REST", function () {
@@ -112,6 +116,55 @@ describe("Retry", function () {
       const ms2 = octokit.__requestTimings[2] - octokit.__requestTimings[1];
       expect(ms2).toBeLessThan(120);
       expect(ms2).toBeGreaterThan(80);
+    });
+
+    it("Should not leak retryCount between requests", async function () {
+      let counter = 1;
+
+      const server = createServer((req, res) => {
+        if (counter++ % 3 === 0) {
+          res
+            .writeHead(200, { "Content-Type": "application/json" })
+            .end(JSON.stringify({ message: "Success!" }));
+        } else {
+          res
+            .writeHead(403, {
+              "Content-Type": "application/json",
+              "retry-after": "1",
+            })
+            .end(
+              JSON.stringify({
+                message: "You have exceeded a secondary rate limit",
+              })
+            );
+        }
+      });
+
+      server.listen(0);
+      const { port } = server.address() as AddressInfo;
+
+      const ThrottledOctokit = Octokit.plugin(throttling);
+      const octokit = new ThrottledOctokit({
+        baseUrl: `http://localhost:${port}`,
+        throttle: {
+          minimumSecondaryRateRetryAfter: 0,
+          retryAfterBaseValue: 50,
+          onRateLimit: () => true,
+          onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
+            if (retryCount < 5) {
+              return true;
+            }
+          },
+        },
+      });
+
+      try {
+        await octokit.request("GET /nope-nope-ok");
+        await octokit.request("GET /nope-nope-ok");
+        await octokit.request("GET /nope-nope-ok");
+      } finally {
+        server.close();
+      }
     });
 
     it("Should retry 'rate-limit' and succeed", async function () {
