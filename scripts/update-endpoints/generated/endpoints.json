@@ -16,6 +16,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables/{name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "triggersNotification": null
   },
@@ -28,6 +36,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repositories/{repository_id}/environments/{environment_name}/variables",
+    "triggersNotification": null
+  },
+  {
     "url": "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
     "triggersNotification": null
   },
@@ -37,6 +49,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/variables",
     "triggersNotification": null
   },
   {
@@ -53,6 +69,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/runners/remove-token",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/variables",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows",
     "triggersNotification": null
   },
   {
@@ -80,11 +104,27 @@
     "triggersNotification": null
   },
   {
+    "url": "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables/{name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
     "triggersNotification": null
   },
   {
@@ -184,6 +224,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/permissions/workflow",
     "triggersNotification": null
   },
@@ -216,6 +260,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables/{name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments",
     "triggersNotification": null
   },
@@ -228,7 +276,23 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{org}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{org}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}/timing",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
     "triggersNotification": null
   },
   {
@@ -280,6 +344,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repositories/{repository_id}/environments/{environment_name}/variables",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/jobs",
     "triggersNotification": null
   },
@@ -300,7 +368,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{org}/{repo}/actions/required_workflows",
     "triggersNotification": null
   },
   {
@@ -308,7 +384,19 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/variables",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/workflows",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}/runs",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows",
     "triggersNotification": null
   },
   {
@@ -324,7 +412,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables/{name}/repositories",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/permissions/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories",
     "triggersNotification": null
   },
   {
@@ -392,6 +488,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables/{name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
     "triggersNotification": null
   },
@@ -452,6 +556,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/actions/variables/{name}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/actions/permissions/repositories",
     "triggersNotification": null
   },
@@ -461,6 +573,22 @@
   },
   {
     "url": "/repos/{owner}/{repo}/actions/permissions/access",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
     "triggersNotification": null
   },
   {
@@ -589,6 +717,30 @@
   },
   {
     "url": "/user/starred/{owner}/{repo}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/announcement",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/announcement",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/announcement",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/announcement",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/announcement",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/announcement",
     "triggersNotification": null
   },
   {
@@ -908,7 +1060,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
   {
@@ -920,7 +1072,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -948,7 +1100,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -964,6 +1116,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/members/{username}/codespaces",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/codespaces/{codespace_name}/exports/{export_id}",
     "triggersNotification": null
   },
@@ -972,11 +1128,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/public-key",
+    "url": "/orgs/{org}/codespaces/secrets/public-key",
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -1012,7 +1168,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets",
+    "url": "/orgs/{org}/codespaces/secrets",
     "triggersNotification": null
   },
   {
@@ -1028,7 +1184,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}/repositories",
     "triggersNotification": null
   },
   {
@@ -1036,11 +1192,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/codespaces/{codespace_name}/publish",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/codespaces/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
   {
@@ -1048,11 +1208,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/codespaces/billing",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/codespaces/secrets/{secret_name}/repositories",
     "triggersNotification": null
   },
   {
-    "url": "/organizations/{org}/codespaces/secrets/{secret_name}/repositories",
+    "url": "/orgs/{org}/codespaces/secrets/{secret_name}/repositories",
     "triggersNotification": null
   },
   {
@@ -1109,6 +1273,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/dependabot/secrets/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/dependabot/alerts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/dependabot/alerts",
     "triggersNotification": null
   },
   {
@@ -1496,6 +1668,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/assignees/{assignee}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/issues",
     "triggersNotification": true
   },
@@ -1661,6 +1837,10 @@
   },
   {
     "url": "/meta",
+    "triggersNotification": null
+  },
+  {
+    "url": "/versions",
     "triggersNotification": null
   },
   {
@@ -1833,6 +2013,10 @@
   },
   {
     "url": "/orgs/{org}/audit-log",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/custom_roles/{role_id}",
     "triggersNotification": null
   },
   {
@@ -3168,6 +3352,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/code_security_and_analysis",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/secret-scanning/alerts",
     "triggersNotification": null
   },
@@ -3181,6 +3369,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}/locations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code_security_and_analysis",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/{security_product}/{enablement}",
     "triggersNotification": null
   },
   {
