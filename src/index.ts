@@ -83,7 +83,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   ) {
     throw new Error(`octokit/plugin-throttling error:
         You must pass the onSecondaryRateLimit and onRateLimit error handlers.
-        See https://octokit.github.io/rest.js/v19#throttling
+        See https://octokit.github.io/rest.js/#throttling
 
         const octokit = new Octokit({
           throttle: {
