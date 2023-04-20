@@ -376,6 +376,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/organization-secrets",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/organization-variables",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{org}/{repo}/actions/required_workflows",
     "triggersNotification": null
   },
@@ -828,6 +836,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/app/installation-requests",
+    "triggersNotification": null
+  },
+  {
     "url": "/app/installations",
     "triggersNotification": null
   },
@@ -1008,6 +1020,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/code-scanning/default-setup",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/code-scanning/sarifs/{sarif_id}",
     "triggersNotification": null
   },
@@ -1041,6 +1057,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/default-setup",
     "triggersNotification": null
   },
   {
@@ -1089,6 +1109,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/codespaces",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/codespaces/billing/selected_users",
     "triggersNotification": null
   },
   {
@@ -1212,6 +1236,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/codespaces/billing/selected_users",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/codespaces/secrets/{secret_name}/repositories",
     "triggersNotification": null
   },
@@ -1317,6 +1345,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/dependency-graph/compare/{basehead}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/dependency-graph/sbom",
     "triggersNotification": null
   },
   {
@@ -1984,6 +2016,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/custom-repository-roles",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/custom_roles",
     "triggersNotification": null
   },
@@ -1993,6 +2029,14 @@
   },
   {
     "url": "/orgs/{org}/hooks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/custom-repository-roles/{role_id}",
     "triggersNotification": null
   },
   {
@@ -2013,6 +2057,10 @@
   },
   {
     "url": "/orgs/{org}/audit-log",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/custom-repository-roles/{role_id}",
     "triggersNotification": null
   },
   {
@@ -2052,6 +2100,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/custom-repository-roles",
+    "triggersNotification": null
+  },
+  {
     "url": "/organizations/{organization_id}/custom_roles",
     "triggersNotification": null
   },
@@ -2088,11 +2140,31 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/personal-access-tokens/{pat_id}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/personal-access-token-requests/{pat_request_id}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/personal-access-token-requests",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/personal-access-tokens",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/invitations",
     "triggersNotification": null
   },
   {
     "url": "/orgs/{org}/public_members",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/repository-fine-grained-permissions",
     "triggersNotification": null
   },
   {
@@ -2144,6 +2216,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/organizations/{org}/personal-access-token-requests/{pat_request_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/personal-access-token-requests",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/memberships/{username}",
     "triggersNotification": null
   },
@@ -2160,11 +2240,23 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/custom-repository-roles/{role_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/custom_roles/{role_id}",
     "triggersNotification": null
   },
   {
     "url": "/user/memberships/orgs/{org}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/personal-access-tokens/{pat_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/personal-access-tokens",
     "triggersNotification": null
   },
   {
@@ -2241,6 +2333,18 @@
   },
   {
     "url": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/docker/conflicts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/docker/conflicts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/docker/conflicts",
     "triggersNotification": null
   },
   {
@@ -2696,6 +2800,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/rulesets",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/pages/deployment",
     "triggersNotification": null
   },
@@ -2706,6 +2814,10 @@
   {
     "url": "/repos/{owner}/{repo}/releases",
     "triggersNotification": true
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets",
+    "triggersNotification": null
   },
   {
     "url": "/repos/{owner}/{repo}/tags/protection",
@@ -2780,6 +2892,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/rulesets/{ruleset_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/pages",
     "triggersNotification": null
   },
@@ -2793,6 +2909,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/releases/assets/{asset_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets/{ruleset_id}",
     "triggersNotification": null
   },
   {
@@ -2888,6 +3008,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/rules/branches/{branch}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/traffic/clones",
     "triggersNotification": null
   },
@@ -2960,6 +3084,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/rulesets/{ruleset_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/rulesets",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/pages",
     "triggersNotification": null
   },
@@ -3001,6 +3133,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/releases/tags/{tag}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets/{ruleset_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets",
     "triggersNotification": null
   },
   {
@@ -3264,6 +3404,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/rulesets/{ruleset_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
     "triggersNotification": null
   },
@@ -3273,6 +3417,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/releases/assets/{asset_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets/{ruleset_id}",
     "triggersNotification": null
   },
   {
@@ -3381,6 +3529,22 @@
   },
   {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/security-advisories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/security-advisories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}",
     "triggersNotification": null
   },
   {
@@ -3672,6 +3836,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/social_accounts",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/blocks/{username}",
     "triggersNotification": null
   },
@@ -3729,6 +3897,10 @@
   },
   {
     "url": "/user/keys/{key_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/social_accounts",
     "triggersNotification": null
   },
   {
@@ -3841,6 +4013,14 @@
   },
   {
     "url": "/user/keys",
+    "triggersNotification": null
+  },
+  {
+    "url": "/user/social_accounts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/social_accounts",
     "triggersNotification": null
   },
   {
