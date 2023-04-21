@@ -2,12 +2,13 @@
 import BottleneckLight from "bottleneck/light";
 import { Octokit } from "@octokit/core";
 import { OctokitOptions } from "@octokit/core/dist-types/types.d";
-import { Groups } from "./types";
+import { Groups } from "./types/bottle-neck";
 import { VERSION } from "./version";
 
 import { wrapRequest } from "./wrap-request";
 import triggersNotificationPaths from "./generated/triggers-notification-paths";
 import { routeMatcher } from "./route-matcher";
+import Bottleneck from "bottleneck";
 
 // Workaround to allow tests to directly access the triggersNotification function.
 const regex = routeMatcher(triggersNotificationPaths);
@@ -15,8 +16,7 @@ const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
 
-// @ts-expect-error
-const createGroups = function (Bottleneck, common) {
+const createGroups = function (Bottleneck: Bottleneck | any, common: Object) {
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
     maxConcurrent: 10,
@@ -192,3 +192,5 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 }
 throttling.VERSION = VERSION;
 throttling.triggersNotification = triggersNotification;
+
+export default throttling;
