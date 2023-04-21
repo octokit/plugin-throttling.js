@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: pnpm install --lock
+      - run: pnpm install 
       - run: pnpm run test --ignore-scripts
   test:
     runs-on: ubuntu-latest
@@ -39,9 +39,8 @@ jobs:
           version: 7.27.1
       - uses: actions/setup-node@v3
         with:
-          cache: npm
           node-version: 16
-      - run: pnpm install --lock
-      - run: pnpm run test --ignore-scripts
+      - run: pnpm install 
+      - run: pnpm run test 
       - run: pnpm run validate:ts
     if: ${{ always() }}
