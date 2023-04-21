@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.27.1
       - name: Test with Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
@@ -33,6 +35,8 @@ jobs:
         if: ${{ needs.test_matrix.result != 'success' }}
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.27.1
       - uses: actions/setup-node@v3
         with:
           cache: npm
