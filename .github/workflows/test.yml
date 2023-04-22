@@ -23,7 +23,7 @@ jobs:
         with:
           cache: npm
           node-version: 16
-      - run: npm ci 
+      - run: npm ci
       - run: npm run test
   test:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
         with:
           cache: npm
           node-version: 16
-      - run: npm ci  
+      - run: npm ci
       - run: npm run lint
       - run: npm run validate:ts
     if: ${{ always() }}
