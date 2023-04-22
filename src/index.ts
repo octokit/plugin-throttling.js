@@ -192,5 +192,3 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 }
 throttling.VERSION = VERSION;
 throttling.triggersNotification = triggersNotification;
-
-export default throttling;
