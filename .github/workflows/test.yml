@@ -18,15 +18,13 @@ jobs:
           - 18
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7.27.1
       - name: Test with Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
+          cache: npm
           node-version: 16
-      - run: pnpm install 
-      - run: pnpm run test
+      - run: npm ci 
+      - run: npm run test
   test:
     runs-on: ubuntu-latest
     needs: test_matrix
@@ -34,13 +32,11 @@ jobs:
       - run: exit 1
         if: ${{ needs.test_matrix.result != 'success' }}
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7.27.1
       - uses: actions/setup-node@v3
         with:
+          cache: npm
           node-version: 16
-      - run: pnpm install 
-      - run: pnpm run test 
-      - run: pnpm run validate:ts
+      - run: npm ci  
+      - run: npm run lint
+      - run: npm run validate:ts
     if: ${{ always() }}
