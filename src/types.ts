@@ -1,12 +1,6 @@
 import { Octokit } from "@octokit/core";
 import Bottleneck from "bottleneck";
 
-declare module "@octokit/core/dist-types/types.d" {
-  interface OctokitOptions {
-    throttle?: ThrottlingOptions;
-  }
-}
-
 type LimitHandler = (
   retryAfter: number,
   options: object,
