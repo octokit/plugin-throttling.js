@@ -508,6 +508,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/deployment_protection_rule",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments",
     "triggersNotification": null
   },
@@ -2772,6 +2776,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
     "triggersNotification": null
   },
@@ -2928,6 +2936,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules/{protection_rule_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/lfs",
     "triggersNotification": null
   },
@@ -2977,6 +2989,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules",
     "triggersNotification": null
   },
   {
@@ -3053,6 +3069,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/stats/contributors",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules/{protection_rule_id}",
     "triggersNotification": null
   },
   {
@@ -3213,6 +3233,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/contributors",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules/apps",
     "triggersNotification": null
   },
   {
@@ -3529,6 +3553,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/security-advisories/reports",
     "triggersNotification": null
   },
   {
