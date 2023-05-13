@@ -2,7 +2,7 @@
 import BottleneckLight from "bottleneck/light";
 import { Octokit } from "@octokit/core";
 import { OctokitOptions } from "@octokit/core/dist-types/types.d";
-import { Groups } from "./types";
+import { Groups, ThrottlingOptions } from "./types";
 import { VERSION } from "./version";
 
 import { wrapRequest } from "./wrap-request";
@@ -192,3 +192,9 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 }
 throttling.VERSION = VERSION;
 throttling.triggersNotification = triggersNotification;
+
+declare module "@octokit/core/dist-types/types.d" {
+  interface OctokitOptions {
+    throttle?: ThrottlingOptions;
+  }
+}
