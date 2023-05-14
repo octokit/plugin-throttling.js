@@ -8,19 +8,7 @@ type LimitHandler = (
   retryCount: number
 ) => void;
 
-export type AbuseLimitHandler = {
-  /**
-   * @deprecated "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
-   */
-  onAbuseLimit: LimitHandler;
-  onSecondaryRateLimit?: never;
-};
-
 export type SecondaryLimitHandler = {
-  /**
-   * @deprecated "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
-   */
-  onAbuseLimit?: never;
   onSecondaryRateLimit: LimitHandler;
 };
 
@@ -38,8 +26,7 @@ export type ThrottlingOptionsBase = {
   onRateLimit: LimitHandler;
 };
 
-export type ThrottlingOptions = ThrottlingOptionsBase &
-  (AbuseLimitHandler | SecondaryLimitHandler);
+export type ThrottlingOptions = ThrottlingOptionsBase & SecondaryLimitHandler;
 
 export type Groups = {
   global?: Bottleneck.Group;

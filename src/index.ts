@@ -72,13 +72,8 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     octokitOptions.throttle
   );
 
-  const isUsingDeprecatedOnAbuseLimitHandler =
-    typeof state.onAbuseLimit === "function" && state.onAbuseLimit;
-
   if (
-    typeof (isUsingDeprecatedOnAbuseLimitHandler
-      ? state.onAbuseLimit
-      : state.onSecondaryRateLimit) !== "function" ||
+    typeof state.onSecondaryRateLimit !== "function" ||
     typeof state.onRateLimit !== "function"
   ) {
     throw new Error(`octokit/plugin-throttling error:
@@ -97,18 +92,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   const events = {};
   const emitter = new Bottleneck.Events(events);
   // @ts-expect-error
-  events.on(
-    "secondary-limit",
-    isUsingDeprecatedOnAbuseLimitHandler
-      ? function (...args: [number, OctokitOptions, Octokit]) {
-          octokit.log.warn(
-            "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
-          );
-          // @ts-expect-error
-          return state.onAbuseLimit(...args);
-        }
-      : state.onSecondaryRateLimit
-  );
+  events.on("secondary-limit", state.onSecondaryRateLimit);
   // @ts-expect-error
   events.on("rate-limit", state.onRateLimit);
   // @ts-expect-error
