@@ -63,7 +63,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     {
       clustering: connection != null,
       triggersNotification,
-      minimumSecondaryRateRetryAfter: 5,
+      fallbackSecondaryRateRetryAfter: 60,
       retryAfterBaseValue: 1000,
       retryLimiter: new Bottleneck(),
       id,
@@ -140,10 +140,9 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 
         // The Retry-After header can sometimes be blank when hitting a secondary rate limit,
         // but is always present after 2-3s, so make sure to set `retryAfter` to at least 5s by default.
-        const retryAfter = Math.max(
-          ~~error.response.headers["retry-after"],
-          state.minimumSecondaryRateRetryAfter
-        );
+        const retryAfter =
+          error.response.headers["retry-after"] ||
+          state.minimumSecondaryRateRetryAfter;
         const wantRetry = await emitter.trigger(
           "secondary-limit",
           retryAfter,

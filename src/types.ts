@@ -30,7 +30,7 @@ export type ThrottlingOptionsBase = {
   id?: string;
   timeout?: number;
   connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
-  minimumSecondaryRateRetryAfter?: number;
+  fallbackSecondaryRateRetryAfter?: number;
   retryAfterBaseValue?: number;
   write?: Bottleneck.Group;
   search?: Bottleneck.Group;
