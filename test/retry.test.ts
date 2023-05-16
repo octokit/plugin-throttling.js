@@ -11,7 +11,7 @@ describe("Retry", function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onSecondaryRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
@@ -57,7 +57,7 @@ describe("Retry", function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onSecondaryRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
@@ -147,7 +147,7 @@ describe("Retry", function () {
       const octokit = new ThrottledOctokit({
         baseUrl: `http://localhost:${port}`,
         throttle: {
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onRateLimit: () => true,
           onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
@@ -405,7 +405,7 @@ describe("Retry", function () {
             return true;
           },
           onRateLimit: () => 1,
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
         },
       });
