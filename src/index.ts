@@ -59,6 +59,18 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     createGroups(Bottleneck, common);
   }
 
+  if (
+    octokitOptions.throttle &&
+    octokitOptions.throttle.minimalSecondaryRateRetryAfter
+  ) {
+    octokit.log.warn(
+      "[@octokit/plugin-throttling] `options.throttle.minimalSecondaryRateRetryAfter` is deprecated, please use `options.throttle.fallbackSecondaryRateRetryAfter` instead"
+    );
+    octokitOptions.throttle.fallbackSecondaryRateRetryAfter =
+      octokitOptions.throttle.minimalSecondaryRateRetryAfter;
+    delete octokitOptions.throttle.minimalSecondaryRateRetryAfter;
+  }
+
   const state = Object.assign(
     {
       clustering: connection != null,
