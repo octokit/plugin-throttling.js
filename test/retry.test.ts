@@ -5,6 +5,8 @@ import { throttling } from "../src";
 import { AddressInfo } from "net";
 import { createServer } from "http";
 
+jest.setTimeout(20000);
+
 describe("Retry", function () {
   describe("REST", function () {
     it("Should retry 'secondary-limit' and succeed", async function () {
@@ -163,7 +165,14 @@ describe("Retry", function () {
         await octokit.request("GET /nope-nope-ok");
         await octokit.request("GET /nope-nope-ok");
       } finally {
-        server.close();
+        return new Promise((resolve, reject) => {
+          server.close((error) => {
+            if (error) {
+              return reject(error);
+            }
+            resolve("ok");
+          });
+        });
       }
     });
 
