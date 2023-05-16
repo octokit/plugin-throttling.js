@@ -236,7 +236,7 @@ describe("Events", function () {
         },
       });
 
-      jest.spyOn(octokit.log, "warn");
+      jest.spyOn(octokit.log, "warn").mockImplementation(() => {});
 
       const t0 = Date.now();
 
