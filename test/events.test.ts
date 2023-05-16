@@ -124,13 +124,13 @@ describe("Events", function () {
         expect(eventCount).toEqual(1);
       });
     });
-    describe("with 'onAbuseLimit'", function () {
+    describe("with 'onSecondaryRateLimit'", function () {
       it("Should detect SecondaryRate limit and broadcast event", async function () {
         let eventCount = 0;
 
         const octokit = new TestOctokit({
           throttle: {
-            onAbuseLimit: (retryAfter, options, octokitFromOptions) => {
+            onSecondaryRateLimit: (retryAfter, options, octokitFromOptions) => {
               expect(octokit).toBe(octokitFromOptions);
               expect(retryAfter).toEqual(60);
               expect(options).toMatchObject({

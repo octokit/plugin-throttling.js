@@ -31,7 +31,7 @@ export type ThrottlingOptionsBase = {
   timeout?: number;
   connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
   /**
-   * @deprecated use `fallbackSecondaryRateRetryAfter` instead.
+   * @deprecated use `fallbackSecondaryRateRetryAfter`
    */
   minimalSecondaryRateRetryAfter?: number;
   fallbackSecondaryRateRetryAfter?: number;
