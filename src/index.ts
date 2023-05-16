@@ -142,7 +142,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         // but is always present after 2-3s, so make sure to set `retryAfter` to at least 5s by default.
         const retryAfter =
           error.response.headers["retry-after"] ||
-          state.minimumSecondaryRateRetryAfter;
+          state.fallbackSecondaryRateRetryAfter;
         const wantRetry = await emitter.trigger(
           "secondary-limit",
           retryAfter,
