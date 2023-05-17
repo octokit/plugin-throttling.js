@@ -38,8 +38,11 @@ export type ThrottlingOptionsBase = {
   onRateLimit: LimitHandler;
 };
 
-export type ThrottlingOptions = ThrottlingOptionsBase &
-  (AbuseLimitHandler | SecondaryLimitHandler);
+export type ThrottlingOptions =
+  | (ThrottlingOptionsBase & (AbuseLimitHandler | SecondaryLimitHandler))
+  | (Partial<ThrottlingOptionsBase> & { enabled: false } & Partial<
+        AbuseLimitHandler | SecondaryLimitHandler
+      >);
 
 export type Groups = {
   global?: Bottleneck.Group;
