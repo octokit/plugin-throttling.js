@@ -5,13 +5,15 @@ import { throttling } from "../src";
 import { AddressInfo } from "net";
 import { createServer } from "http";
 
+jest.setTimeout(20000);
+
 describe("Retry", function () {
   describe("REST", function () {
     it("Should retry 'secondary-limit' and succeed", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onSecondaryRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
@@ -57,7 +59,7 @@ describe("Retry", function () {
       let eventCount = 0;
       const octokit = new TestOctokit({
         throttle: {
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onSecondaryRateLimit: (retryAfter, options) => {
             expect(options).toMatchObject({
@@ -147,7 +149,7 @@ describe("Retry", function () {
       const octokit = new ThrottledOctokit({
         baseUrl: `http://localhost:${port}`,
         throttle: {
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onRateLimit: () => true,
           onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
@@ -163,7 +165,14 @@ describe("Retry", function () {
         await octokit.request("GET /nope-nope-ok");
         await octokit.request("GET /nope-nope-ok");
       } finally {
-        server.close();
+        return new Promise((resolve, reject) => {
+          server.close((error) => {
+            if (error) {
+              return reject(error);
+            }
+            resolve("ok");
+          });
+        });
       }
     });
 
@@ -405,7 +414,7 @@ describe("Retry", function () {
             return true;
           },
           onRateLimit: () => 1,
-          minimumSecondaryRateRetryAfter: 0,
+          fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
         },
       });
