@@ -3,4 +3,6 @@ import { throttling } from "../src";
 
 const TestOctokit = Octokit.plugin(throttling);
 
-describe.skip("deprecations", () => {});
+describe.skip("deprecations", () => {
+  it("No deprecations", () => {});
+});
