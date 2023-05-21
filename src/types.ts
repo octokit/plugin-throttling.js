@@ -32,9 +32,9 @@ export type ThrottlingOptionsBase = {
 
 export type ThrottlingOptions =
   | (ThrottlingOptionsBase & SecondaryLimitHandler)
-  | (Partial<
-      ThrottlingOptionsBase & SecondaryLimitHandler
-    > & { enabled: false });
+  | (Partial<ThrottlingOptionsBase & SecondaryLimitHandler> & {
+      enabled: false;
+    });
 
 export type Groups = {
   global?: Bottleneck.Group;
