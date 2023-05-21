@@ -59,11 +59,34 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     createGroups(Bottleneck, common);
   }
 
+  if (
+    octokitOptions.throttle &&
+    octokitOptions.throttle.minimalSecondaryRateRetryAfter
+  ) {
+    octokit.log.warn(
+      "[@octokit/plugin-throttling] `options.throttle.minimalSecondaryRateRetryAfter` is deprecated, please use `options.throttle.fallbackSecondaryRateRetryAfter` instead"
+    );
+    octokitOptions.throttle.fallbackSecondaryRateRetryAfter =
+      octokitOptions.throttle.minimalSecondaryRateRetryAfter;
+    delete octokitOptions.throttle.minimalSecondaryRateRetryAfter;
+  }
+
+  if (octokitOptions.throttle && octokitOptions.throttle.onAbuseLimit) {
+    octokit.log.warn(
+      "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
+    );
+    // @ts-ignore types don't allow for both properties to be set
+    octokitOptions.throttle.onSecondaryRateLimit =
+      octokitOptions.throttle.onAbuseLimit;
+    // @ts-ignore
+    delete octokitOptions.throttle.onAbuseLimit;
+  }
+
   const state = Object.assign(
     {
       clustering: connection != null,
       triggersNotification,
-      minimumSecondaryRateRetryAfter: 5,
+      fallbackSecondaryRateRetryAfter: 60,
       retryAfterBaseValue: 1000,
       retryLimiter: new Bottleneck(),
       id,
@@ -124,10 +147,9 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 
         // The Retry-After header can sometimes be blank when hitting a secondary rate limit,
         // but is always present after 2-3s, so make sure to set `retryAfter` to at least 5s by default.
-        const retryAfter = Math.max(
-          ~~error.response.headers["retry-after"],
-          state.minimumSecondaryRateRetryAfter
-        );
+        const retryAfter =
+          Number(error.response.headers["retry-after"]) ||
+          state.fallbackSecondaryRateRetryAfter;
         const wantRetry = await emitter.trigger(
           "secondary-limit",
           retryAfter,

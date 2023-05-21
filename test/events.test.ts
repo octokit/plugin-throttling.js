@@ -80,56 +80,12 @@ describe("Events", function () {
         expect(eventCount).toEqual(1);
       });
 
-      it("Should ensure retryAfter is a minimum of 5s", async function () {
+      it("Should broadcast retryAfter of 60s even when the header is missing", async function () {
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
             onSecondaryRateLimit: (retryAfter, options) => {
-              expect(retryAfter).toEqual(5);
-              expect(options).toMatchObject({
-                method: "GET",
-                url: "/route2",
-                request: { retryCount: 0 },
-              });
-              eventCount++;
-            },
-            onRateLimit: () => 1,
-          },
-        });
-
-        await octokit.request("GET /route1", {
-          request: {
-            responses: [{ status: 201, headers: {}, data: {} }],
-          },
-        });
-        try {
-          await octokit.request("GET /route2", {
-            request: {
-              responses: [
-                {
-                  status: 403,
-                  headers: { "retry-after": "2" },
-                  data: {
-                    message: "You have exceeded a secondary rate limit",
-                  },
-                },
-              ],
-            },
-          });
-          throw new Error("Should not reach this point");
-        } catch (error: any) {
-          expect(error.status).toEqual(403);
-        }
-
-        expect(eventCount).toEqual(1);
-      });
-
-      it("Should broadcast retryAfter of 5s even when the header is missing", async function () {
-        let eventCount = 0;
-        const octokit = new TestOctokit({
-          throttle: {
-            onSecondaryRateLimit: (retryAfter, options) => {
-              expect(retryAfter).toEqual(5);
+              expect(retryAfter).toEqual(60);
               expect(options).toMatchObject({
                 method: "GET",
                 url: "/route2",
@@ -225,15 +181,15 @@ describe("Events", function () {
       const octokit = new TestOctokit({
         throttle: {
           onRateLimit: () => {
-            throw new Error("Should not reach this point");
+            throw new Error("Error in onRateLimit handler");
           },
           onSecondaryRateLimit: () => {
-            throw new Error("Should not reach this point");
+            throw new Error("Error in onSecondaryRateLimit handler");
           },
         },
       });
 
-      jest.spyOn(octokit.log, "warn");
+      jest.spyOn(octokit.log, "warn").mockImplementation(() => {});
 
       const t0 = Date.now();
 
@@ -262,7 +218,7 @@ describe("Events", function () {
         expect(error.status).toEqual(403);
         expect(octokit.log.warn).toHaveBeenCalledWith(
           "Error in throttling-plugin limit handler",
-          new Error("Should not reach this point")
+          new Error("Error in onRateLimit handler")
         );
       }
     });

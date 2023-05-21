@@ -18,7 +18,11 @@ export type ThrottlingOptionsBase = {
   id?: string;
   timeout?: number;
   connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
-  minimumSecondaryRateRetryAfter?: number;
+  /**
+   * @deprecated use `fallbackSecondaryRateRetryAfter`
+   */
+  minimalSecondaryRateRetryAfter?: number;
+  fallbackSecondaryRateRetryAfter?: number;
   retryAfterBaseValue?: number;
   write?: Bottleneck.Group;
   search?: Bottleneck.Group;
@@ -26,7 +30,11 @@ export type ThrottlingOptionsBase = {
   onRateLimit: LimitHandler;
 };
 
-export type ThrottlingOptions = ThrottlingOptionsBase & SecondaryLimitHandler;
+export type ThrottlingOptions =
+  | (ThrottlingOptionsBase & SecondaryLimitHandler)
+  | (Partial<
+      ThrottlingOptionsBase & SecondaryLimitHandler
+    > & { enabled: false });
 
 export type Groups = {
   global?: Bottleneck.Group;
