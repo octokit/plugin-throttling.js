@@ -71,17 +71,6 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     delete octokitOptions.throttle.minimalSecondaryRateRetryAfter;
   }
 
-  if (octokitOptions.throttle && octokitOptions.throttle.onAbuseLimit) {
-    octokit.log.warn(
-      "[@octokit/plugin-throttling] `onAbuseLimit()` is deprecated and will be removed in a future release of `@octokit/plugin-throttling`, please use the `onSecondaryRateLimit` handler instead"
-    );
-    // @ts-ignore types don't allow for both properties to be set
-    octokitOptions.throttle.onSecondaryRateLimit =
-      octokitOptions.throttle.onAbuseLimit;
-    // @ts-ignore
-    delete octokitOptions.throttle.onAbuseLimit;
-  }
-
   const state = Object.assign(
     {
       clustering: connection != null,
