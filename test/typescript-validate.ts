@@ -19,7 +19,6 @@ throttling(octokit, {
 throttling(octokit, {
   // @ts-expect-error
   throttle: {
-    enabled: true,
     onSecondaryRateLimit: () => {},
   },
 });
@@ -28,7 +27,6 @@ throttling(octokit, {
 throttling(octokit, {
   // @ts-expect-error
   throttle: {
-    enabled: true,
     onRateLimit: () => {},
   },
 });
