@@ -175,7 +175,7 @@ connection.on("error", (err) => console.error(err));
         <code>options.retryAfterBaseValue</code>
       </th>
       <td>
-        <code>Number<code>
+        <code>Number</code>
       </td>
       <td>
         Number of milliseconds that will be used to multiply the time to wait based on `retry-after` or `x-ratelimit-reset` headers. Defaults to <code>1000</code>
@@ -186,7 +186,7 @@ connection.on("error", (err) => console.error(err));
         <code>options.fallbackSecondaryRateRetryAfter</code>
       </th>
       <td>
-        <code>Number<code>
+        <code>Number</code>
       </td>
       <td>
         Number of seconds to wait until retrying a request in case a secondary rate limit is hit and no <code>retry-after</code> header was present in the response. Defaults to <code>60</code>
@@ -197,7 +197,7 @@ connection.on("error", (err) => console.error(err));
         <code>options.connection</code>
       </th>
       <td>
-        <code>Bottleneck.RedisConnection<code>
+        <code>Bottleneck.RedisConnection</code>
       </td>
       <td>
         A Bottleneck connection instance. See <a href="#clustering">Clustering</a> above.
@@ -208,7 +208,7 @@ connection.on("error", (err) => console.error(err));
         <code>options.id</code>
       </th>
       <td>
-        <code>string<code>
+        <code>string</code>
       </td>
       <td>
         A "throttling ID". All octokit instances with the same ID using the same Redis server will share the throttling. See <a href="#clustering">Clustering</a> above. Defaults to <code>no-id</code>.
@@ -219,7 +219,7 @@ connection.on("error", (err) => console.error(err));
         <code>options.Bottleneck</code>
       </th>
       <td>
-        <code>Bottleneck<code>
+        <code>Bottleneck</code>
       </td>
       <td>
         Bottleneck constructor. See <a href="#clustering">Clustering</a> above. Defaults to `bottleneck/light`.
