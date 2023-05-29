@@ -92,9 +92,29 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   const events = {};
   const emitter = new Bottleneck.Events(events);
   // @ts-expect-error
-  events.on("secondary-limit", state.onSecondaryRateLimit);
+  events.on("secondary-limit", async (...args) => {
+    try {
+      // @ts-expect-error
+      return await state.onSecondaryRateLimit(...args);
+    } catch (error) {
+      // avoid "Maximum call stack size exceeded" error
+      setTimeout(() => {
+        throw error;
+      });
+    }
+  });
   // @ts-expect-error
-  events.on("rate-limit", state.onRateLimit);
+  events.on("rate-limit", async (...args) => {
+    try {
+      // @ts-expect-error
+      return await state.onRateLimit(...args);
+    } catch (error) {
+      // avoid "Maximum call stack size exceeded" error
+      setTimeout(() => {
+        throw error;
+      });
+    }
+  });
   // @ts-expect-error
   events.on("error", (e) =>
     octokit.log.warn("Error in throttling-plugin limit handler", e)
