@@ -153,6 +153,81 @@ const connection = new Bottleneck.IORedisConnection({ client });
 connection.on("error", (err) => console.error(err));
 ```
 
+## Options
+
+<table>
+  <thead align=left>
+    <tr>
+      <th>
+        name
+      </th>
+      <th>
+        type
+      </th>
+      <th width=100%>
+        description
+      </th>
+    </tr>
+  </thead>
+  <tbody align=left valign=top>
+    <tr>
+      <th>
+        <code>options.retryAfterBaseValue</code>
+      </th>
+      <td>
+        <code>Number</code>
+      </td>
+      <td>
+        Number of milliseconds that will be used to multiply the time to wait based on `retry-after` or `x-ratelimit-reset` headers. Defaults to <code>1000</code>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>options.fallbackSecondaryRateRetryAfter</code>
+      </th>
+      <td>
+        <code>Number</code>
+      </td>
+      <td>
+        Number of seconds to wait until retrying a request in case a secondary rate limit is hit and no <code>retry-after</code> header was present in the response. Defaults to <code>60</code>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>options.connection</code>
+      </th>
+      <td>
+        <code>Bottleneck.RedisConnection</code>
+      </td>
+      <td>
+        A Bottleneck connection instance. See <a href="#clustering">Clustering</a> above.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>options.id</code>
+      </th>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        A "throttling ID". All octokit instances with the same ID using the same Redis server will share the throttling. See <a href="#clustering">Clustering</a> above. Defaults to <code>no-id</code>.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>options.Bottleneck</code>
+      </th>
+      <td>
+        <code>Bottleneck</code>
+      </td>
+      <td>
+        Bottleneck constructor. See <a href="#clustering">Clustering</a> above. Defaults to `bottleneck/light`.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## LICENSE
 
 [MIT](LICENSE)
