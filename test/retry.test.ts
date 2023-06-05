@@ -123,7 +123,7 @@ describe("Retry", function () {
     it("Should not leak retryCount between requests", async function () {
       let counter = 1;
 
-      const server = createServer((req, res) => {
+      const server = createServer((_, res) => {
         if (counter++ % 3 === 0) {
           res
             .writeHead(200, { "Content-Type": "application/json" })
@@ -152,7 +152,7 @@ describe("Retry", function () {
           fallbackSecondaryRateRetryAfter: 0,
           retryAfterBaseValue: 50,
           onRateLimit: () => true,
-          onSecondaryRateLimit: (retryAfter, options, octokit, retryCount) => {
+          onSecondaryRateLimit: (retryCount) => {
             if (retryCount < 5) {
               return true;
             }
