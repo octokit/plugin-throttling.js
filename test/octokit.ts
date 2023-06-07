@@ -8,7 +8,7 @@ function testPlugin(octokit: Octokit) {
   const __requestLog: string[] = [];
   const __requestTimings: number[] = [];
 
-  octokit.hook.wrap("request", async (request, options) => {
+  octokit.hook.wrap("request", async (_, options) => {
     __requestLog.push(`START ${options.method} ${options.url}`);
     __requestTimings.push(Date.now() - t0);
     await new Promise((resolve) => setTimeout(resolve, 0));
