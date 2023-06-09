@@ -180,6 +180,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/actions/runners/generate-jitconfig",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runners/generate-jitconfig",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/actions/runners/generate-jitconfig",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/caches",
     "triggersNotification": null
   },
