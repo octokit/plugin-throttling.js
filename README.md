@@ -15,12 +15,12 @@ Implements all [recommended best practices](https://docs.github.com/en/rest/guid
 Browsers
 </th><td width=100%>
 
-Load `@octokit/plugin-throttling` and [`@octokit/core`](https://github.com/octokit/core.js) (or core-compatible module) directly from [cdn.skypack.dev](https://cdn.skypack.dev)
+Load `@octokit/plugin-throttling` and [`@octokit/core`](https://github.com/octokit/core.js) (or core-compatible module) directly from [esm.sh](https://esm.sh)
 
 ```html
 <script type="module">
-  import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
-  import { throttling } from "https://cdn.skypack.dev/@octokit/plugin-throttling";
+  import { Octokit } from "https://esm.sh/@octokit/core";
+  import { throttling } from "https://esm.sh/@octokit/plugin-throttling";
 </script>
 ```
 
