@@ -54,7 +54,7 @@ const octokit = new MyOctokit({
   throttle: {
     onRateLimit: (retryAfter, options, octokit, retryCount) => {
       octokit.log.warn(
-        `Request quota exhausted for request ${options.method} ${options.url}`
+        `Request quota exhausted for request ${options.method} ${options.url}`,
       );
 
       if (retryCount < 1) {
@@ -66,7 +66,7 @@ const octokit = new MyOctokit({
     onSecondaryRateLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
       octokit.log.warn(
-        `SecondaryRateLimit detected for request ${options.method} ${options.url}`
+        `SecondaryRateLimit detected for request ${options.method} ${options.url}`,
       );
     },
   },
@@ -74,7 +74,7 @@ const octokit = new MyOctokit({
 
 async function createIssueOnAllRepos(org) {
   const repos = await octokit.paginate(
-    octokit.repos.listForOrg.endpoint({ org })
+    octokit.repos.listForOrg.endpoint({ org }),
   );
   return Promise.all(
     repos.map(({ name }) =>
@@ -82,8 +82,8 @@ async function createIssueOnAllRepos(org) {
         owner,
         repo: name,
         title: "Hello, world!",
-      })
-    )
+      }),
+    ),
   );
 }
 ```

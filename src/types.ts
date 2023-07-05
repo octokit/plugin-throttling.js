@@ -5,7 +5,7 @@ type LimitHandler = (
   retryAfter: number,
   options: object,
   octokit: Octokit,
-  retryCount: number
+  retryCount: number,
 ) => void;
 
 export type SecondaryLimitHandler = {
