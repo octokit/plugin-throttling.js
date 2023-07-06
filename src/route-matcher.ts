@@ -9,7 +9,7 @@ export function routeMatcher(paths: string[]) {
     path
       .split("/")
       .map((c) => (c.startsWith("{") ? "(?:.+?)" : c))
-      .join("/")
+      .join("/"),
   );
   // 'regexes' would contain:
   /* [

@@ -53,28 +53,28 @@ describe("General", function () {
         new TestOctokit({
           // @ts-expect-error
           throttle: { onSecondaryRateLimit: 5, onRateLimit: 5 },
-        })
+        }),
     ).toThrow(message);
     expect(
       () =>
         new TestOctokit({
           // @ts-expect-error
           throttle: { onSecondaryRateLimit: 5, onRateLimit: () => 1 },
-        })
+        }),
     ).toThrow(message);
     expect(
       // @ts-expect-error
-      () => new TestOctokit({ throttle: { onSecondaryRateLimit: () => 1 } })
+      () => new TestOctokit({ throttle: { onSecondaryRateLimit: () => 1 } }),
     ).toThrow(message);
     expect(
       // @ts-expect-error
-      () => new TestOctokit({ throttle: { onRateLimit: () => 1 } })
+      () => new TestOctokit({ throttle: { onRateLimit: () => 1 } }),
     ).toThrow(message);
     expect(
       () =>
         new TestOctokit({
           throttle: { onSecondaryRateLimit: () => 1, onRateLimit: () => 1 },
-        })
+        }),
     ).not.toThrow();
   });
 });
@@ -156,10 +156,10 @@ describe("Github API best practices", function () {
       "END POST /graphql",
     ]);
     expect(
-      octokit.__requestTimings[4] - octokit.__requestTimings[0]
+      octokit.__requestTimings[4] - octokit.__requestTimings[0],
     ).toBeLessThan(70);
     expect(
-      octokit.__requestTimings[6] - octokit.__requestTimings[4]
+      octokit.__requestTimings[6] - octokit.__requestTimings[4],
     ).toBeLessThan(70);
   });
 
@@ -190,7 +190,7 @@ describe("Github API best practices", function () {
         request: {
           responses: [{ status: 302, headers: {}, data: {} }],
         },
-      }
+      },
     );
 
     await Promise.all([req1, req2, req3]);
@@ -203,40 +203,40 @@ describe("Github API best practices", function () {
       "END POST /repos/{owner}/{repo}/commits/{sha}/comments",
     ]);
     expect(
-      octokit.__requestTimings[5] - octokit.__requestTimings[0]
+      octokit.__requestTimings[5] - octokit.__requestTimings[0],
     ).toBeLessThan(120);
   });
 
   it("Should match custom routes when checking notification triggers", function () {
     expect(throttling.triggersNotification("/abc/def")).toEqual(false);
     expect(throttling.triggersNotification("/orgs/abc/invitation")).toEqual(
-      false
+      false,
     );
     expect(throttling.triggersNotification("/repos/abc/releases")).toEqual(
-      false
+      false,
     );
     expect(throttling.triggersNotification("/repos/abc/def/pulls/5")).toEqual(
-      false
+      false,
     );
 
     expect(throttling.triggersNotification("/repos/abc/def/pulls")).toEqual(
-      true
+      true,
     );
     expect(
-      throttling.triggersNotification("/repos/abc/def/pulls/5/comments")
+      throttling.triggersNotification("/repos/abc/def/pulls/5/comments"),
     ).toEqual(true);
     expect(throttling.triggersNotification("/repos/foo/bar/issues")).toEqual(
-      true
+      true,
     );
 
     expect(
-      throttling.triggersNotification("/repos/{owner}/{repo}/pulls")
+      throttling.triggersNotification("/repos/{owner}/{repo}/pulls"),
     ).toEqual(true);
     expect(
-      throttling.triggersNotification("/repos/{owner}/{repo}/pulls/5/comments")
+      throttling.triggersNotification("/repos/{owner}/{repo}/pulls/5/comments"),
     ).toEqual(true);
     expect(
-      throttling.triggersNotification("/repos/{foo}/{bar}/issues")
+      throttling.triggersNotification("/repos/{foo}/{bar}/issues"),
     ).toEqual(true);
   });
 
@@ -265,7 +265,7 @@ describe("Github API best practices", function () {
         request: {
           responses: [{ status: 200, headers: {}, data: {} }],
         },
-      }
+      },
     );
     const req4 = octokit.request(
       "GET https://api.github.com/search/route?page=3",
@@ -273,7 +273,7 @@ describe("Github API best practices", function () {
         request: {
           responses: [{ status: 200, headers: {}, data: {} }],
         },
-      }
+      },
     );
 
     await Promise.all([req1, req2, req3, req4]);
@@ -358,22 +358,22 @@ describe("Github API best practices", function () {
     ]);
 
     expect(
-      octokit.__requestTimings[2] - octokit.__requestTimings[0]
+      octokit.__requestTimings[2] - octokit.__requestTimings[0],
     ).toBeLessThan(20);
     expect(
-      octokit.__requestTimings[4] - octokit.__requestTimings[2]
+      octokit.__requestTimings[4] - octokit.__requestTimings[2],
     ).toBeLessThan(20);
     expect(
-      octokit.__requestTimings[6] - octokit.__requestTimings[4]
+      octokit.__requestTimings[6] - octokit.__requestTimings[4],
     ).toBeLessThan(70);
     expect(
-      octokit.__requestTimings[8] - octokit.__requestTimings[6]
+      octokit.__requestTimings[8] - octokit.__requestTimings[6],
     ).toBeLessThan(120);
     expect(
-      octokit.__requestTimings[10] - octokit.__requestTimings[8]
+      octokit.__requestTimings[10] - octokit.__requestTimings[8],
     ).toBeLessThan(170);
     expect(
-      octokit.__requestTimings[12] - octokit.__requestTimings[10]
+      octokit.__requestTimings[12] - octokit.__requestTimings[10],
     ).toBeLessThan(30);
   });
 });

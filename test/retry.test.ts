@@ -137,7 +137,7 @@ describe("Retry", function () {
             .end(
               JSON.stringify({
                 message: "You have exceeded a secondary rate limit",
-              })
+              }),
             );
         }
       });
@@ -219,7 +219,7 @@ describe("Retry", function () {
         "END GET /route",
       ]);
       expect(
-        octokit.__requestTimings[1] - octokit.__requestTimings[0]
+        octokit.__requestTimings[1] - octokit.__requestTimings[0],
       ).toBeLessThan(20);
     });
   });

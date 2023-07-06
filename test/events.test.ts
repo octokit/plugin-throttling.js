@@ -218,7 +218,7 @@ describe("Events", function () {
         expect(error.status).toEqual(403);
         expect(octokit.log.warn).toHaveBeenCalledWith(
           "Error in throttling-plugin limit handler",
-          new Error("Error in onRateLimit handler")
+          new Error("Error in onRateLimit handler"),
         );
       }
     });

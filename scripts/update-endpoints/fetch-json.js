@@ -29,6 +29,6 @@ async function main() {
 
   writeFileSync(
     path.resolve(__dirname, "generated", "endpoints.json"),
-    JSON.stringify(endpoints, null, 2) + "\n"
+    JSON.stringify(endpoints, null, 2) + "\n",
   );
 }

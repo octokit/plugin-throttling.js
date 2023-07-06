@@ -69,7 +69,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
       id,
       ...groups,
     },
-    octokitOptions.throttle
+    octokitOptions.throttle,
   );
 
   if (
@@ -97,7 +97,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   events.on("rate-limit", state.onRateLimit);
   // @ts-expect-error
   events.on("error", (e) =>
-    octokit.log.warn("Error in throttling-plugin limit handler", e)
+    octokit.log.warn("Error in throttling-plugin limit handler", e),
   );
 
   // @ts-expect-error
@@ -132,7 +132,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           retryAfter,
           options,
           octokit,
-          retryCount
+          retryCount,
         );
         return { wantRetry, retryAfter };
       }
@@ -145,18 +145,18 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         // https://docs.github.com/en/graphql/overview/resource-limitations#rate-limit (GraphQL)
 
         const rateLimitReset = new Date(
-          ~~error.response.headers["x-ratelimit-reset"] * 1000
+          ~~error.response.headers["x-ratelimit-reset"] * 1000,
         ).getTime();
         const retryAfter = Math.max(
           Math.ceil((rateLimitReset - Date.now()) / 1000),
-          0
+          0,
         );
         const wantRetry = await emitter.trigger(
           "rate-limit",
           retryAfter,
           options,
           octokit,
-          retryCount
+          retryCount,
         );
         return { wantRetry, retryAfter };
       }

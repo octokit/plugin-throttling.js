@@ -22,5 +22,5 @@ writeFileSync(
   "./src/generated/triggers-notification-paths.ts",
   prettier.format(`export default ` + JSON.stringify(uniquePaths), {
     parser: "typescript",
-  })
+  }),
 );
