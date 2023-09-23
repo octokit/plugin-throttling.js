@@ -18,9 +18,12 @@ for (const endpoint of ENDPOINTS) {
 }
 
 const uniquePaths = [...new Set(paths.sort())];
-writeFileSync(
-  "./src/generated/triggers-notification-paths.ts",
-  prettier.format(`export default ` + JSON.stringify(uniquePaths), {
-    parser: "typescript",
-  }),
-);
+async function main() {
+  writeFileSync(
+    "./src/generated/triggers-notification-paths.ts",
+    await prettier.format(`export default ` + JSON.stringify(uniquePaths), {
+      parser: "typescript",
+    }),
+  );
+}
+main();
