@@ -41,5 +41,7 @@ const options: ThrottlingOptions = {
 };
 
 options.enabled = false;
+options.onRateLimit(10, {}, {} as Octokit, 0);
+options.onSecondaryRateLimit(10, {}, {} as Octokit, 0);
 
 export const TestOctokit = Octokit.plugin(testPlugin, throttling);
