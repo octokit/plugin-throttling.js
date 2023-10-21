@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/core";
 import { RequestError } from "@octokit/request-error";
-import { throttling, ThrottlingOptions } from "../src";
+import { throttling } from "../src";
 
 function testPlugin(octokit: Octokit) {
   const t0 = Date.now();
@@ -33,15 +33,5 @@ function testPlugin(octokit: Octokit) {
 
   return { __requestLog, __requestTimings };
 }
-
-const options: ThrottlingOptions = {
-  enabled: true,
-  onRateLimit: () => {},
-  onSecondaryRateLimit: () => {},
-};
-
-options.enabled = false;
-options.onRateLimit(10, {}, {} as Octokit, 0);
-options.onSecondaryRateLimit(10, {}, {} as Octokit, 0);
 
 export const TestOctokit = Octokit.plugin(testPlugin, throttling);
