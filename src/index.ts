@@ -181,3 +181,5 @@ declare module "@octokit/core/dist-types/types.d" {
     throttle?: ThrottlingOptions;
   }
 }
+
+export type { ThrottlingOptions };
