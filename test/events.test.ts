@@ -133,8 +133,8 @@ describe("Events", function () {
         throttle: {
           onRateLimit: (retryAfter, options, octokitFromOptions) => {
             expect(octokit).toBe(octokitFromOptions);
-            expect(retryAfter).toBeLessThan(32);
-            expect(retryAfter).toBeGreaterThan(28);
+            expect(retryAfter).toBeLessThan(33);
+            expect(retryAfter).toBeGreaterThan(29);
             expect(options).toMatchObject({
               method: "GET",
               url: "/route2",
