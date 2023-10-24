@@ -148,7 +148,8 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           ~~error.response.headers["x-ratelimit-reset"] * 1000,
         ).getTime();
         const retryAfter = Math.max(
-          Math.ceil((rateLimitReset - Date.now()) / 1000),
+          // Add one so we retry _after_ the reset time.
+          Math.ceil((rateLimitReset - Date.now()) / 1000) + 1,
           0,
         );
         const wantRetry = await emitter.trigger(
