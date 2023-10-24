@@ -250,7 +250,7 @@ describe("Retry", function () {
             {
               status: 200,
               headers: {
-                "x-ratelimit-remaining": "0",
+                "x-ratelimit-remaining": "1",
                 "x-ratelimit-reset": "123",
               },
               data: { errors: [{ type: "RATE_LIMITED" }] },
@@ -300,7 +300,7 @@ describe("Retry", function () {
             {
               status: 200,
               headers: {
-                "x-ratelimit-remaining": "0",
+                "x-ratelimit-remaining": "1",
                 "x-ratelimit-reset": "123",
               },
               data: { errors: [{ type: "RATE_LIMITED" }] },
