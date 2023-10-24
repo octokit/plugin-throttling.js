@@ -168,6 +168,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/actions/runs/{run_id}/force-cancel",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/runners/generate-jitconfig",
     "triggersNotification": null
   },
@@ -1069,6 +1073,10 @@
   },
   {
     "url": "/orgs/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/codespaces/permissions_check",
     "triggersNotification": null
   },
   {
@@ -2092,6 +2100,18 @@
     "triggersNotification": true
   },
   {
+    "url": "/orgs/{org}/properties/schema",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/properties/values",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/properties/schema/{custom_property_name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/hooks",
     "triggersNotification": null
   },
@@ -2120,7 +2140,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/properties/schema",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/audit-log",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/properties/schema/{custom_property_name}",
     "triggersNotification": null
   },
   {
@@ -2161,6 +2189,10 @@
   },
   {
     "url": "/orgs/{org}/blocks",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/properties/values",
     "triggersNotification": null
   },
   {
@@ -2253,6 +2285,10 @@
   },
   {
     "url": "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/properties/schema/{custom_property_name}",
     "triggersNotification": null
   },
   {
@@ -3148,6 +3184,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/properties/values",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/keys/{key_id}",
     "triggersNotification": null
   },
@@ -3173,6 +3213,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/releases/latest",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/rulesets/rule-suites/{rule_suite_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/rulesets/rule-suites",
     "triggersNotification": null
   },
   {
@@ -3225,6 +3273,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/releases/tags/{tag}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets/rule-suites/{rule_suite_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets/rule-suites",
     "triggersNotification": null
   },
   {
