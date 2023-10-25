@@ -250,6 +250,8 @@ describe("Retry", function () {
             {
               status: 200,
               headers: {
+                // should retry based on response body, not header
+                // https://github.com/octokit/plugin-throttling.js/issues/632
                 "x-ratelimit-remaining": "1",
                 "x-ratelimit-reset": "123",
               },
