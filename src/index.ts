@@ -137,8 +137,11 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         return { wantRetry, retryAfter };
       }
       if (
-        error.response.headers != null &&
-        error.response.headers["x-ratelimit-remaining"] === "0"
+        (error.response.headers != null &&
+          error.response.headers["x-ratelimit-remaining"] === "0") ||
+        (error.response.data?.errors ?? []).some(
+          (error: any) => error.type === "RATE_LIMITED",
+        )
       ) {
         // The user has used all their allowed calls for the current time period (REST and GraphQL)
         // https://docs.github.com/en/rest/reference/rate-limit (REST)
