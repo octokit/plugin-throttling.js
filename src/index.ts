@@ -1,5 +1,6 @@
 // @ts-expect-error
 import BottleneckLight from "bottleneck/light";
+import type TBottleneck from "bottleneck";
 import { Octokit } from "@octokit/core";
 import type { OctokitOptions } from "@octokit/core/dist-types/types.d";
 import type { Groups, ThrottlingOptions } from "./types";
@@ -15,8 +16,16 @@ const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
 
-// @ts-expect-error
-const createGroups = function (Bottleneck, common) {
+const createGroups = function (
+  Bottleneck: typeof TBottleneck,
+  common: {
+    connection:
+      | TBottleneck.RedisConnection
+      | TBottleneck.IORedisConnection
+      | undefined;
+    timeout: number;
+  },
+) {
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
     maxConcurrent: 10,
@@ -45,7 +54,7 @@ const createGroups = function (Bottleneck, common) {
 export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   const {
     enabled = true,
-    Bottleneck = BottleneckLight,
+    Bottleneck = BottleneckLight as typeof TBottleneck,
     id = "no-id",
     timeout = 1000 * 60 * 2, // Redis TTL: 2 minutes
     connection,
