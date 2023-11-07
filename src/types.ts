@@ -3,7 +3,7 @@ import Bottleneck from "bottleneck";
 
 type LimitHandler = (
   retryAfter: number,
-  options: Record<string, unknown>,
+  options: Required<EndpointDefaults>,
   octokit: Octokit,
   retryCount: number,
 ) => void;
