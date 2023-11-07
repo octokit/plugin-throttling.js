@@ -42,3 +42,13 @@ export type Groups = {
   search?: Bottleneck.Group;
   notifications?: Bottleneck.Group;
 };
+
+export type State = {
+  clustering: boolean;
+  triggersNotification: (pathname: string) => boolean;
+  fallbackSecondaryRateRetryAfter: number;
+  retryAfterBaseValue: number;
+  retryLimiter: Bottleneck;
+  id: string;
+} & Required<Groups> &
+  ThrottlingOptions;

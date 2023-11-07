@@ -3,12 +3,13 @@ import BottleneckLight from "bottleneck/light";
 import type TBottleneck from "bottleneck";
 import { Octokit } from "@octokit/core";
 import type { OctokitOptions } from "@octokit/core/dist-types/types.d";
-import type { Groups, ThrottlingOptions } from "./types";
+import type { Groups, State, ThrottlingOptions } from "./types";
 import { VERSION } from "./version";
 
 import { wrapRequest } from "./wrap-request";
 import triggersNotificationPaths from "./generated/triggers-notification-paths";
 import { routeMatcher } from "./route-matcher";
+import type { EndpointDefaults, OctokitResponse } from "@octokit/types";
 
 // Workaround to allow tests to directly access the triggersNotification function.
 const regex = routeMatcher(triggersNotificationPaths);
@@ -68,7 +69,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     createGroups(Bottleneck, common);
   }
 
-  const state = Object.assign(
+  const state: State = Object.assign(
     {
       clustering: connection != null,
       triggersNotification,
@@ -76,7 +77,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
       retryAfterBaseValue: 1000,
       retryLimiter: new Bottleneck(),
       id,
-      ...groups,
+      ...(groups as Required<Groups>),
     },
     octokitOptions.throttle,
   );
@@ -110,7 +111,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   );
 
   state.retryLimiter.on("failed", async function (error, info) {
-    const [state, request, options] = info.args;
+    const [state, request, options] = info.args as [State, OctokitResponse<any>, Required<EndpointDefaults>];
     const { pathname } = new URL(options.url, "http://github.test");
     const shouldRetryGraphQL =
       pathname.startsWith("/graphql") && error.status !== 401;
@@ -192,6 +193,12 @@ throttling.triggersNotification = triggersNotification;
 declare module "@octokit/core/dist-types/types.d" {
   interface OctokitOptions {
     throttle?: ThrottlingOptions;
+  }
+}
+
+declare module "@octokit/types" {
+  interface OctokitResponse<T, S extends number = number> {
+    retryCount: number;
   }
 }
 
