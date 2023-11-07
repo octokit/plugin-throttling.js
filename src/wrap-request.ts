@@ -5,7 +5,9 @@ const noop = () => Promise.resolve();
 
 export function wrapRequest(
   state: State,
-  request: (options: Required<EndpointDefaults>) => OctokitResponse<any, number> | Promise<OctokitResponse<any, number>>,
+  request: (
+    options: Required<EndpointDefaults>,
+  ) => OctokitResponse<any> | Promise<OctokitResponse<any>>,
   options: Required<EndpointDefaults>,
 ) {
   return state.retryLimiter.schedule(doRequest, state, request, options);
@@ -13,7 +15,9 @@ export function wrapRequest(
 
 async function doRequest(
   state: State,
-  request: (options: Required<EndpointDefaults>) => OctokitResponse<any> | Promise<OctokitResponse<any>>,
+  request: (
+    options: Required<EndpointDefaults>,
+  ) => OctokitResponse<any> | Promise<OctokitResponse<any>>,
   options: Required<EndpointDefaults>,
 ) {
   const isWrite = options.method !== "GET" && options.method !== "HEAD";
@@ -48,7 +52,13 @@ async function doRequest(
   }
 
   // @ts-expect-error
-  const req = state.global.key(state.id).schedule<OctokitResponse<any>, Required<EndpointDefaults>>(jobOptions, request, options);
+  const req = state.global
+    .key(state.id)
+    .schedule<OctokitResponse<any>, Required<EndpointDefaults>>(
+      jobOptions,
+      request,
+      options,
+    );
   if (isGraphQL) {
     const res = await req;
 

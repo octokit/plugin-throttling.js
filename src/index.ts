@@ -111,7 +111,11 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   );
 
   state.retryLimiter.on("failed", async function (error, info) {
-    const [state, request, options] = info.args as [State, OctokitResponse<any>, Required<EndpointDefaults>];
+    const [state, request, options] = info.args as [
+      State,
+      OctokitResponse<any>,
+      Required<EndpointDefaults>,
+    ];
     const { pathname } = new URL(options.url, "http://github.test");
     const shouldRetryGraphQL =
       pathname.startsWith("/graphql") && error.status !== 401;
