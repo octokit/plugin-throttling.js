@@ -109,7 +109,6 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     octokit.log.warn("Error in throttling-plugin limit handler", e),
   );
 
-  // @ts-expect-error
   state.retryLimiter.on("failed", async function (error, info) {
     const [state, request, options] = info.args;
     const { pathname } = new URL(options.url, "http://github.test");
