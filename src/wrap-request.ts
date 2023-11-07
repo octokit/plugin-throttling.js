@@ -51,11 +51,11 @@ async function doRequest(
     await state.search.key(state.id).schedule(jobOptions, noop);
   }
 
-  // @ts-expect-error
   const req = state.global
     .key(state.id)
     .schedule<OctokitResponse<any>, Required<EndpointDefaults>>(
       jobOptions,
+      // @ts-expect-error
       request,
       options,
     );
