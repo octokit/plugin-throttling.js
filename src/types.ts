@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/core";
+import type { EndpointDefaults } from "@octokit/types";
 import Bottleneck from "bottleneck";
 
 type LimitHandler = (
