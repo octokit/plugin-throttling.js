@@ -187,6 +187,11 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     }
   });
 
+  // @ts-expect-error
+  // The types for `before-after-hook` do not let us only pass through a Promise return value
+  // the types expect that the function can return either a Promise of the response, or diectly return the response.
+  // This is due to the fact that `@octokit/request` uses aysnc functions
+  // Also, since we add the custom `retryCount` property to the request argument, the types are not compatible.
   octokit.hook.wrap("request", wrapRequest.bind(null, state));
 
   return {};
