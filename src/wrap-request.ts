@@ -1,12 +1,25 @@
+import type { EndpointDefaults, OctokitResponse } from "@octokit/types";
+import type { State } from "./types";
+
 const noop = () => Promise.resolve();
 
-// @ts-expect-error
-export function wrapRequest(state, request, options) {
+export function wrapRequest(
+  state: State,
+  request: ((
+    options: Required<EndpointDefaults>,
+  ) => Promise<OctokitResponse<any>>) & { retryCount: number },
+  options: Required<EndpointDefaults>,
+) {
   return state.retryLimiter.schedule(doRequest, state, request, options);
 }
 
-// @ts-expect-error
-async function doRequest(state, request, options) {
+async function doRequest(
+  state: State,
+  request: ((
+    options: Required<EndpointDefaults>,
+  ) => Promise<OctokitResponse<any>>) & { retryCount: number },
+  options: Required<EndpointDefaults>,
+) {
   const isWrite = options.method !== "GET" && options.method !== "HEAD";
   const { pathname } = new URL(options.url, "http://github.test");
   const isSearch = options.method === "GET" && pathname.startsWith("/search/");
@@ -37,14 +50,19 @@ async function doRequest(state, request, options) {
     await state.search.key(state.id).schedule(jobOptions, noop);
   }
 
-  const req = state.global.key(state.id).schedule(jobOptions, request, options);
+  const req = state.global
+    .key(state.id)
+    .schedule<OctokitResponse<any>, Required<EndpointDefaults>>(
+      jobOptions,
+      request,
+      options,
+    );
   if (isGraphQL) {
     const res = await req;
 
     if (
       res.data.errors != null &&
-      // @ts-expect-error
-      res.data.errors.some((error) => error.type === "RATE_LIMITED")
+      res.data.errors.some((error: any) => error.type === "RATE_LIMITED")
     ) {
       const error = Object.assign(new Error("GraphQL Rate Limit Exceeded"), {
         response: res,

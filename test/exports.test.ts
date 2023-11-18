@@ -10,7 +10,9 @@ describe("Exports", function () {
     };
 
     options.enabled = false;
+    // @ts-expect-error
     options.onRateLimit(10, {}, {} as Octokit, 0);
+    // @ts-expect-error
     options.onSecondaryRateLimit(10, {}, {} as Octokit, 0);
   });
 });

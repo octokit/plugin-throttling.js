@@ -14,13 +14,13 @@
     "update-endpoints": "npm-run-all update-endpoints:*",
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
     "update-endpoints:code": "node scripts/update-endpoints/code",
-    "validate:ts": "tsc --noEmit --noImplicitAny --target es2020 --esModuleInterop --moduleResolution node test/typescript-validate.ts"
+    "validate:ts": "npm run build && tsc --noEmit --noImplicitAny --target es2020 --esModuleInterop --moduleResolution node test/typescript-validate.ts"
   },
   "repository": "github:octokit/plugin-throttling.js",
   "author": "Simon Grondin (http://github.com/SGrondin)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/types": "^12.0.0",
+    "@octokit/types": "^12.2.0",
     "bottleneck": "^2.15.3"
   },
   "peerDependencies": {

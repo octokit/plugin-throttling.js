@@ -1,9 +1,10 @@
 import { Octokit } from "@octokit/core";
+import type { EndpointDefaults } from "@octokit/types";
 import Bottleneck from "bottleneck";
 
 type LimitHandler = (
   retryAfter: number,
-  options: object,
+  options: Required<EndpointDefaults>,
   octokit: Octokit,
   retryCount: number,
 ) => void;
@@ -42,3 +43,13 @@ export type Groups = {
   search?: Bottleneck.Group;
   notifications?: Bottleneck.Group;
 };
+
+export type State = {
+  clustering: boolean;
+  triggersNotification: (pathname: string) => boolean;
+  fallbackSecondaryRateRetryAfter: number;
+  retryAfterBaseValue: number;
+  retryLimiter: Bottleneck;
+  id: string;
+} & Required<Groups> &
+  ThrottlingOptions;
