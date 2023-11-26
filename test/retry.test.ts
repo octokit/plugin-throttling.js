@@ -2,8 +2,8 @@ import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit";
 import { Octokit } from "@octokit/core";
 import { throttling } from "../src";
-import { AddressInfo } from "net";
-import { createServer } from "http";
+import { AddressInfo } from "node:net";
+import { createServer } from "node:http";
 
 jest.setTimeout(20000);
 
