@@ -1,5 +1,5 @@
 import type { EndpointDefaults, OctokitResponse } from "@octokit/types";
-import type { State } from "./types";
+import type { State } from "./types.js";
 
 const noop = () => Promise.resolve();
 

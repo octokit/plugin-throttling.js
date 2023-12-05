@@ -1,7 +1,7 @@
 import Bottleneck from "bottleneck";
-import { TestOctokit } from "./octokit";
+import { TestOctokit } from "./octokit.ts";
 import { Octokit } from "@octokit/core";
-import { throttling } from "../src";
+import { throttling } from "../src/index.ts";
 import { AddressInfo } from "node:net";
 import { createServer } from "node:http";
 

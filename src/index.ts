@@ -2,13 +2,13 @@
 import BottleneckLight from "bottleneck/light";
 import type TBottleneck from "bottleneck";
 import { Octokit } from "@octokit/core";
-import type { OctokitOptions } from "@octokit/core/dist-types/types.d";
-import type { Groups, State, ThrottlingOptions } from "./types";
-import { VERSION } from "./version";
+import type { OctokitOptions } from "@octokit/core/dist-types/types.d.js";
+import type { Groups, State, ThrottlingOptions } from "./types.js";
+import { VERSION } from "./version.js";
 
-import { wrapRequest } from "./wrap-request";
-import triggersNotificationPaths from "./generated/triggers-notification-paths";
-import { routeMatcher } from "./route-matcher";
+import { wrapRequest } from "./wrap-request.js";
+import triggersNotificationPaths from "./generated/triggers-notification-paths.js";
+import { routeMatcher } from "./route-matcher.js";
 import type { EndpointDefaults, OctokitResponse } from "@octokit/types";
 
 // Workaround to allow tests to directly access the triggersNotification function.

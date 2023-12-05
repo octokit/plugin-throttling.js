@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/core";
 import { RequestError } from "@octokit/request-error";
-import { throttling } from "../src";
+import { throttling } from "../src/index.ts";
 
 function testPlugin(octokit: Octokit) {
   const t0 = Date.now();
