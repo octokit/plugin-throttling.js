@@ -52,11 +52,10 @@ async function doRequest(
 
   const req = state.global
     .key(state.id)
-    .schedule<OctokitResponse<any>, Required<EndpointDefaults>>(
-      jobOptions,
-      request,
-      options,
-    );
+    .schedule<
+      OctokitResponse<any>,
+      Required<EndpointDefaults>
+    >(jobOptions, request, options);
   if (isGraphQL) {
     const res = await req;
 
