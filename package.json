@@ -33,7 +33,7 @@
     "@types/fetch-mock": "^7.3.1",
     "@types/jest": "^29.0.0",
     "@types/node": "^20.0.0",
-    "esbuild": "^0.19.0",
+    "esbuild": "^0.20.0",
     "fetch-mock": "^9.0.0",
     "github-openapi-graphql-query": "^4.0.0",
     "glob": "^10.2.6",
