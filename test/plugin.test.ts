@@ -79,7 +79,7 @@ describe("General", function () {
   });
 });
 
-describe("Github API best practices", function () {
+describe("GitHub API best practices", function () {
   it("Should linearize requests", async function () {
     const octokit = new TestOctokit({
       throttle: { onSecondaryRateLimit: () => 1, onRateLimit: () => 1 },
