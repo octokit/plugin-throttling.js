@@ -680,6 +680,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/notifications/threads/{thread_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/subscription",
     "triggersNotification": null
   },
@@ -2064,6 +2068,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/organization-roles/teams/{team_slug}/{role_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/users/{username}/{role_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/blocks/{username}",
     "triggersNotification": null
   },
@@ -2085,6 +2097,10 @@
   },
   {
     "url": "/orgs/{org}/outside_collaborators/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles",
     "triggersNotification": null
   },
   {
@@ -2117,6 +2133,10 @@
   },
   {
     "url": "/orgs/{org}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/{role_id}",
     "triggersNotification": null
   },
   {
@@ -2165,6 +2185,10 @@
   },
   {
     "url": "/orgs/{org}/memberships/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/{role_id}",
     "triggersNotification": null
   },
   {
@@ -2232,6 +2256,22 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/organization-roles/{role_id}/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/{role_id}/users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-fine-grained-permissions",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/outside_collaborators",
     "triggersNotification": null
   },
@@ -2280,6 +2320,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/organization-roles/{role_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/hooks/{hook_id}/pings",
     "triggersNotification": null
   },
@@ -2321,6 +2365,22 @@
   },
   {
     "url": "/orgs/{org}/personal-access-token-requests",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/teams/{team_slug}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/users/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/teams/{team_slug}/{role_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/organization-roles/users/{username}/{role_id}",
     "triggersNotification": null
   },
   {
@@ -2824,6 +2884,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/pages/deployments/{pages_deployment_id}/cancel",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/automated-security-fixes",
     "triggersNotification": null
   },
@@ -2900,6 +2964,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/properties/values",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}",
     "triggersNotification": null
   },
@@ -2912,7 +2980,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/repos/{owner}/{repo}/pages/deployment",
+    "url": "/repos/{owner}/{repo}/pages/deployments",
     "triggersNotification": null
   },
   {
@@ -3237,6 +3305,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/pages/builds/{build_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/pages/deployments/{pages_deployment_id}",
     "triggersNotification": null
   },
   {
@@ -3685,6 +3757,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}/forks",
     "triggersNotification": null
   },
   {
