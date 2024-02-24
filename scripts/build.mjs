@@ -37,7 +37,7 @@ async function main() {
 
   await esbuild.build({
     entryPoints,
-    outdir: "pkg/dist-types",
+    outdir: "pkg/dist-bundle",
     bundle: true,
     platform: "neutral",
     format: "esm",
