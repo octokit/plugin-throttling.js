@@ -1,4 +1,4 @@
-import { TestOctokit } from "./octokit";
+import { TestOctokit } from "./octokit.ts";
 
 describe("Events", function () {
   it("Should support non-limit 403s", async function () {
