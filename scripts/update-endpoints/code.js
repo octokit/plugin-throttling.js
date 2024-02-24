@@ -4,11 +4,13 @@
  * trigger notifications. So instead we automatically generate a file that
  * only contains these paths when @octokit/openapi has a new release.
  */
-const { writeFileSync } = require("fs");
+import { writeFileSync, readFileSync } from "node:fs";
 
-const prettier = require("prettier");
+import prettier from "prettier";
 
-const ENDPOINTS = require("./generated/endpoints.json");
+const ENDPOINTS = JSON.parse(
+  readFileSync(new URL("./generated/endpoints.json", import.meta.url), "utf-8"),
+);
 const paths = [];
 
 for (const endpoint of ENDPOINTS) {

@@ -4,6 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "description": "Octokit plugin for GitHub's recommended request throttling",
   "scripts": {
     "build": "node scripts/build.mjs && tsc -p tsconfig.json",
@@ -12,9 +13,9 @@
     "pretest": "npm run -s lint",
     "test": "jest --coverage",
     "update-endpoints": "npm-run-all update-endpoints:*",
-    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
-    "update-endpoints:code": "node scripts/update-endpoints/code",
-    "validate:ts": "npm run build && tsc --noEmit --noImplicitAny --target es2020 --esModuleInterop --moduleResolution node test/typescript-validate.ts"
+    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json.js",
+    "update-endpoints:code": "node scripts/update-endpoints/code.js",
+    "validate:ts": "npm run build && tsc --noEmit --noImplicitAny --target es2022 --esModuleInterop --moduleResolution node16 --module node16 test/typescript-validate.ts"
   },
   "repository": "github:octokit/plugin-throttling.js",
   "author": "Simon Grondin (http://github.com/SGrondin)",
@@ -28,7 +29,7 @@
   },
   "devDependencies": {
     "@octokit/core": "^5.0.0",
-    "@octokit/request-error": "^5.0.0",
+    "@octokit/request-error": "^6.0.1",
     "@octokit/tsconfig": "^2.0.0",
     "@types/fetch-mock": "^7.3.1",
     "@types/jest": "^29.0.0",
