@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/core";
-import { throttling } from "../pkg";
+import { throttling } from "../src/index.js";
 // ************************************************************
 // THIS CODE IS NOT EXECUTED. IT IS FOR TYPECHECKING ONLY
 // ************************************************************
