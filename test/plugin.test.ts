@@ -1,6 +1,6 @@
 import Bottleneck from "bottleneck";
-import { TestOctokit } from "./octokit";
-import { throttling } from "../src";
+import { TestOctokit } from "./octokit.ts";
+import { throttling } from "../src/index.ts";
 
 describe("General", function () {
   it("Should be possible to disable the plugin", async function () {

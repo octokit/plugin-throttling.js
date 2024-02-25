@@ -1,4 +1,4 @@
-import { throttling } from "../src";
+import { throttling } from "../src/index.ts";
 
 describe("Smoke test", () => {
   it("is a function", () => {

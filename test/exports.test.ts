@@ -1,4 +1,4 @@
-import type { ThrottlingOptions } from "../src";
+import type { ThrottlingOptions } from "../src/index.ts";
 import type { Octokit } from "@octokit/core";
 
 describe("Exports", function () {

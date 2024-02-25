@@ -2,13 +2,13 @@
 import BottleneckLight from "bottleneck/light";
 import type TBottleneck from "bottleneck";
 import { Octokit } from "@octokit/core";
-import type { OctokitOptions } from "@octokit/core/dist-types/types.d";
-import type { Groups, State, ThrottlingOptions } from "./types";
-import { VERSION } from "./version";
+import type { OctokitOptions } from "@octokit/core";
+import type { Groups, State, ThrottlingOptions } from "./types.js";
+import { VERSION } from "./version.js";
 
-import { wrapRequest } from "./wrap-request";
-import triggersNotificationPaths from "./generated/triggers-notification-paths";
-import { routeMatcher } from "./route-matcher";
+import { wrapRequest } from "./wrap-request.js";
+import triggersNotificationPaths from "./generated/triggers-notification-paths.js";
+import { routeMatcher } from "./route-matcher.js";
 import type { EndpointDefaults, OctokitResponse } from "@octokit/types";
 
 // Workaround to allow tests to directly access the triggersNotification function.
@@ -191,7 +191,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   // the types expect that the function can return either a Promise of the response, or directly return the response.
   // This is due to the fact that `@octokit/request` uses aysnc functions
   // Also, since we add the custom `retryCount` property to the request argument, the types are not compatible.
-  // @ts-expect-error
+  // @ts-ignore We use the ignore instead of expect-error because TypeScript cannot make up it's mind if there is an error or not.
   octokit.hook.wrap("request", wrapRequest.bind(null, state));
 
   return {};
@@ -199,7 +199,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
 throttling.VERSION = VERSION;
 throttling.triggersNotification = triggersNotification;
 
-declare module "@octokit/core/dist-types/types.d" {
+declare module "@octokit/core" {
   interface OctokitOptions {
     throttle?: ThrottlingOptions;
   }

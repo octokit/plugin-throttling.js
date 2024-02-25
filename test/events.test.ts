@@ -1,4 +1,5 @@
-import { TestOctokit } from "./octokit";
+import { TestOctokit } from "./octokit.ts";
+import { jest } from "@jest/globals";
 
 describe("Events", function () {
   it("Should support non-limit 403s", async function () {

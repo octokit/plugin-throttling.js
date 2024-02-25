@@ -4,37 +4,38 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "description": "Octokit plugin for GitHub's recommended request throttling",
   "scripts": {
     "build": "node scripts/build.mjs && tsc -p tsconfig.json",
     "lint": "prettier --check '{src,scripts,test}/**/*' '!*/generated/**' README.md package.json",
     "lint:fix": "prettier --write '{src,scripts,test}/**/*' '!*/generated/**' README.md package.json",
     "pretest": "npm run -s lint",
-    "test": "jest --coverage",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest --coverage",
     "update-endpoints": "npm-run-all update-endpoints:*",
-    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json",
-    "update-endpoints:code": "node scripts/update-endpoints/code",
-    "validate:ts": "npm run build && tsc --noEmit --noImplicitAny --target es2020 --esModuleInterop --moduleResolution node test/typescript-validate.ts"
+    "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json.js",
+    "update-endpoints:code": "node scripts/update-endpoints/code.js",
+    "validate:ts": "tsc --noEmit --noImplicitAny --target es2022 --esModuleInterop --moduleResolution node16 --module node16 test/typescript-validate.ts"
   },
   "repository": "github:octokit/plugin-throttling.js",
   "author": "Simon Grondin (http://github.com/SGrondin)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/types": "^12.2.0",
+    "@octokit/types": "^12.6.0",
     "bottleneck": "^2.15.3"
   },
   "peerDependencies": {
-    "@octokit/core": "^5.0.0"
+    "@octokit/core": "^6.0.0"
   },
   "devDependencies": {
-    "@octokit/core": "^5.0.0",
-    "@octokit/request-error": "^5.0.0",
-    "@octokit/tsconfig": "^2.0.0",
+    "@octokit/core": "^6.0.0",
+    "@octokit/request-error": "^6.0.1",
+    "@octokit/tsconfig": "^3.0.0",
     "@types/fetch-mock": "^7.3.1",
     "@types/jest": "^29.0.0",
     "@types/node": "^20.0.0",
     "esbuild": "^0.20.0",
-    "fetch-mock": "^9.0.0",
+    "fetch-mock": "npm:@gr2m/fetch-mock@9.11.0-pull-request-644.1",
     "github-openapi-graphql-query": "^4.0.0",
     "glob": "^10.2.6",
     "jest": "^29.0.0",
@@ -45,11 +46,15 @@
     "typescript": "^5.0.0"
   },
   "jest": {
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": [
         "ts-jest",
         {
-          "tsconfig": "test/tsconfig.test.json"
+          "tsconfig": "test/tsconfig.test.json",
+          "useESM": true
         }
       ]
     },
@@ -60,6 +65,9 @@
         "functions": 100,
         "lines": 100
       }
+    },
+    "moduleNameMapper": {
+      "^(.+)\\.jsx?$": "$1"
     }
   },
   "release": {
