@@ -1,5 +1,5 @@
-// @ts-expect-error
-import BottleneckLight from "bottleneck/light";
+// @ts-expect-error No types for "bottleneck/light"
+import BottleneckLight from "bottleneck/light.js";
 import type TBottleneck from "bottleneck";
 import { Octokit } from "@octokit/core";
 import type { OctokitOptions } from "@octokit/core";
