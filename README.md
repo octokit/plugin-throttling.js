@@ -34,8 +34,8 @@ Install with `npm install @octokit/core @octokit/plugin-throttling`. Optionally 
 **Note**: If you use it with `@octokit/rest` v16, install `@octokit/core` as a devDependency. This is only temporary and will no longer be necessary with `@octokit/rest` v17.
 
 ```js
-const { Octokit } = require("@octokit/core");
-const { throttling } = require("@octokit/plugin-throttling");
+import { Octokit } from "@octokit/core";
+import { throttling } from "@octokit/plugin-throttling";
 ```
 
 </td></tr>
@@ -107,8 +107,8 @@ npm install --save ioredis
 Then in your application:
 
 ```js
-const Bottleneck = require("bottleneck");
-const Redis = require("redis");
+import Bottleneck from "bottleneck";
+import Redis from "redis";
 
 const client = Redis.createClient({
   /* options */
@@ -145,7 +145,7 @@ await connection.disconnect();
 To use the `ioredis` library instead:
 
 ```js
-const Redis = require("ioredis");
+import Redis from "ioredis";
 const client = new Redis({
   /* options */
 });
