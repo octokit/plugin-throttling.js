@@ -32,11 +32,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/variables",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables",
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -92,11 +92,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables/{name}",
     "triggersNotification": null
   },
   {
@@ -220,15 +220,15 @@
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/secrets/public-key",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/secrets/public-key",
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/secrets/{secret_name}",
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables/{name}",
     "triggersNotification": null
   },
   {
@@ -332,11 +332,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/secrets",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/secrets",
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/variables",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables",
     "triggersNotification": null
   },
   {
@@ -556,7 +556,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
+    "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables/{name}",
     "triggersNotification": null
   },
   {
@@ -1408,7 +1408,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "triggersNotification": null
   },
   {
@@ -1420,7 +1420,7 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -1452,11 +1452,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -1480,11 +1480,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Groups",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Users",
+    "url": "/scim/v2/enterprises/{enterprise}/Users",
     "triggersNotification": null
   },
   {
@@ -1508,11 +1508,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Groups",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups",
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Users",
+    "url": "/scim/v2/enterprises/{enterprise}/Users",
     "triggersNotification": null
   },
   {
@@ -1544,11 +1544,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -1564,11 +1564,11 @@
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Groups/{scim_group_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Groups/{scim_group_id}",
     "triggersNotification": null
   },
   {
-    "url": "/scim/v2/Users/{scim_user_id}",
+    "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
     "triggersNotification": null
   },
   {
@@ -2893,6 +2893,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/collaborators/{username}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/private-vulnerability-reporting",
     "triggersNotification": null
   },
   {
