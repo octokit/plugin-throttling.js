@@ -61,15 +61,13 @@ async function main() {
       {
         ...pkg,
         files: ["dist-*/**", "bin/**"],
-        // Tooling currently are having issues with the "exports" field, ex: TypeScript, eslint
-        // We add a `main` and `types` field to the package.json for the time being
-        // See https://github.com/octokit/core.js/pulls/662
-        main: "dist-bundle/index.js",
         types: "dist-types/index.d.ts",
         exports: {
           ".": {
             types: "./dist-types/index.d.ts",
             import: "./dist-bundle/index.js",
+            // Tooling currently are having issues with the "exports" field when there is no "default", ex: TypeScript, eslint, ncc
+            // See https://github.com/octokit/core.js/issues/667#issuecomment-2037592361
             default: "./dist-bundle/index.js",
           },
         },
