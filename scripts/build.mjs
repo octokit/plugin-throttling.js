@@ -68,6 +68,7 @@ async function main() {
             import: "./dist-bundle/index.js",
             // Tooling currently are having issues with the "exports" field when there is no "default", ex: TypeScript, eslint, ncc
             // See https://github.com/octokit/core.js/issues/667#issuecomment-2037592361
+            // See https://github.com/octokit/plugin-throttling.js/issues/694
             default: "./dist-bundle/index.js",
           },
         },
