@@ -1292,6 +1292,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/copilot/usage",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/copilot/usage",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/team/{team_slug}/copilot/usage",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/dependabot/secrets/{secret_name}/repositories/{repository_id}",
     "triggersNotification": null
   },
