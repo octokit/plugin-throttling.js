@@ -136,7 +136,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#secondary-rate-limits
 
         // The Retry-After header can sometimes be blank when hitting a secondary rate limit,
-        // but is always present after 2-3s, so make sure to set `retryAfter` to at least 5s by default.
+        // but is always present after 2-3s, so make sure to set `retryAfter` to at least 60s by default.
         const retryAfter =
           Number(error.response.headers["retry-after"]) ||
           state.fallbackSecondaryRateRetryAfter;
