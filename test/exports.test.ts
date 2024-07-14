@@ -1,3 +1,4 @@
+import { describe, it } from "vitest";
 import type { ThrottlingOptions } from "../src/index.ts";
 import type { Octokit } from "@octokit/core";
 

@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { throttling } from "../src/index.ts";
 
 describe("Smoke test", () => {

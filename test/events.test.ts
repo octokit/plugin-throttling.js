@@ -1,5 +1,5 @@
 import { TestOctokit } from "./octokit.ts";
-import { jest } from "@jest/globals";
+import { describe, it, expect, vi } from "vitest";
 
 describe("Events", function () {
   it("Should support non-limit 403s", async function () {
@@ -190,7 +190,7 @@ describe("Events", function () {
         },
       });
 
-      jest.spyOn(octokit.log, "warn").mockImplementation(() => {});
+      vi.spyOn(octokit.log, "warn").mockImplementation(() => {});
 
       const t0 = Date.now();
 

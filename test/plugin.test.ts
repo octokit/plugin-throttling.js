@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import Bottleneck from "bottleneck";
 import { TestOctokit } from "./octokit.ts";
 import { throttling } from "../src/index.ts";

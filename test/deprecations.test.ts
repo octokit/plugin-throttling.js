@@ -1,3 +1,4 @@
+import { describe, it } from "vitest";
 // Linting in `npm run test` complains when this isn't used.
 // In the future when conducting deprecation testing, the below
 // lines may be uncommented.
