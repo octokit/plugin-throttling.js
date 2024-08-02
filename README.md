@@ -31,8 +31,6 @@ Node
 
 Install with `npm install @octokit/core @octokit/plugin-throttling`. Optionally replace `@octokit/core` with a core-compatible module.
 
-**Note**: If you use it with `@octokit/rest` v16, install `@octokit/core` as a devDependency. This is only temporary and will no longer be necessary with `@octokit/rest` v17.
-
 ```js
 import { Octokit } from "@octokit/core";
 import { throttling } from "@octokit/plugin-throttling";
