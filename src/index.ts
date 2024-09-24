@@ -2,7 +2,12 @@
 import BottleneckLight from "bottleneck/light.js";
 import type TBottleneck from "bottleneck";
 import type { Octokit, OctokitOptions } from "@octokit/core";
-import type { CreateGroupsCommon, Groups, State, ThrottlingOptions } from "./types.js";
+import type {
+  CreateGroupsCommon,
+  Groups,
+  State,
+  ThrottlingOptions,
+} from "./types.js";
 import { VERSION } from "./version.js";
 
 import { wrapRequest } from "./wrap-request.js";
@@ -16,7 +21,10 @@ const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
 
-const createGroups = function (Bottleneck: typeof TBottleneck, common: CreateGroupsCommon) {
+const createGroups = function (
+  Bottleneck: typeof TBottleneck,
+  common: CreateGroupsCommon,
+) {
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
     maxConcurrent: 10,
