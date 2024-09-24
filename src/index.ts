@@ -15,17 +15,12 @@ const regex = routeMatcher(triggersNotificationPaths);
 const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
+type Common = {
+  connection?: TBottleneck.RedisConnection | TBottleneck.IORedisConnection;
+  timeout: number;
+};
 
-const createGroups = function (
-  Bottleneck: typeof TBottleneck,
-  common: {
-    connection:
-      | TBottleneck.RedisConnection
-      | TBottleneck.IORedisConnection
-      | undefined;
-    timeout: number;
-  },
-) {
+const createGroups = function (Bottleneck: typeof TBottleneck, common: Common) {
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
     maxConcurrent: 10,
@@ -62,7 +57,10 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   if (!enabled) {
     return {};
   }
-  const common = { connection, timeout };
+  const common: Common = { timeout };
+  if (typeof connection !== "undefined") {
+    common.connection = connection;
+  }
 
   if (groups.global == null) {
     createGroups(Bottleneck, common);
