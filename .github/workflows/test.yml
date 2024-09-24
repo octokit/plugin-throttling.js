@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: npm
-          node-version: 16
+          node-version: ${{ matrix.node_version }}
       - run: npm ci
       - run: npm run test --ignore-scripts
   test:
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: npm
-          node-version: 16
+          node-version: "lts/*"
       - run: npm ci
       - run: npm run lint
       - run: npm run validate:ts
