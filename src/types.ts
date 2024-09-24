@@ -53,3 +53,8 @@ export type State = {
   id: string;
 } & Required<Groups> &
   ThrottlingOptions;
+
+export type CreateGroupsCommon = {
+  connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
+  timeout: number;
+};
