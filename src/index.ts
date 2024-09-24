@@ -2,7 +2,12 @@
 import BottleneckLight from "bottleneck/light.js";
 import type TBottleneck from "bottleneck";
 import type { Octokit, OctokitOptions } from "@octokit/core";
-import type { Groups, State, ThrottlingOptions } from "./types.js";
+import type {
+  CreateGroupsCommon,
+  Groups,
+  State,
+  ThrottlingOptions,
+} from "./types.js";
 import { VERSION } from "./version.js";
 
 import { wrapRequest } from "./wrap-request.js";
@@ -18,13 +23,7 @@ const groups: Groups = {};
 
 const createGroups = function (
   Bottleneck: typeof TBottleneck,
-  common: {
-    connection:
-      | TBottleneck.RedisConnection
-      | TBottleneck.IORedisConnection
-      | undefined;
-    timeout: number;
-  },
+  common: CreateGroupsCommon,
 ) {
   groups.global = new Bottleneck.Group({
     id: "octokit-global",
@@ -62,7 +61,10 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   if (!enabled) {
     return {};
   }
-  const common = { connection, timeout };
+  const common: CreateGroupsCommon = { timeout };
+  if (typeof connection !== "undefined") {
+    common.connection = connection;
+  }
 
   if (groups.global == null) {
     createGroups(Bottleneck, common);
