@@ -121,7 +121,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     const shouldRetryGraphQL =
       pathname.startsWith("/graphql") && error.status !== 401;
 
-    if (!(shouldRetryGraphQL || error.status === 403)) {
+    if (!(shouldRetryGraphQL || error.status === 403 || error.status === 429)) {
       return;
     }
 

@@ -6,11 +6,17 @@ import { throttling } from "../src/index.ts";
 import type { AddressInfo } from "node:net";
 import { createServer } from "node:http";
 
+/**
+ * According to https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
+ * both 403 and 429 status codes can be returned when hitting a rate limit.
+ */
+const restStatusCodes = [403, 429];
+
 describe(
   "Retry",
   function () {
-    describe("REST", function () {
-      it("Should retry 'secondary-limit' and succeed", async function () {
+    describe.each(restStatusCodes)("REST", function (statusCode) {
+      it(`Should retry 'secondary-limit' and succeed when status ${statusCode}`, async function () {
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
@@ -34,7 +40,7 @@ describe(
           request: {
             responses: [
               {
-                status: 403,
+                status: statusCode,
                 headers: { "retry-after": "1" },
                 data: { message: "You have exceeded a secondary rate limit" },
               },
@@ -82,12 +88,12 @@ describe(
             request: {
               responses: [
                 {
-                  status: 403,
+                  status: statusCode,
                   headers: { "retry-after": "1" },
                   data: { message },
                 },
                 {
-                  status: 403,
+                  status: statusCode,
                   headers: { "retry-after": "2" },
                   data: { message },
                 },
@@ -131,7 +137,7 @@ describe(
               .end(JSON.stringify({ message: "Success!" }));
           } else {
             res
-              .writeHead(403, {
+              .writeHead(statusCode, {
                 "Content-Type": "application/json",
                 "retry-after": "1",
               })
@@ -177,7 +183,7 @@ describe(
         }
       });
 
-      it("Should retry 'rate-limit' and succeed", async function () {
+      it(`Should retry 'rate-limit' with status code ${statusCode} and succeed`, async function () {
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
@@ -199,7 +205,7 @@ describe(
           request: {
             responses: [
               {
-                status: 403,
+                status: statusCode,
                 headers: {
                   "x-ratelimit-remaining": "0",
                   "x-ratelimit-reset": "123",
