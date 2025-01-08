@@ -724,6 +724,42 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/insights/api/route-stats/{actor_type}/{actor_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/subject-stats",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/summary-stats",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/summary-stats/{actor_type}/{actor_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/summary-stats/users/{user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/time-stats",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/time-stats/{actor_type}/{actor_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/time-stats/users/{user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/insights/api/user-stats/{user_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/user/installations/{installation_id}/repositories/{repository_id}",
     "triggersNotification": null
   },
@@ -884,6 +920,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/settings/billing/cost-centers/{cost_center_id}/resource",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/settings/billing/cost-centers",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/settings/billing/actions",
     "triggersNotification": null
   },
@@ -901,6 +945,14 @@
   },
   {
     "url": "/orgs/{org}/settings/billing/advanced-security",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/settings/billing/usage",
+    "triggersNotification": null
+  },
+  {
+    "url": "/organizations/{org}/settings/billing/usage",
     "triggersNotification": null
   },
   {
@@ -925,6 +977,10 @@
   },
   {
     "url": "/users/{username}/settings/billing/shared-storage",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/settings/billing/cost-centers/{cost_center_id}/resource",
     "triggersNotification": null
   },
   {
@@ -1000,7 +1056,23 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/autofix/commits",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/autofix",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/codeql/variant-analyses",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/code-scanning/analyses/{analysis_id}{?confirm_delete}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/codeql/databases/{language}",
     "triggersNotification": null
   },
   {
@@ -1009,6 +1081,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/analyses/{analysis_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/autofix",
     "triggersNotification": null
   },
   {
@@ -1021,6 +1097,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/sarifs/{sarif_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/codeql/variant-analyses/{codeql_variant_analysis_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-scanning/codeql/variant-analyses/{codeql_variant_analysis_id}/repos/{repo_owner}/{repo_name}",
     "triggersNotification": null
   },
   {
@@ -1061,6 +1145,86 @@
   },
   {
     "url": "/repos/{owner}/{repo}/code-scanning/sarifs",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/{configuration_id}/attach",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/{configuration_id}/attach",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/{configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/{configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/detach",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/{configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/code-security-configuration",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/defaults",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/defaults",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/{configuration_id}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/{configuration_id}/repositories",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/{configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/{configuration_id}/defaults",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/{configuration_id}/defaults",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/code-security/configurations/{configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/code-security/configurations/{configuration_id}",
     "triggersNotification": null
   },
   {
@@ -1280,6 +1444,22 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/copilot/metrics",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/team/{team_slug}/copilot/metrics",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/copilot/metrics",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/team/{team_slug}/copilot/metrics",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/copilot/billing",
     "triggersNotification": null
   },
@@ -1292,7 +1472,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/copilot/billing/seats",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/copilot/usage",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/team/{team_slug}/copilot/usage",
     "triggersNotification": null
   },
   {
@@ -1408,6 +1596,18 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/audit-log/streams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/properties/schema",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/properties/schema/{custom_property_name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/runners/registration-token",
     "triggersNotification": null
   },
@@ -1417,6 +1617,10 @@
   },
   {
     "url": "/enterprises/{enterprise}/actions/runner-groups",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/audit-log/streams/{stream_id}",
     "triggersNotification": null
   },
   {
@@ -1452,7 +1656,23 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/audit-log/stream-key",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/audit-log/streams",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/consumed-licenses",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/properties/schema",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/properties/schema/{custom_property_name}",
     "triggersNotification": null
   },
   {
@@ -1461,6 +1681,10 @@
   },
   {
     "url": "/enterprises/{enterprise}/license-sync-status",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/audit-log/streams/{stream_id}",
     "triggersNotification": null
   },
   {
@@ -1536,6 +1760,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/properties/schema/{custom_property_name}",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
     "triggersNotification": null
   },
@@ -1581,6 +1809,10 @@
   },
   {
     "url": "/scim/v2/enterprises/{enterprise}/Users/{scim_user_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/audit-log/streams/{stream_id}",
     "triggersNotification": null
   },
   {
@@ -1784,6 +2016,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/sub_issues",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/assignees/{assignee}",
     "triggersNotification": null
   },
@@ -1896,6 +2132,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/sub_issues",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/issues/{issue_number}/lock",
     "triggersNotification": null
   },
@@ -1910,6 +2150,14 @@
   {
     "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels/{name}",
     "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/sub_issue",
+    "triggersNotification": true
+  },
+  {
+    "url": "/repos/{owner}/{repo}/issues/{issue_number}/sub_issues/priority",
+    "triggersNotification": true
   },
   {
     "url": "/repos/{owner}/{repo}/issues/{issue_number}/labels",
@@ -2224,6 +2472,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/attestations/{subject_digest}",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/blocks",
     "triggersNotification": null
   },
@@ -2309,6 +2561,10 @@
   },
   {
     "url": "/orgs/{org}/public_members",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/bypass-requests/push-rules",
     "triggersNotification": null
   },
   {
@@ -2553,6 +2809,30 @@
   },
   {
     "url": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/private-registries",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/private-registries/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/private-registries/{secret_name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/private-registries/public-key",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/private-registries",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/private-registries/{secret_name}",
     "triggersNotification": null
   },
   {
@@ -2928,6 +3208,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/attestations",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/autolinks",
     "triggersNotification": null
   },
@@ -2965,6 +3249,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/dispatches",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/rulesets",
     "triggersNotification": null
   },
   {
@@ -3073,6 +3361,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}",
     "triggersNotification": null
   },
   {
@@ -3288,6 +3580,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}",
     "triggersNotification": null
   },
@@ -3364,6 +3660,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/bypass-requests/push-rules/{bypass_request_number}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/rulesets/rule-suites/{rule_suite_id}",
     "triggersNotification": null
   },
@@ -3417,6 +3717,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/activity",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/attestations/{subject_digest}",
     "triggersNotification": null
   },
   {
@@ -3521,6 +3825,10 @@
   },
   {
     "url": "/repos/{owner}/{repo}/releases",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/bypass-requests/push-rules",
     "triggersNotification": null
   },
   {
@@ -3640,6 +3948,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/pages",
     "triggersNotification": null
   },
@@ -3740,7 +4052,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/secret-scanning/push-protection-bypasses",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/secret-scanning/scan-history",
     "triggersNotification": null
   },
   {
@@ -4184,6 +4504,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/user/{account_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/users/{username}",
     "triggersNotification": null
   },
@@ -4213,6 +4537,10 @@
   },
   {
     "url": "/users",
+    "triggersNotification": null
+  },
+  {
+    "url": "/users/{username}/attestations/{subject_digest}",
     "triggersNotification": null
   },
   {
