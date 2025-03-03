@@ -38,7 +38,7 @@
     "github-openapi-graphql-query": "^4.0.0",
     "glob": "^11.0.0",
     "npm-run-all2": "^7.0.0",
-    "prettier": "3.5.2",
+    "prettier": "3.5.3",
     "semantic-release-plugin-update-version-in-files": "^2.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.0.0"
