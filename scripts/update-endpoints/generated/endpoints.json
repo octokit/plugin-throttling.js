@@ -36,6 +36,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}/secrets/{secret_name}",
     "triggersNotification": null
   },
@@ -97,6 +105,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/{hosted_runner_id}",
     "triggersNotification": null
   },
   {
@@ -252,6 +268,54 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/{hosted_runner_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/images/github-owned",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/images/github-owned",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/limits",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/limits",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/machine-sizes",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/machine-sizes",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/images/partner",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/images/partner",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/platforms",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/platforms",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/actions/jobs/{job_id}",
     "triggersNotification": null
   },
@@ -337,6 +401,18 @@
   },
   {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/runner-groups/{runner_group_id}/hosted-runners",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners",
     "triggersNotification": null
   },
   {
@@ -557,6 +633,14 @@
   },
   {
     "url": "/repos/{owner}/{repo}/environments/{environment_name}/variables/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/actions/hosted-runners/{hosted_runner_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/actions/hosted-runners/{hosted_runner_id}",
     "triggersNotification": null
   },
   {
@@ -1676,6 +1760,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}/history",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/rulesets/{ruleset_id}/history/{version_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/permissions",
     "triggersNotification": null
   },
@@ -1724,6 +1816,10 @@
     "triggersNotification": null
   },
   {
+    "url": "/enterprises/{enterprise}/bypass-requests/push-rules",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/actions/runners/downloads",
     "triggersNotification": null
   },
@@ -1741,6 +1837,10 @@
   },
   {
     "url": "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/properties/schema/organizations/{org}/{custom_property_name}/promote",
     "triggersNotification": null
   },
   {
@@ -1957,6 +2057,54 @@
   },
   {
     "url": "/gitignore/templates/{name}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/network-configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/settings/network-configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/network-configurations/{network_configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/settings/network-configurations/{network_configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/network-configurations/{network_configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/settings/network-configurations/{network_configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/network-settings/{network_settings_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/settings/network-settings/{network_settings_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/network-configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/settings/network-configurations",
+    "triggersNotification": null
+  },
+  {
+    "url": "/enterprises/{enterprise}/network-configurations/{network_configuration_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/settings/network-configurations/{network_configuration_id}",
     "triggersNotification": null
   },
   {
@@ -2449,6 +2597,14 @@
   },
   {
     "url": "/orgs/{org}/organization-roles/{role_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/rulesets/{ruleset_id}/history",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/rulesets/{ruleset_id}/history/{version_id}",
     "triggersNotification": null
   },
   {
@@ -3676,6 +3832,14 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/rulesets/{ruleset_id}/history",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/rulesets/{ruleset_id}/history/{version_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/rulesets",
     "triggersNotification": null
   },
@@ -4056,7 +4220,15 @@
     "triggersNotification": null
   },
   {
+    "url": "/repos/{owner}/{repo}/bypass-responses/secret-scanning/{bypass_response_id}",
+    "triggersNotification": null
+  },
+  {
     "url": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/bypass-requests/secret-scanning/{bypass_request_number}",
     "triggersNotification": null
   },
   {
@@ -4084,11 +4256,23 @@
     "triggersNotification": null
   },
   {
+    "url": "/orgs/{org}/bypass-requests/secret-scanning",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/bypass-requests/secret-scanning",
+    "triggersNotification": null
+  },
+  {
     "url": "/enterprises/{enterprise}/code_security_and_analysis",
     "triggersNotification": null
   },
   {
     "url": "/enterprises/{enterprise}/{security_product}/{enablement}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/repos/{owner}/{repo}/bypass-requests/secret-scanning/{bypass_request_number}",
     "triggersNotification": null
   },
   {
