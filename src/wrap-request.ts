@@ -20,8 +20,13 @@ async function doRequest(
   ) => Promise<OctokitResponse<any>>) & { retryCount: number },
   options: Required<EndpointDefaults>,
 ) {
-  const isWrite = options.method !== "GET" && options.method !== "HEAD";
   const { pathname } = new URL(options.url, "http://github.test");
+  const isAuth =
+    options.method === "POST" &&
+    (pathname === "/login/oauth/access_token" ||
+      /^\/app\/installations\/[^/]+\/access_tokens$/.test(pathname));
+  const isWrite =
+    !isAuth && options.method !== "GET" && options.method !== "HEAD";
   const isSearch = options.method === "GET" && pathname.startsWith("/search/");
   const isGraphQL = pathname.startsWith("/graphql");
 
@@ -50,7 +55,7 @@ async function doRequest(
     await state.search.key(state.id).schedule(jobOptions, noop);
   }
 
-  const req = state.global
+  const req = (isAuth ? state.auth : state.global)
     .key(state.id)
     .schedule<
       OctokitResponse<any>,
