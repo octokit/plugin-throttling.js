@@ -30,6 +30,11 @@ const createGroups = function (
     maxConcurrent: 10,
     ...common,
   });
+  groups.auth = new Bottleneck.Group({
+    id: "octokit-auth",
+    maxConcurrent: 1,
+    ...common,
+  });
   groups.search = new Bottleneck.Group({
     id: "octokit-search",
     maxConcurrent: 1,
