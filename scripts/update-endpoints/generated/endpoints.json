@@ -2524,6 +2524,10 @@
     "triggersNotification": true
   },
   {
+    "url": "/orgs/{org}/issue-types",
+    "triggersNotification": null
+  },
+  {
     "url": "/orgs/{org}/properties/schema",
     "triggersNotification": null
   },
@@ -2553,6 +2557,10 @@
   },
   {
     "url": "/orgs/{org}/custom_roles/{role_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/issue-types/{issue_type_id}",
     "triggersNotification": null
   },
   {
@@ -2665,6 +2673,10 @@
   },
   {
     "url": "/orgs/{org}/invitations/{invitation_id}/teams",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/issue-types",
     "triggersNotification": null
   },
   {
@@ -2829,6 +2841,10 @@
   },
   {
     "url": "/orgs/{org}/custom_roles/{role_id}",
+    "triggersNotification": null
+  },
+  {
+    "url": "/orgs/{org}/issue-types/{issue_type_id}",
     "triggersNotification": null
   },
   {
