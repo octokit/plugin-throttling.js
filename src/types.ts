@@ -39,6 +39,7 @@ export type ThrottlingOptions =
 
 export type Groups = {
   global?: Bottleneck.Group;
+  auth?: Bottleneck.Group;
   write?: Bottleneck.Group;
   search?: Bottleneck.Group;
   notifications?: Bottleneck.Group;
