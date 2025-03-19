@@ -13,11 +13,7 @@ function testPlugin(octokit: Octokit) {
     __requestTimings.push(Date.now() - t0);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const res = options.request.responses?.shift() ?? {
-      status: 200,
-      headers: {},
-      data: {},
-    };
+    const res = options.request.responses.shift();
     if (res.status >= 400) {
       const message =
         res.data.message != null
