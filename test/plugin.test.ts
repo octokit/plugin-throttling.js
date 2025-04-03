@@ -449,12 +449,8 @@ describe("GitHub API best practices", function () {
 
     await Promise.all(routes.map((route) => octokit.request(`GET ${route}`)));
 
-    // TODO: simplify this assertion if/when @octokit/auth-app improves its
-    // behavior, see https://github.com/octokit/auth-app.js/issues/688
-    // As it stands, it ends up making 10 auth requests (one for each top-level
-    // request). But for the purposes of this test we don't actually care, we
-    // just need to assert that at least one auth request was made.
-    expect([...new Set(requestLog)].sort()).toStrictEqual([
+    expect(requestLog).toStrictEqual([
+      "POST https://api.github.com/app/installations/456/access_tokens",
       "GET https://api.github.com/route01",
       "GET https://api.github.com/route02",
       "GET https://api.github.com/route03",
@@ -465,7 +461,6 @@ describe("GitHub API best practices", function () {
       "GET https://api.github.com/route08",
       "GET https://api.github.com/route09",
       "GET https://api.github.com/route10",
-      "POST https://api.github.com/app/installations/456/access_tokens",
     ]);
   });
 });
