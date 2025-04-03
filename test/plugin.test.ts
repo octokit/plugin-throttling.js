@@ -1,7 +1,12 @@
 import { describe, it, expect } from "vitest";
 import Bottleneck from "bottleneck";
+import { createAppAuth } from "@octokit/auth-app";
 import { TestOctokit } from "./octokit.ts";
 import { throttling } from "../src/index.ts";
+import { Octokit } from "@octokit/core";
+import * as crypto from "node:crypto";
+import { promisify } from "node:util";
+const generateKeyPair = promisify(crypto.generateKeyPair);
 
 describe("General", function () {
   it("Should be possible to disable the plugin", async function () {
@@ -376,5 +381,86 @@ describe("GitHub API best practices", function () {
     expect(
       octokit.__requestTimings[12] - octokit.__requestTimings[10],
     ).toBeLessThan(30);
+  });
+
+  it("should not deadlock concurrent auth requests", async function () {
+    // instrument a fake fetch rather than using TestOctokit; this way
+    // @octokit/auth-app's request hook will actually run and we can
+    // track all requests (auth ones too, not just the top-level ones
+    // we make)
+    const requestLog: string[] = [];
+    const fakeFetch = async (url: string, init: any) => {
+      requestLog.push(`${init.method.toUpperCase()} ${url}`);
+      let data = {};
+      if (init.method === "POST" && url.includes("/app/installations/")) {
+        data = {
+          token: "token",
+          expires_at: new Date(Date.now() + 60_000).toISOString(),
+          permissions: {},
+          single_file: "",
+        };
+      }
+
+      return Promise.resolve(
+        new Response(JSON.stringify(data), {
+          status: 200,
+          headers: { "content-type": "application/json" },
+        }),
+      );
+    };
+    // jsonwebtoken needs a valid private key to sign the JWT, though the
+    // actual value doesn't matter since nothing will validate it
+    const privateKey = (
+      await generateKeyPair("rsa", {
+        modulusLength: 4096,
+        publicKeyEncoding: { type: "spki", format: "pem" },
+        privateKeyEncoding: { type: "pkcs8", format: "pem" },
+      })
+    ).privateKey;
+
+    const octokit = new (Octokit.plugin(throttling))({
+      authStrategy: createAppAuth,
+      auth: {
+        appId: 123,
+        privateKey,
+        installationId: 456,
+      },
+      throttle: {
+        onSecondaryRateLimit: () => 0,
+        onRateLimit: () => 0,
+      },
+      request: {
+        fetch: fakeFetch,
+      },
+    });
+
+    const routes = [
+      "/route01",
+      "/route02",
+      "/route03",
+      "/route04",
+      "/route05",
+      "/route06",
+      "/route07",
+      "/route08",
+      "/route09",
+      "/route10",
+    ];
+
+    await Promise.all(routes.map((route) => octokit.request(`GET ${route}`)));
+
+    expect(requestLog).toStrictEqual([
+      "POST https://api.github.com/app/installations/456/access_tokens",
+      "GET https://api.github.com/route01",
+      "GET https://api.github.com/route02",
+      "GET https://api.github.com/route03",
+      "GET https://api.github.com/route04",
+      "GET https://api.github.com/route05",
+      "GET https://api.github.com/route06",
+      "GET https://api.github.com/route07",
+      "GET https://api.github.com/route08",
+      "GET https://api.github.com/route09",
+      "GET https://api.github.com/route10",
+    ]);
   });
 });
