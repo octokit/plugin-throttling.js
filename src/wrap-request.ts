@@ -21,10 +21,7 @@ async function doRequest(
   options: Required<EndpointDefaults>,
 ) {
   const { pathname } = new URL(options.url, "http://github.test");
-  const isAuth =
-    options.method === "POST" &&
-    (pathname === "/login/oauth/access_token" ||
-      /^\/app\/installations\/[^/]+\/access_tokens$/.test(pathname));
+  const isAuth = isAuthRequest(options.method, pathname);
   const isWrite =
     !isAuth && options.method !== "GET" && options.method !== "HEAD";
   const isSearch = options.method === "GET" && pathname.startsWith("/search/");
@@ -77,4 +74,19 @@ async function doRequest(
     }
   }
   return req;
+}
+
+function isAuthRequest(method: string, pathname: string) {
+  return (
+    (method === "PATCH" &&
+      // https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#create-a-scoped-access-token
+      /^\/applications\/[^/]+\/token\/scoped$/.test(pathname)) ||
+    (method === "POST" &&
+      // https://docs.github.com/en/rest/apps/oauth-applications?apiVersion=2022-11-28#reset-a-token
+      (/^\/applications\/[^/]+\/token$/.test(pathname) ||
+        // https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#create-an-installation-access-token-for-an-app
+        /^\/app\/installations\/[^/]+\/access_tokens$/.test(pathname) ||
+        // https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps
+        pathname === "/login/oauth/access_token"))
+  );
 }
