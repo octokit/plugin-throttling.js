@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: npm
-          node-version: 16
+          node-version: 22
       - run: git checkout routes-update || true
       - run: npm ci
       - run: rm -rf docs/
