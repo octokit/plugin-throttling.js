@@ -2,7 +2,13 @@ import type { Octokit } from "@octokit/core";
 import type { EndpointDefaults } from "@octokit/types";
 import type { ThrottleGroup } from "./throttle-group.js";
 import type { ThrottleLimiter } from "./throttle-limiter.js";
-import type { RedisConnection, IORedisConnection } from "./redis-types.js";
+
+// Generic connection interface for Redis clustering support
+// Users can pass any connection object that implements these methods
+export interface Connection {
+  disconnect(): Promise<void>;
+  on(event: string, handler: (...args: any[]) => void): void;
+}
 
 type LimitHandler = (
   retryAfter: number,
@@ -19,7 +25,7 @@ export type ThrottlingOptionsBase = {
   enabled?: boolean;
   id?: string;
   timeout?: number;
-  connection?: RedisConnection | IORedisConnection;
+  connection?: Connection;
   /**
    * @deprecated use `fallbackSecondaryRateRetryAfter`
    */
@@ -57,6 +63,6 @@ export type State = {
   ThrottlingOptions;
 
 export type CreateGroupsCommon = {
-  connection?: RedisConnection | IORedisConnection;
+  connection?: Connection;
   timeout: number;
 };

@@ -24,7 +24,7 @@ const groups: Groups = {};
 const createGroups = function (common: CreateGroupsCommon) {
   groups.global = new ThrottleGroup({
     id: "octokit-global",
-    maxConcurrent: 10,
+    maxConcurrent: 1, // Changed from 10 to 1 to properly serialize requests
     ...common,
   });
   groups.auth = new ThrottleGroup({
@@ -113,16 +113,18 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     event: string,
     ...args: any[]
   ): Promise<any> => {
-    return new Promise((resolve) => {
-      // Use emitter.emit but capture the result via a wrapper
+    try {
       const listeners = emitter.listeners(event);
       if (listeners.length > 0) {
-        const result = (listeners[0] as any)(...args);
-        resolve(result);
-      } else {
-        resolve(undefined);
+        const result = await (listeners[0] as any)(...args);
+        return result;
       }
-    });
+      return undefined;
+    } catch (error) {
+      // Emit error event if handler throws
+      emitter.emit("error", error);
+      return undefined;
+    }
   };
 
   state.retryLimiter.on("failed", async function (error, info) {

@@ -1,12 +1,12 @@
 import PQueue from "p-queue";
-import type { RedisConnection, IORedisConnection } from "./redis-types.js";
+import type { Connection } from "./types.js";
 
 interface ThrottleGroupOptions {
   id: string;
   maxConcurrent?: number;
   minTime?: number;
   timeout?: number;
-  connection?: RedisConnection | IORedisConnection;
+  connection?: Connection;
 }
 
 interface JobOptions {
