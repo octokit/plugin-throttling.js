@@ -24,39 +24,40 @@ interface JobOptions {
  */
 export class ThrottleGroup {
   private sharedQueue: PQueue;
-  private lastExecutionTime: Map<string, number> = new Map();
-  private readonly options: ThrottleGroupOptions;
 
   constructor(options: ThrottleGroupOptions) {
-    this.options = options;
-
     // Create a single shared queue for the entire group
-    // Default to concurrency=1 if not specified (matching Bottleneck's default behavior)
+    // Bottleneck defaults: maxConcurrent=null (unlimited), minTime=0
     const queueOptions: {
-      concurrency: number;
+      concurrency?: number;
       timeout?: number;
-    } = {
-      concurrency: options.maxConcurrent ?? 1,
-    };
+      intervalCap?: number;
+      interval?: number;
+    } = {};
+
+    // Set concurrency if maxConcurrent is specified (otherwise p-queue defaults to Infinity)
+    if (options.maxConcurrent !== undefined) {
+      queueOptions.concurrency = options.maxConcurrent;
+    }
     if (options.timeout !== undefined) {
       queueOptions.timeout = options.timeout;
     }
+
+    // If minTime is specified, use p-queue's interval limiting
+    // minTime ensures minimum delay between task starts
+    if (options.minTime !== undefined && options.minTime > 0) {
+      queueOptions.intervalCap = 1;
+      queueOptions.interval = options.minTime;
+    }
+
     this.sharedQueue = new PQueue(queueOptions);
   }
 
   /**
    * Get a key-specific instance that uses the shared queue
    */
-  key(id: string): ThrottleGroupKeyInstance {
-    if (!this.lastExecutionTime.has(id)) {
-      this.lastExecutionTime.set(id, 0);
-    }
-    return new ThrottleGroupKeyInstance(
-      this.sharedQueue,
-      this.lastExecutionTime,
-      id,
-      this.options.minTime || 0,
-    );
+  key(_id: string): ThrottleGroupKeyInstance {
+    return new ThrottleGroupKeyInstance(this.sharedQueue);
   }
 }
 
@@ -65,12 +66,7 @@ export class ThrottleGroup {
  * Mimics Bottleneck's key() API
  */
 class ThrottleGroupKeyInstance {
-  constructor(
-    private queue: PQueue,
-    private lastExecutionTime: Map<string, number>,
-    private id: string,
-    private minTime: number,
-  ) {}
+  constructor(private queue: PQueue) {}
 
   /**
    * Schedule a function to run with throttling
@@ -100,24 +96,6 @@ class ThrottleGroupKeyInstance {
     // Add to queue with priority if specified
     const priority = options.priority !== undefined ? -options.priority : 0;
 
-    return this.queue.add(
-      async () => {
-        // Enforce minTime delay between executions INSIDE the queue
-        if (this.minTime > 0) {
-          const now = Date.now();
-          const lastExecution = this.lastExecutionTime.get(this.id) || 0;
-          const timeSinceLastExecution = now - lastExecution;
-          const waitTime = Math.max(0, this.minTime - timeSinceLastExecution);
-
-          if (waitTime > 0) {
-            await new Promise((resolve) => setTimeout(resolve, waitTime));
-          }
-        }
-
-        this.lastExecutionTime.set(this.id, Date.now());
-        return fn(...actualArgs);
-      },
-      { priority },
-    );
+    return this.queue.add(async () => fn(...actualArgs), { priority });
   }
 }
