@@ -24,7 +24,7 @@ const groups: Groups = {};
 const createGroups = function (common: CreateGroupsCommon) {
   groups.global = new ThrottleGroup({
     id: "octokit-global",
-    maxConcurrent: 1, // Changed from 10 to 1 to properly serialize requests
+    maxConcurrent: 10,
     ...common,
   });
   groups.auth = new ThrottleGroup({
