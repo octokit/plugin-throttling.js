@@ -25,6 +25,7 @@ const createGroups = function (common: CreateGroupsCommon) {
   groups.global = new ThrottleGroup({
     id: "octokit-global",
     maxConcurrent: 10,
+    minTime: 0, // Explicitly set to match Bottleneck's behavior
     ...common,
   });
   groups.auth = new ThrottleGroup({
