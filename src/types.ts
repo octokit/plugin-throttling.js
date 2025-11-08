@@ -1,6 +1,8 @@
 import type { Octokit } from "@octokit/core";
 import type { EndpointDefaults } from "@octokit/types";
-import type Bottleneck from "bottleneck";
+import type { ThrottleGroup } from "./throttle-group.js";
+import type { ThrottleLimiter } from "./throttle-limiter.js";
+import type { RedisConnection, IORedisConnection } from "./redis-types.js";
 
 type LimitHandler = (
   retryAfter: number,
@@ -15,19 +17,18 @@ export type SecondaryLimitHandler = {
 
 export type ThrottlingOptionsBase = {
   enabled?: boolean;
-  Bottleneck?: typeof Bottleneck;
   id?: string;
   timeout?: number;
-  connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
+  connection?: RedisConnection | IORedisConnection;
   /**
    * @deprecated use `fallbackSecondaryRateRetryAfter`
    */
   minimalSecondaryRateRetryAfter?: number;
   fallbackSecondaryRateRetryAfter?: number;
   retryAfterBaseValue?: number;
-  write?: Bottleneck.Group;
-  search?: Bottleneck.Group;
-  notifications?: Bottleneck.Group;
+  write?: ThrottleGroup;
+  search?: ThrottleGroup;
+  notifications?: ThrottleGroup;
   onRateLimit: LimitHandler;
 };
 
@@ -38,11 +39,11 @@ export type ThrottlingOptions =
     });
 
 export type Groups = {
-  global?: Bottleneck.Group;
-  auth?: Bottleneck.Group;
-  write?: Bottleneck.Group;
-  search?: Bottleneck.Group;
-  notifications?: Bottleneck.Group;
+  global?: ThrottleGroup;
+  auth?: ThrottleGroup;
+  write?: ThrottleGroup;
+  search?: ThrottleGroup;
+  notifications?: ThrottleGroup;
 };
 
 export type State = {
@@ -50,12 +51,12 @@ export type State = {
   triggersNotification: (pathname: string) => boolean;
   fallbackSecondaryRateRetryAfter: number;
   retryAfterBaseValue: number;
-  retryLimiter: Bottleneck;
+  retryLimiter: ThrottleLimiter;
   id: string;
 } & Required<Groups> &
   ThrottlingOptions;
 
 export type CreateGroupsCommon = {
-  connection?: Bottleneck.RedisConnection | Bottleneck.IORedisConnection;
+  connection?: RedisConnection | IORedisConnection;
   timeout: number;
 };

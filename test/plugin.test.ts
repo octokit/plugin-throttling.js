@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import Bottleneck from "bottleneck";
+import { ThrottleGroup } from "../src/throttle-group.ts";
 import { createAppAuth } from "@octokit/auth-app";
 import { TestOctokit } from "./octokit.ts";
 import { throttling } from "../src/index.ts";
@@ -122,10 +122,9 @@ describe("GitHub API best practices", function () {
   it("Should maintain 1000ms between mutating or GraphQL requests", async function () {
     const octokit = new TestOctokit({
       throttle: {
-        write: new Bottleneck.Group({ minTime: 50 }),
+        write: new ThrottleGroup({ id: "test", minTime: 50 }),
         onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
-        connection: new Bottleneck({ minTime: 50 }),
       },
     });
 
@@ -172,8 +171,8 @@ describe("GitHub API best practices", function () {
   it("Should maintain 3000ms between requests that trigger notifications", async function () {
     const octokit = new TestOctokit({
       throttle: {
-        write: new Bottleneck.Group({ minTime: 50 }),
-        notifications: new Bottleneck.Group({ minTime: 100 }),
+        write: new ThrottleGroup({ id: "test", minTime: 50 }),
+        notifications: new ThrottleGroup({ id: "test", minTime: 100 }),
         onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
@@ -249,7 +248,7 @@ describe("GitHub API best practices", function () {
   it("Should maintain 2000ms between search requests", async function () {
     const octokit = new TestOctokit({
       throttle: {
-        search: new Bottleneck.Group({ minTime: 50 }),
+        search: new ThrottleGroup({ id: "test", minTime: 50 }),
         onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
@@ -302,8 +301,8 @@ describe("GitHub API best practices", function () {
   it("Should optimize throughput rather than maintain ordering", async function () {
     const octokit = new TestOctokit({
       throttle: {
-        write: new Bottleneck.Group({ minTime: 50 }),
-        notifications: new Bottleneck.Group({ minTime: 150 }),
+        write: new ThrottleGroup({ id: "test", minTime: 50 }),
+        notifications: new ThrottleGroup({ id: "test", minTime: 150 }),
         onSecondaryRateLimit: () => 1,
         onRateLimit: () => 1,
       },
