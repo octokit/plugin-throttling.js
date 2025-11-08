@@ -28,9 +28,11 @@ export class ThrottleLimiter {
         // Call failed handlers and check if we should retry
         for (const handler of this.failedHandlers) {
           const retryAfter = await handler(error, { args });
-          if (typeof retryAfter === "number" && retryAfter > 0) {
-            // Wait and retry
-            await new Promise((resolve) => setTimeout(resolve, retryAfter));
+          if (typeof retryAfter === "number" && retryAfter >= 0) {
+            // Wait and retry (retryAfter can be 0 for immediate retry)
+            if (retryAfter > 0) {
+              await new Promise((resolve) => setTimeout(resolve, retryAfter));
+            }
             return executeWithRetry();
           }
         }
