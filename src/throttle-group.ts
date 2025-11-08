@@ -20,25 +20,29 @@ interface JobOptions {
  * Replaces Bottleneck.Group functionality with p-queue
  *
  * Note: In Bottleneck, maxConcurrent was shared across all keys in a group.
- * We use a single shared queue for the entire group, with per-key minTime tracking.
+ * We use a single shared queue for the entire group.
+ *
+ * Key Bottleneck behavior: Even with maxConcurrent > 1, Bottleneck serializes
+ * the draining operations through internal locks (Sync), causing jobs to be
+ * processed from the queue one at a time. We replicate this by using concurrency: 1
+ * on the queue itself, regardless of maxConcurrent setting.
  */
 export class ThrottleGroup {
   private sharedQueue: PQueue;
 
   constructor(options: ThrottleGroupOptions) {
     // Create a single shared queue for the entire group
-    // Bottleneck defaults: maxConcurrent=null (unlimited), minTime=0
+    // Bottleneck's internal Sync locks serialize draining operations
+    // So we use concurrency: 1 to replicate this behavior
     const queueOptions: {
-      concurrency?: number;
+      concurrency: number;
       timeout?: number;
       intervalCap?: number;
       interval?: number;
-    } = {};
+    } = {
+      concurrency: 1, // Always 1 to mimic Bottleneck's serialized draining
+    };
 
-    // Set concurrency if maxConcurrent is specified (otherwise p-queue defaults to Infinity)
-    if (options.maxConcurrent !== undefined) {
-      queueOptions.concurrency = options.maxConcurrent;
-    }
     if (options.timeout !== undefined) {
       queueOptions.timeout = options.timeout;
     }
