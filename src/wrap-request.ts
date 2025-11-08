@@ -54,10 +54,7 @@ async function doRequest(
 
   const req = (isAuth ? state.auth : state.global)
     .key(state.id)
-    .schedule<
-      OctokitResponse<any>,
-      Required<EndpointDefaults>
-    >(jobOptions, request, options);
+    .schedule<OctokitResponse<any>>(jobOptions, request, options);
   if (isGraphQL) {
     const res = await req;
 

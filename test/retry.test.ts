@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import Bottleneck from "bottleneck";
+import { ThrottleGroup } from "../src/throttle-group.ts";
 import { TestOctokit } from "./octokit.ts";
 import { Octokit } from "@octokit/core";
 import { throttling } from "../src/index.ts";
@@ -236,7 +236,7 @@ describe(
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            write: new Bottleneck.Group({ minTime: 50 }),
+            write: new ThrottleGroup({ id: "test", minTime: 50 }),
             onRateLimit: (retryAfter, options) => {
               expect(options).toMatchObject({
                 method: "POST",
@@ -288,7 +288,7 @@ describe(
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            write: new Bottleneck.Group({ minTime: 50 }),
+            write: new ThrottleGroup({ id: "test", minTime: 50 }),
             onRateLimit: (retryAfter, options) => {
               expect(options).toMatchObject({
                 method: "POST",
@@ -341,7 +341,7 @@ describe(
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            write: new Bottleneck.Group({ minTime: 50 }),
+            write: new ThrottleGroup({ id: "test", minTime: 50 }),
             onRateLimit: () => {
               eventCount++;
               return true;
@@ -379,7 +379,7 @@ describe(
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            write: new Bottleneck.Group({ minTime: 50 }),
+            write: new ThrottleGroup({ id: "test", minTime: 50 }),
             onRateLimit: () => {
               eventCount++;
               return true;
@@ -420,7 +420,7 @@ describe(
         let eventCount = 0;
         const octokit = new TestOctokit({
           throttle: {
-            write: new Bottleneck.Group({ minTime: 50 }),
+            write: new ThrottleGroup({ id: "test", minTime: 50 }),
             onSecondaryRateLimit: () => {
               eventCount++;
               return true;

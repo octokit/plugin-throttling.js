@@ -96,32 +96,43 @@ Pass `{ throttle: { enabled: false } }` to disable this plugin.
 
 ### Clustering
 
-Enabling Clustering support ensures that your application will not go over rate limits **across Octokit instances and across Nodejs processes**.
+Clustering support allows your application to coordinate rate limiting **across Octokit instances and across Node.js processes** using Redis.
+
+> **Note:** Redis clustering support is available but requires implementing a custom connection adapter. The `connection` parameter accepts any object that implements `disconnect(): Promise<void>` and `on(event: string, handler: Function): void` methods.
 
 First install either `redis` or `ioredis`:
 
 ```
-# NodeRedis (https://github.com/NodeRedis/node_redis)
+# NodeRedis (https://github.com/redis/node-redis)
 npm install --save redis
 
-# or ioredis (https://github.com/luin/ioredis)
+# or ioredis (https://github.com/redis/ioredis)
 npm install --save ioredis
 ```
 
-Then in your application:
+Then create a connection adapter and pass it to the throttle options:
 
 ```js
-import Bottleneck from "bottleneck";
 import Redis from "redis";
 
 const client = Redis.createClient({
   /* options */
 });
-const connection = new Bottleneck.RedisConnection({ client });
-connection.on("error", err => console.error(err));
+
+// Create a connection adapter that implements the required interface
+const connection = {
+  async disconnect() {
+    await client.disconnect();
+  },
+  on(event, handler) {
+    client.on(event, handler);
+  },
+};
+
+connection.on("error", (err) => console.error(err));
 
 const octokit = new MyOctokit({
-  auth: 'secret123'
+  auth: "secret123",
   throttle: {
     onSecondaryRateLimit: (retryAfter, options, octokit) => {
       /* ... */
@@ -130,16 +141,13 @@ const octokit = new MyOctokit({
       /* ... */
     },
 
-    // The Bottleneck connection object
+    // The connection object for Redis coordination
     connection,
 
     // A "throttling ID". All octokit instances with the same ID
     // using the same Redis server will share the throttling.
     id: "my-super-app",
-
-    // Otherwise the plugin uses a lighter version of Bottleneck without Redis support
-    Bottleneck
-  }
+  },
 });
 
 // To close the connection and allow your application to exit cleanly:
@@ -153,7 +161,16 @@ import Redis from "ioredis";
 const client = new Redis({
   /* options */
 });
-const connection = new Bottleneck.IORedisConnection({ client });
+
+const connection = {
+  async disconnect() {
+    await client.disconnect();
+  },
+  on(event, handler) {
+    client.on(event, handler);
+  },
+};
+
 connection.on("error", (err) => console.error(err));
 ```
 
@@ -201,10 +218,10 @@ connection.on("error", (err) => console.error(err));
         <code>options.connection</code>
       </th>
       <td>
-        <code>Bottleneck.RedisConnection</code>
+        <code>Connection</code>
       </td>
       <td>
-        A Bottleneck connection instance. See <a href="#clustering">Clustering</a> above.
+        A connection object for Redis clustering. Must implement <code>disconnect(): Promise&lt;void&gt;</code> and <code>on(event: string, handler: Function): void</code> methods. See <a href="#clustering">Clustering</a> above.
       </td>
     </tr>
     <tr>
@@ -216,17 +233,6 @@ connection.on("error", (err) => console.error(err));
       </td>
       <td>
         A "throttling ID". All octokit instances with the same ID using the same Redis server will share the throttling. See <a href="#clustering">Clustering</a> above. Defaults to <code>no-id</code>.
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <code>options.Bottleneck</code>
-      </th>
-      <td>
-        <code>Bottleneck</code>
-      </td>
-      <td>
-        Bottleneck constructor. See <a href="#clustering">Clustering</a> above. Defaults to `bottleneck/light`.
       </td>
     </tr>
   </tbody>
