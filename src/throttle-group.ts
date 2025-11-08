@@ -18,36 +18,41 @@ interface JobOptions {
 /**
  * ThrottleGroup manages request queuing and rate limiting for a specific group
  * Replaces Bottleneck.Group functionality with p-queue
+ *
+ * Note: In Bottleneck, maxConcurrent was shared across all keys in a group.
+ * We use a single shared queue for the entire group, with per-key minTime tracking.
  */
 export class ThrottleGroup {
-  private queues: Map<string, PQueue> = new Map();
+  private sharedQueue: PQueue;
   private lastExecutionTime: Map<string, number> = new Map();
   private readonly options: ThrottleGroupOptions;
 
   constructor(options: ThrottleGroupOptions) {
     this.options = options;
+
+    // Create a single shared queue for the entire group
+    // Default to concurrency=1 if not specified (matching Bottleneck's default behavior)
+    const queueOptions: {
+      concurrency: number;
+      timeout?: number;
+    } = {
+      concurrency: options.maxConcurrent ?? 1,
+    };
+    if (options.timeout !== undefined) {
+      queueOptions.timeout = options.timeout;
+    }
+    this.sharedQueue = new PQueue(queueOptions);
   }
 
   /**
-   * Get or create a queue for a specific key (e.g., throttling ID)
+   * Get a key-specific instance that uses the shared queue
    */
   key(id: string): ThrottleGroupKeyInstance {
-    if (!this.queues.has(id)) {
-      const queueOptions: {
-        concurrency?: number;
-        timeout?: number;
-      } = {};
-      if (this.options.maxConcurrent !== undefined) {
-        queueOptions.concurrency = this.options.maxConcurrent;
-      }
-      if (this.options.timeout !== undefined) {
-        queueOptions.timeout = this.options.timeout;
-      }
-      this.queues.set(id, new PQueue(queueOptions));
+    if (!this.lastExecutionTime.has(id)) {
       this.lastExecutionTime.set(id, 0);
     }
     return new ThrottleGroupKeyInstance(
-      this.queues.get(id)!,
+      this.sharedQueue,
       this.lastExecutionTime,
       id,
       this.options.minTime || 0,
