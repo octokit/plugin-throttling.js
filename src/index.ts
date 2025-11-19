@@ -1,6 +1,4 @@
-// @ts-expect-error No types for "bottleneck/light"
-import BottleneckLight from "bottleneck/light.js";
-import type TBottleneck from "bottleneck";
+import { EventEmitter } from "node:events";
 import type { Octokit, OctokitOptions } from "@octokit/core";
 import type {
   CreateGroupsCommon,
@@ -9,6 +7,8 @@ import type {
   ThrottlingOptions,
 } from "./types.js";
 import { VERSION } from "./version.js";
+import { ThrottleGroup } from "./throttle-group.js";
+import { ThrottleLimiter } from "./throttle-limiter.js";
 
 import { wrapRequest } from "./wrap-request.js";
 import triggersNotificationPaths from "./generated/triggers-notification-paths.js";
@@ -21,33 +21,31 @@ const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
 
-const createGroups = function (
-  Bottleneck: typeof TBottleneck,
-  common: CreateGroupsCommon,
-) {
-  groups.global = new Bottleneck.Group({
+const createGroups = function (common: CreateGroupsCommon) {
+  groups.global = new ThrottleGroup({
     id: "octokit-global",
     maxConcurrent: 10,
+    minTime: 0, // Explicitly set to match Bottleneck's behavior
     ...common,
   });
-  groups.auth = new Bottleneck.Group({
+  groups.auth = new ThrottleGroup({
     id: "octokit-auth",
     maxConcurrent: 1,
     ...common,
   });
-  groups.search = new Bottleneck.Group({
+  groups.search = new ThrottleGroup({
     id: "octokit-search",
     maxConcurrent: 1,
     minTime: 2000,
     ...common,
   });
-  groups.write = new Bottleneck.Group({
+  groups.write = new ThrottleGroup({
     id: "octokit-write",
     maxConcurrent: 1,
     minTime: 1000,
     ...common,
   });
-  groups.notifications = new Bottleneck.Group({
+  groups.notifications = new ThrottleGroup({
     id: "octokit-notifications",
     maxConcurrent: 1,
     minTime: 3000,
@@ -58,7 +56,6 @@ const createGroups = function (
 export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   const {
     enabled = true,
-    Bottleneck = BottleneckLight as typeof TBottleneck,
     id = "no-id",
     timeout = 1000 * 60 * 2, // Redis TTL: 2 minutes
     connection,
@@ -72,7 +69,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   }
 
   if (groups.global == null) {
-    createGroups(Bottleneck, common);
+    createGroups(common);
   }
 
   const state: State = Object.assign(
@@ -81,7 +78,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
       triggersNotification,
       fallbackSecondaryRateRetryAfter: 60,
       retryAfterBaseValue: 1000,
-      retryLimiter: new Bottleneck(),
+      retryLimiter: new ThrottleLimiter(),
       id,
       ...(groups as Required<Groups>),
     },
@@ -105,16 +102,31 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     `);
   }
 
-  const events = {};
-  const emitter = new Bottleneck.Events(events);
-  // @ts-expect-error
-  events.on("secondary-limit", state.onSecondaryRateLimit);
-  // @ts-expect-error
-  events.on("rate-limit", state.onRateLimit);
-  // @ts-expect-error
-  events.on("error", (e) =>
+  const emitter = new EventEmitter();
+  emitter.on("secondary-limit", state.onSecondaryRateLimit);
+  emitter.on("rate-limit", state.onRateLimit);
+  emitter.on("error", (e) =>
     octokit.log.warn("Error in throttling-plugin limit handler", e),
   );
+
+  // Helper to emit event and get handler return value
+  const emitAndGetResult = async (
+    event: string,
+    ...args: any[]
+  ): Promise<any> => {
+    try {
+      const listeners = emitter.listeners(event);
+      if (listeners.length > 0) {
+        const result = await (listeners[0] as any)(...args);
+        return result;
+      }
+      return undefined;
+    } catch (error) {
+      // Emit error event if handler throws
+      emitter.emit("error", error);
+      return undefined;
+    }
+  };
 
   state.retryLimiter.on("failed", async function (error, info) {
     const [state, request, options] = info.args as [
@@ -146,7 +158,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         const retryAfter =
           Number(error.response.headers["retry-after"]) ||
           state.fallbackSecondaryRateRetryAfter;
-        const wantRetry = await emitter.trigger(
+        const wantRetry = await emitAndGetResult(
           "secondary-limit",
           retryAfter,
           options,
@@ -175,7 +187,7 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           Math.ceil((rateLimitReset - Date.now()) / 1000) + 1,
           0,
         );
-        const wantRetry = await emitter.trigger(
+        const wantRetry = await emitAndGetResult(
           "rate-limit",
           retryAfter,
           options,
