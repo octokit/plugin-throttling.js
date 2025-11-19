@@ -35,7 +35,7 @@
     "@octokit/tsconfig": "^4.0.0",
     "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "^4.0.0",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.27.0",
     "github-openapi-graphql-query": "^5.0.0",
     "npm-run-all2": "^8.0.0",
     "prettier": "3.5.3",
