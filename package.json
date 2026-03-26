@@ -16,7 +16,7 @@
     "update-endpoints": "npm-run-all update-endpoints:*",
     "update-endpoints:fetch-json": "node scripts/update-endpoints/fetch-json.js",
     "update-endpoints:code": "node scripts/update-endpoints/code.js",
-    "validate:ts": "tsc --noEmit --noImplicitAny --target es2022 --strict --esModuleInterop --moduleResolution node16 --module node16 --exactOptionalPropertyTypes test/typescript-validate.ts"
+    "validate:ts": "tsc --ignoreConfig --noEmit --noImplicitAny --target es2022 --strict --esModuleInterop --moduleResolution node16 --module node18 --exactOptionalPropertyTypes test/typescript-validate.ts"
   },
   "repository": "github:octokit/plugin-throttling.js",
   "author": "Simon Grondin (http://github.com/SGrondin)",
@@ -41,7 +41,7 @@
     "prettier": "3.6.2",
     "semantic-release-plugin-update-version-in-files": "^2.0.0",
     "tinyglobby": "^0.2.15",
-    "typescript": "^5.0.0",
+    "typescript": "^6.0.0",
     "vitest": "^4.0.0"
   },
   "release": {
