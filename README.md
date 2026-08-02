@@ -94,7 +94,7 @@ async function createIssueOnAllRepos(org) {
 
 Pass `{ throttle: { enabled: false } }` to disable this plugin.
 
-Call `await octokit.throttle.cleanup()` when an Octokit instance is no longer
+Call `octokit.throttle.cleanup()` when an Octokit instance is no longer
 needed to dispose internally created throttling resources.
 
 ### Clustering

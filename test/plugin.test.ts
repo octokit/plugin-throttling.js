@@ -154,17 +154,26 @@ describe("General", function () {
       },
     });
 
-    await octokit.throttle.cleanup();
-    expect(disconnected).toBe(6);
+    octokit.throttle.cleanup();
+    expect(disconnected).toBe(5);
 
-    await octokit.request("GET /route2", {
+    const octokit2 = new TestOctokit({
+      throttle: {
+        // @ts-expect-error use tracking class
+        Bottleneck: TrackedBottleneck,
+        onSecondaryRateLimit: () => 1,
+        onRateLimit: () => 1,
+      },
+    });
+
+    await octokit2.request("GET /route2", {
       request: {
         responses: [{ status: 200, headers: {}, data: {} }],
       },
     });
 
-    await octokit.throttle.cleanup();
-    expect(disconnected).toBe(12);
+    octokit2.throttle.cleanup();
+    expect(disconnected).toBe(10);
   });
 });
 
