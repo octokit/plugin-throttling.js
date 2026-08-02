@@ -20,7 +20,13 @@ const regex = routeMatcher(triggersNotificationPaths);
 const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
-const groupKeys = ["global", "auth", "search", "write", "notifications"] as const;
+const groupKeys = [
+  "global",
+  "auth",
+  "search",
+  "write",
+  "notifications",
+] as const;
 
 const createGroups = function (
   Bottleneck: typeof TBottleneck,
