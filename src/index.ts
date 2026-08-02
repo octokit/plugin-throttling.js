@@ -260,7 +260,9 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
         const mutableState = state as Partial<State>;
         const toDisconnect = [
           ...ownedGroups,
-          ...(ownsRetryLimiter && state.retryLimiter ? [state.retryLimiter] : []),
+          ...(ownsRetryLimiter && state.retryLimiter
+            ? [state.retryLimiter]
+            : []),
         ];
 
         for (const limiter of toDisconnect) {
@@ -274,13 +276,13 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
             delete groups[key];
           }
           if (ownedGroups.has(state[key])) {
-            mutableState[key] = undefined;
+            delete mutableState[key];
           }
         }
 
         ownedGroups.clear();
         if (ownsRetryLimiter) {
-          mutableState.retryLimiter = undefined;
+          delete mutableState.retryLimiter;
           ownsRetryLimiter = false;
         }
         initialized = false;

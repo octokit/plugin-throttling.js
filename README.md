@@ -94,6 +94,9 @@ async function createIssueOnAllRepos(org) {
 
 Pass `{ throttle: { enabled: false } }` to disable this plugin.
 
+Call `await octokit.throttle.cleanup()` when an Octokit instance is no longer
+needed to dispose internally created throttling resources.
+
 ### Clustering
 
 Enabling Clustering support ensures that your application will not go over rate limits **across Octokit instances and across Nodejs processes**.
