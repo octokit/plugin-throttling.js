@@ -119,6 +119,53 @@ describe("General", function () {
 
     expect(constructed).toBe(0);
   });
+
+  it("Should expose a cleanup method for internally created Bottleneck resources", async function () {
+    let disconnected = 0;
+    class TrackedBottleneck extends Bottleneck {
+      override disconnect(...args: Parameters<Bottleneck["disconnect"]>) {
+        disconnected++;
+        return super.disconnect(...args);
+      }
+    }
+    class TrackedGroup extends Bottleneck.Group {
+      override disconnect(...args: Parameters<Bottleneck.Group["disconnect"]>) {
+        disconnected++;
+        return super.disconnect(...args);
+      }
+    }
+    // @ts-expect-error mirror the live API surface for the test double
+    TrackedBottleneck.Group = TrackedGroup;
+    // @ts-expect-error events surface
+    TrackedBottleneck.Events = Bottleneck.Events;
+
+    const octokit = new TestOctokit({
+      throttle: {
+        // @ts-expect-error use tracking class
+        Bottleneck: TrackedBottleneck,
+        onSecondaryRateLimit: () => 1,
+        onRateLimit: () => 1,
+      },
+    });
+
+    await octokit.request("GET /route1", {
+      request: {
+        responses: [{ status: 200, headers: {}, data: {} }],
+      },
+    });
+
+    await octokit.throttle.cleanup();
+    expect(disconnected).toBe(6);
+
+    await octokit.request("GET /route2", {
+      request: {
+        responses: [{ status: 200, headers: {}, data: {} }],
+      },
+    });
+
+    await octokit.throttle.cleanup();
+    expect(disconnected).toBe(12);
+  });
 });
 
 describe("GitHub API best practices", function () {

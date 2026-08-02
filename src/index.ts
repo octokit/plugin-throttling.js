@@ -20,6 +20,13 @@ const regex = routeMatcher(triggersNotificationPaths);
 const triggersNotification = regex.test.bind(regex);
 
 const groups: Groups = {};
+const groupKeys = [
+  "global",
+  "auth",
+  "search",
+  "write",
+  "notifications",
+] as const;
 
 const createGroups = function (
   Bottleneck: typeof TBottleneck,
@@ -107,6 +114,8 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
   // inside a handler.
   // https://github.com/octokit/plugin-throttling.js/issues/794
   let initialized = false;
+  const ownedGroups = new Set<TBottleneck.Group>();
+  let ownsRetryLimiter = false;
   const initializeBottleneck = () => {
     if (initialized) {
       return;
@@ -119,12 +128,30 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     // Defaults from `groups`, but only where the caller didn't already
     // supply a custom Group via `octokitOptions.throttle` (e.g.
     // `throttle: { write: new Bottleneck.Group({ minTime: 50 }) }`).
-    state.global = state.global ?? groups.global!;
-    state.auth = state.auth ?? groups.auth!;
-    state.search = state.search ?? groups.search!;
-    state.write = state.write ?? groups.write!;
-    state.notifications = state.notifications ?? groups.notifications!;
-    state.retryLimiter = state.retryLimiter ?? new Bottleneck();
+    if (state.global == null) {
+      state.global = groups.global!;
+      ownedGroups.add(state.global);
+    }
+    if (state.auth == null) {
+      state.auth = groups.auth!;
+      ownedGroups.add(state.auth);
+    }
+    if (state.search == null) {
+      state.search = groups.search!;
+      ownedGroups.add(state.search);
+    }
+    if (state.write == null) {
+      state.write = groups.write!;
+      ownedGroups.add(state.write);
+    }
+    if (state.notifications == null) {
+      state.notifications = groups.notifications!;
+      ownedGroups.add(state.notifications);
+    }
+    if (state.retryLimiter == null) {
+      state.retryLimiter = new Bottleneck();
+      ownsRetryLimiter = true;
+    }
 
     const events = {};
     const emitter = new Bottleneck.Events(events);
@@ -227,12 +254,50 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
     return wrapRequest(state, request, options);
   });
 
-  return {};
+  return {
+    throttle: {
+      cleanup: async function () {
+        const mutableState = state as Partial<State>;
+        const toDisconnect = [
+          ...ownedGroups,
+          ...(ownsRetryLimiter && state.retryLimiter ? [state.retryLimiter] : []),
+        ];
+
+        for (const limiter of toDisconnect) {
+          limiter.removeAllListeners();
+        }
+
+        await Promise.all(toDisconnect.map((limiter) => limiter.disconnect()));
+
+        for (const key of groupKeys) {
+          if (ownedGroups.has(groups[key]!)) {
+            delete groups[key];
+          }
+          if (ownedGroups.has(state[key])) {
+            mutableState[key] = undefined;
+          }
+        }
+
+        ownedGroups.clear();
+        if (ownsRetryLimiter) {
+          mutableState.retryLimiter = undefined;
+          ownsRetryLimiter = false;
+        }
+        initialized = false;
+      },
+    },
+  };
 }
 throttling.VERSION = VERSION;
 throttling.triggersNotification = triggersNotification;
 
 declare module "@octokit/core" {
+  interface Octokit {
+    throttle: {
+      cleanup: () => Promise<void>;
+    };
+  }
+
   interface OctokitOptions {
     throttle?: ThrottlingOptions;
   }
