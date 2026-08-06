@@ -63,7 +63,13 @@ async function doRequest(
 
     if (
       res.data.errors != null &&
-      res.data.errors.some((error: any) => error.type === "RATE_LIMITED")
+      res.data.errors.some(
+        // GitHub's GraphQL API has been observed to return `RATE_LIMIT`
+        // instead of the documented `RATE_LIMITED` enum value; accept both.
+        // https://github.com/octokit/plugin-throttling.js/issues/824
+        (error: any) =>
+          error.type === "RATE_LIMITED" || error.type === "RATE_LIMIT",
+      )
     ) {
       const error = Object.assign(new Error("GraphQL Rate Limit Exceeded"), {
         response: res,

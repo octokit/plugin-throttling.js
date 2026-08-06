@@ -332,6 +332,56 @@ describe("Retry", { timeout: 20000 }, function () {
       expect(ms).toBeGreaterThan(30);
     });
 
+    // GitHub's GraphQL API has been observed to return `RATE_LIMIT`
+    // (the GraphQL `code` value) rather than the documented `RATE_LIMITED`
+    // enum value on the `type` field. The throttling plugin must treat both
+    // as the same condition. https://github.com/octokit/plugin-throttling.js/issues/824
+    it("Should retry when GraphQL returns 'RATE_LIMIT' instead of 'RATE_LIMITED'", async function () {
+      let eventCount = 0;
+      const octokit = new TestOctokit({
+        throttle: {
+          write: new Bottleneck.Group({ minTime: 50 }),
+          onRateLimit: (retryAfter, options) => {
+            expect(options).toMatchObject({
+              method: "POST",
+              url: "/graphql",
+              request: { retryCount: eventCount },
+            });
+            expect(retryAfter).toEqual(0);
+            eventCount++;
+            return true;
+          },
+          onSecondaryRateLimit: () => 1,
+        },
+      });
+
+      const res = await octokit.request("POST /graphql", {
+        request: {
+          responses: [
+            {
+              status: 200,
+              headers: {
+                "x-ratelimit-remaining": "1",
+                "x-ratelimit-reset": "123",
+              },
+              data: { errors: [{ type: "RATE_LIMIT" }] },
+            },
+            { status: 200, headers: {}, data: { message: "Yay!" } },
+          ],
+        },
+      });
+
+      expect(res.status).toEqual(200);
+      expect(res.data).toMatchObject({ message: "Yay!" });
+      expect(eventCount).toEqual(1);
+      expect(octokit.__requestLog).toStrictEqual([
+        "START POST /graphql",
+        "END POST /graphql",
+        "START POST /graphql",
+        "END POST /graphql",
+      ]);
+    });
+
     it("Should ignore other error types", async function () {
       let eventCount = 0;
       const octokit = new TestOctokit({

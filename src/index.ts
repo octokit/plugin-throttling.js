@@ -182,7 +182,13 @@ export function throttling(octokit: Octokit, octokitOptions: OctokitOptions) {
           (error.response.headers != null &&
             error.response.headers["x-ratelimit-remaining"] === "0") ||
           (error.response.data?.errors ?? []).some(
-            (error: any) => error.type === "RATE_LIMITED",
+            // GitHub's GraphQL API has been observed to return `RATE_LIMIT`
+            // (the value of the corresponding GraphQL `code` field) instead of
+            // the documented `RATE_LIMITED` enum value on the `type` field, so
+            // both must be treated as the same condition.
+            // https://github.com/octokit/plugin-throttling.js/issues/824
+            (error: any) =>
+              error.type === "RATE_LIMITED" || error.type === "RATE_LIMIT",
           )
         ) {
           // The user has used all their allowed calls for the current time period (REST and GraphQL)
