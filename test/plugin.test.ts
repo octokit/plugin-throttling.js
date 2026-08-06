@@ -83,6 +83,42 @@ describe("General", function () {
         }),
     ).not.toThrow();
   });
+
+  // Bottleneck.Group / `new Bottleneck()` schedule timers in their
+  // constructors. Cloudflare Workers (and other restricted runtimes) reject
+  // `setTimeout` / `setInterval` at module-scope evaluation, so the plugin
+  // must defer all Bottleneck instantiation to the first request rather
+  // than running it eagerly inside `new Octokit()`.
+  // https://github.com/octokit/plugin-throttling.js/issues/794
+  it("Should not create any Bottleneck instances synchronously during `new Octokit()`", function () {
+    let constructed = 0;
+    class TrackedBottleneck extends Bottleneck {
+      constructor(...args: ConstructorParameters<typeof Bottleneck>) {
+        super(...args);
+        constructed++;
+      }
+    }
+    // @ts-expect-error mirror the live API surface for the test double
+    TrackedBottleneck.Group = class extends Bottleneck.Group {
+      constructor(...args: ConstructorParameters<typeof Bottleneck.Group>) {
+        super(...args);
+        constructed++;
+      }
+    };
+    // @ts-expect-error events surface
+    TrackedBottleneck.Events = Bottleneck.Events;
+
+    new TestOctokit({
+      throttle: {
+        // @ts-expect-error Use the tracking double instead of the default
+        Bottleneck: TrackedBottleneck,
+        onSecondaryRateLimit: () => 1,
+        onRateLimit: () => 1,
+      },
+    });
+
+    expect(constructed).toBe(0);
+  });
 });
 
 describe("GitHub API best practices", function () {

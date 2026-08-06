@@ -17,9 +17,9 @@ jobs:
           - 22
           - 24
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Test with Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           cache: npm
           node-version: ${{ matrix.node_version }}
@@ -31,8 +31,8 @@ jobs:
     steps:
       - run: exit 1
         if: ${{ needs.test_matrix.result != 'success' }}
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           cache: npm
           node-version: "lts/*"
