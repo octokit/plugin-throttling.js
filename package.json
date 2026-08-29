@@ -22,7 +22,7 @@
   "author": "Simon Grondin (http://github.com/SGrondin)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/types": "^17.0.0",
+    "@octokit/types": "^18.0.0",
     "bottleneck": "^2.15.3"
   },
   "peerDependencies": {
