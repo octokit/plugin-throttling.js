@@ -37,7 +37,7 @@
     "@vitest/coverage-v8": "^4.0.0",
     "esbuild": "^0.28.0",
     "github-openapi-graphql-query": "^5.0.0",
-    "npm-run-all2": "^8.0.0",
+    "npm-run-all2": "^9.0.0",
     "prettier": "3.8.1",
     "semantic-release-plugin-update-version-in-files": "^2.0.0",
     "tinyglobby": "^0.2.15",
