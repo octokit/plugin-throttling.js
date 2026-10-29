@@ -33,7 +33,7 @@
     "@octokit/core": "^7.0.6",
     "@octokit/request-error": "^7.0.2",
     "@octokit/tsconfig": "^4.0.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.0.0",
     "@vitest/coverage-v8": "^4.0.0",
     "esbuild": "^0.28.0",
     "github-openapi-graphql-query": "^5.0.0",
