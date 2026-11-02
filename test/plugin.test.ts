@@ -500,3 +500,27 @@ describe("GitHub API best practices", function () {
     ]);
   });
 });
+
+describe("Errors", function () {
+  it("Should include the caller in the stack trace of a failed request", async function () {
+    const octokit = new TestOctokit({
+      throttle: {
+        onSecondaryRateLimit: () => {},
+        onRateLimit: () => {},
+      },
+    });
+
+    async function callerOfFailingRequest() {
+      await octokit.request("GET /route1", {
+        request: {
+          responses: [{ status: 404, headers: {}, data: { message: "Nope" } }],
+        },
+      });
+    }
+
+    const error = await callerOfFailingRequest().catch((error) => error);
+
+    expect(error.message).toBe("Nope");
+    expect(error.stack).toContain("callerOfFailingRequest");
+  });
+});

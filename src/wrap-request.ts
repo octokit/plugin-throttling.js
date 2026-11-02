@@ -10,7 +10,30 @@ export function wrapRequest(
   ) => Promise<OctokitResponse<any>>) & { retryCount: number },
   options: Required<EndpointDefaults>,
 ) {
-  return state.retryLimiter.schedule(doRequest, state, request, options);
+  // Bottleneck runs jobs from its own queue, which cuts the async stack trace
+  // short. Capture the stack of the caller here, so it can be added back to
+  // errors that are thrown while the request is running.
+  const callSite = new Error();
+
+  return state.retryLimiter
+    .schedule(doRequest, state, request, options)
+    .catch((error: unknown) => {
+      throw addCallSite(error, callSite);
+    });
+}
+
+function addCallSite(error: unknown, callSite: Error) {
+  if (!(error instanceof Error) || typeof error.stack !== "string") {
+    return error;
+  }
+
+  // Skip the (empty) error message and the frame of wrapRequest itself
+  const frames = (callSite.stack ?? "").split("\n").slice(2);
+  if (frames.length > 0) {
+    error.stack += `\n${frames.join("\n")}`;
+  }
+
+  return error;
 }
 
 async function doRequest(
