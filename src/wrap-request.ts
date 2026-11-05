@@ -28,10 +28,8 @@ function addCallSite(error: unknown, callSite: Error) {
   }
 
   // Skip the (empty) error message and the frame of wrapRequest itself
-  const frames = (callSite.stack ?? "").split("\n").slice(2);
-  if (frames.length > 0) {
-    error.stack += `\n${frames.join("\n")}`;
-  }
+  const frames = String(callSite.stack).split("\n").slice(2);
+  error.stack += `\n${frames.join("\n")}`;
 
   return error;
 }
