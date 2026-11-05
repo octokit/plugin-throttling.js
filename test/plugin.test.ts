@@ -500,3 +500,62 @@ describe("GitHub API best practices", function () {
     ]);
   });
 });
+
+describe("Errors", function () {
+  it("Should include the caller in the stack trace of a failed request", async function () {
+    const octokit = new TestOctokit({
+      throttle: {
+        onSecondaryRateLimit: () => {},
+        onRateLimit: () => {},
+      },
+    });
+
+    async function callerOfFailingRequest() {
+      await octokit.request("GET /route1", {
+        request: {
+          responses: [{ status: 404, headers: {}, data: { message: "Nope" } }],
+        },
+      });
+    }
+
+    const error = await callerOfFailingRequest().catch((error) => error);
+
+    expect(error.message).toBe("Nope");
+    expect(error.stack).toContain("callerOfFailingRequest");
+  });
+
+  it("Should pass on values that are not errors untouched", async function () {
+    const ThrowingOctokit = Octokit.plugin((octokit: Octokit) => {
+      octokit.hook.wrap("request", async () => {
+        throw "not an error";
+      });
+    }, throttling);
+    const octokit = new ThrowingOctokit({
+      throttle: {
+        onSecondaryRateLimit: () => {},
+        onRateLimit: () => {},
+      },
+    });
+
+    await expect(octokit.request("GET /route1")).rejects.toBe("not an error");
+  });
+
+  it("Should pass on errors that have no stack untouched", async function () {
+    const failure = new Error("no stack");
+    failure.stack = undefined;
+    const ThrowingOctokit = Octokit.plugin((octokit: Octokit) => {
+      octokit.hook.wrap("request", async () => {
+        throw failure;
+      });
+    }, throttling);
+    const octokit = new ThrowingOctokit({
+      throttle: {
+        onSecondaryRateLimit: () => {},
+        onRateLimit: () => {},
+      },
+    });
+
+    await expect(octokit.request("GET /route1")).rejects.toBe(failure);
+    expect(failure.stack).toBeUndefined();
+  });
+});
